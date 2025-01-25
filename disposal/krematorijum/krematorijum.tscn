@@ -14,6 +14,7 @@ size = Vector3(3, 3, 1)
 
 [node name="Krematorijum" type="StaticBody3D"]
 script = ExtResource("1_jvw7t")
+max_bodies = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_25ys4")

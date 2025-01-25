@@ -55,10 +55,11 @@ func use_input():
 func use_body():
 	if Input.is_action_pressed("use_corpse") and held_corpse != null:
 		if raycast.get_collider() is Disposal:
-			score += held_corpse.price
-			print(score)
-			held_corpse.queue_free()
-			held_corpse = null
+			if raycast.get_collider().put_body():
+				score += held_corpse.price
+				print(score)
+				held_corpse.queue_free()
+				held_corpse = null
 
 func interact_input():
 	if Input.is_action_just_pressed("interact") and raycast.is_colliding():
