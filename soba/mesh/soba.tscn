@@ -7,11 +7,12 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0g1fh"]
 resource_name = "zidFioke"
 albedo_texture = ExtResource("1_0cser")
-roughness = 0.5
+metallic_specular = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1s3lh"]
 resource_name = "pod"
 albedo_texture = ExtResource("2_qwl1n")
+metallic_specular = 0.0
 roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q48fq"]
