@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgamuqao6oli1"]
+
+[ext_resource type="PackedScene" uid="uid://dc6ux2dac5fr2" path="res://player/player.tscn" id="1_vp3ec"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3bh8n"]
+size = Vector2(25, 25)
+
+[node name="World" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_3bh8n")
+
+[node name="Player" parent="." instance=ExtResource("1_vp3ec")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+speed = 5.0
+sensitivity = 0.5
