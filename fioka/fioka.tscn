@@ -1,0 +1,44 @@
+[gd_scene load_steps=10 format=3 uid="uid://dwk3yqn5tbkg3"]
+
+[ext_resource type="Script" path="res://fioka/fioka.gd" id="1_7tfq4"]
+[ext_resource type="PackedScene" uid="uid://bi4nb7ycgk6hx" path="res://les/komunalni_les.tscn" id="2_lioic"]
+[ext_resource type="PackedScene" uid="uid://cysl123k4qx78" path="res://les/standardni_les.tscn" id="3_mavvq"]
+[ext_resource type="PackedScene" uid="uid://1eumpiaekrig" path="res://les/bogati_les.tscn" id="4_m1a6e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sf0mw"]
+albedo_color = Color(1, 0, 0.0392157, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v5mt7"]
+material = SubResource("StandardMaterial3D_sf0mw")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t7p3n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvx8g"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vhf4l"]
+material = SubResource("StandardMaterial3D_mvx8g")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Fioka" type="StaticBody3D" node_paths=PackedStringArray("lampica")]
+script = ExtResource("1_7tfq4")
+komunalni_les = ExtResource("2_lioic")
+standardni_les = ExtResource("3_mavvq")
+bogati_les = ExtResource("4_m1a6e")
+lampica = NodePath("Lampica")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_v5mt7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_t7p3n")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Lampica" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.891982, 0)
+visible = false
+mesh = SubResource("BoxMesh_vhf4l")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

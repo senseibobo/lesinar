@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cysl123k4qx78"]
+
+[ext_resource type="Script" path="res://les/les.gd" id="1_funls"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wou0b"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sbr27"]
+material = SubResource("StandardMaterial3D_wou0b")
+
+[node name="StandardniLes" type="Node3D"]
+script = ExtResource("1_funls")
+price = 50
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_sbr27")

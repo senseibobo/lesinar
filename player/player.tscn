@@ -4,12 +4,28 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mb4tp"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "hand", "left_hand", "raycast")]
 script = ExtResource("1_o48ys")
 camera = NodePath("Camera3D")
+hand = NodePath("Camera3D/Hand")
+left_hand = NodePath("Camera3D/LeftHand")
+raycast = NodePath("RayCast3D")
+speed = 5.0
+sensitivity = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_mb4tp")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Hand" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.225, -1.21, -2)
+
+[node name="LeftHand" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.225, -1.21, -2)
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.981394, 0)
+target_position = Vector3(0, 0, -3)
+debug_shape_custom_color = Color(1, 0, 0, 1)

@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cm377fat13tc4"]
+
+[ext_resource type="Script" path="res://kuka/kuka.gd" id="1_x2vx0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6h7cf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4s5w2"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_l6h3b"]
+material = SubResource("StandardMaterial3D_4s5w2")
+size = Vector3(0.5, 2, 0.5)
+
+[node name="Kuka" type="StaticBody3D"]
+script = ExtResource("1_x2vx0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_6h7cf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_l6h3b")
