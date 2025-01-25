@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://ge533veisgpo"]
+
+[ext_resource type="Script" path="res://terrain/terrain.gd" id="1_h2w3j"]
+[ext_resource type="Shader" path="res://terrain/terrain.gdshader" id="2_yt2v2"]
+[ext_resource type="Texture2D" uid="uid://beqnptmyi7vt0" path="res://icon.svg" id="3_x3bsp"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fbe6m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dx2ah"]
+render_priority = 0
+shader = ExtResource("2_yt2v2")
+shader_parameter/amplitude = 2.0
+shader_parameter/heightmap = SubResource("PlaceholderTexture2D_fbe6m")
+shader_parameter/albedo_texture = ExtResource("3_x3bsp")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_enun1"]
+size = Vector2(30, 30)
+subdivide_width = 200
+subdivide_depth = 200
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8o40f"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 1, 1, 0.490196)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hay2d"]
+
+[node name="Terrain" type="Node3D" node_paths=PackedStringArray("mesh_instance", "preview_mesh")]
+script = ExtResource("1_h2w3j")
+mesh_instance = NodePath("MeshInstance3D")
+preview_mesh = NodePath("PreviewMesh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_dx2ah")
+mesh = SubResource("PlaneMesh_enun1")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.929776, 0.368125, 0, -0.368125, 0.929776, 0, 1.16015, 2.35037)
+fov = 44.5
+
+[node name="PreviewMesh" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_8o40f")
+mesh = SubResource("BoxMesh_hay2d")
