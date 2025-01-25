@@ -4,6 +4,7 @@ extends StaticBody3D
 @export var komunalni_les: PackedScene
 @export var standardni_les: PackedScene
 @export var bogati_les: PackedScene
+@export var anim_player: AnimationPlayer
 @export var lampica: MeshInstance3D
  
 var can_take: bool
@@ -24,6 +25,8 @@ func _on_timer_timeout() -> void:
 	can_take = true
 
 func take_corpse() -> PackedScene:
+	if can_take == false: return null
+	anim_player.play("open")
 	lampica.visible = false
 	can_take = false
 	return trenutni

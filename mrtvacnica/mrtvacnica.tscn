@@ -17,7 +17,7 @@ shape = SubResource("BoxShape3D_tklcs")
 mesh = SubResource("BoxMesh_cjdhn")
 
 [node name="Fioka" parent="." instance=ExtResource("1_uj1t8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69592, 0, 0.489249)
 
 [node name="Fioka2" parent="." instance=ExtResource("1_uj1t8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.806606, 0, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.806606, 0, 0.516596)
