@@ -2,6 +2,9 @@ class_name Terrain
 extends Node3D
 
 
+signal grave_dug
+
+
 @export var mesh_instance: MeshInstance3D
 @export var preview_mesh: MeshInstance3D
 
@@ -84,11 +87,12 @@ func _process(delta):
 
 
 func _process_attempt_place():
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+	if Input.is_action_just_pressed("use"):
 		if not preview_active: return
 		print(get_dig_pos())
 		if not check_dig_available(get_dig_pos(), selected_grave_info.size): return
 		dig_grave(get_dig_pos(), selected_grave_info.size, selected_grave_info.depth)
+		grave_dug.emit()
 		update_preview_color()
 
 

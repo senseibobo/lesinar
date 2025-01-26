@@ -45,7 +45,7 @@ func _physics_process(delta: float) -> void:
 	match state:
 		State.MOVE:
 			move_input(delta)
-			use_input()
+			#use_input()
 			use_body()
 			interact_input()
 			anim_input()
@@ -61,10 +61,10 @@ func move_input(delta: float):
 	velocity = move_vector*speed;
 	move_and_slide()
 
-func use_input():
-	if Input.is_action_just_pressed("use") and held_tool != null:
-		choose_anim_tool()
-		held_tool.use()
+#func use_input():
+	#if Input.is_action_just_pressed("use") and held_tool != null:
+		#choose_anim_tool()
+		#held_tool.use()
 
 func use_body():
 	if Input.is_action_just_pressed("use_corpse") and held_corpse != null:
@@ -139,3 +139,7 @@ func move_to_start():
 
 func camera_input():
 	view_camera.global_transform = camera.global_transform
+
+
+func _on_grave_dug():
+	choose_anim_tool()

@@ -48,3 +48,4 @@ player = NodePath("../Player")
 [node name="Terrain" parent="." instance=ExtResource("7_udxks")]
 
 [connection signal="tool_changed" from="Player" to="Terrain" method="update_terrain_mode"]
+[connection signal="grave_dug" from="Terrain" to="Player" method="_on_grave_dug"]
