@@ -1,23 +1,25 @@
-[gd_scene load_steps=11 format=3 uid="uid://cgamuqao6oli1"]
+[gd_scene load_steps=13 format=3 uid="uid://cgamuqao6oli1"]
 
 [ext_resource type="PackedScene" uid="uid://dc6ux2dac5fr2" path="res://player/player.tscn" id="1_vp3ec"]
 [ext_resource type="PackedScene" uid="uid://0b788ilmda1t" path="res://mrtvacnica/mrtvacnica.tscn" id="3_fscio"]
 [ext_resource type="PackedScene" uid="uid://byxnbtjp3nxlw" path="res://soba/mesh/soba.tscn" id="4_0yey6"]
 [ext_resource type="PackedScene" uid="uid://d18ckmself2n" path="res://disposal/krematorijum/krematorijum.tscn" id="5_m8om7"]
 [ext_resource type="PackedScene" uid="uid://dl5hw2edprci2" path="res://granice/granice.tscn" id="6_7h36j"]
+[ext_resource type="AudioStream" uid="uid://dao80lmv1ha4m" path="res://audio/bg opet.mp3" id="7_sgkku"]
 [ext_resource type="PackedScene" uid="uid://ge533veisgpo" path="res://terrain/terrain.tscn" id="7_udxks"]
+[ext_resource type="AudioStream" uid="uid://cvl8hf0knwq43" path="res://audio/traffic-city-121711.mp3" id="8_tks0w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v48ht"]
 sky_top_color = Color(0, 0, 0, 1)
 sky_horizon_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Sky" id="Sky_e1vj0"]
+[sub_resource type="Sky" id="Sky_gcgkl"]
 sky_material = SubResource("ProceduralSkyMaterial_v48ht")
 
 [sub_resource type="Environment" id="Environment_skxy8"]
 background_mode = 2
 background_energy_multiplier = 0.75
-sky = SubResource("Sky_e1vj0")
+sky = SubResource("Sky_gcgkl")
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.1
@@ -75,7 +77,15 @@ light_energy = 3.475
 shadow_enabled = true
 spot_range = 23.832
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_sgkku")
+autoplay = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_tks0w")
+volume_db = -3.748
+pitch_scale = 0.28
+autoplay = true
 
 [connection signal="tool_changed" from="Player" to="Terrain" method="update_terrain_mode"]
 [connection signal="grave_dug" from="Terrain" to="Player" method="_on_grave_dug"]
