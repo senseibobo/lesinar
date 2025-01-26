@@ -34,13 +34,17 @@ var score: int
 @export var pick_sound: AudioStream
 @export var krec_sound: AudioStream
 @export var grab_sound: AudioStream
+@export var katch_sound: AudioStream
 @export var speed: float
 @export var sensitivity: float
+@export var label: Label
 
 func _ready() -> void:
 	score = 0
 	state = State.MOVE
+	label.visible = false
 	move_vector = Vector3()
+	ScoreManager.score_acquired.connect(play_catching)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _input(event: InputEvent) -> void:
@@ -81,6 +85,10 @@ func move_input(delta: float):
 		#choose_anim_tool()
 		#held_tool.use()
 
+func play_catching():
+	audio_player.stream = katch_sound
+	audio_player.play()
+
 func dispose_corpse():
 	left_hand_anim.stop()
 	left_hand_anim.play("GRAB")
@@ -92,9 +100,11 @@ func dispose_corpse():
 
 
 func interact_input():
+	check_label()
 	if Input.is_action_just_pressed("interact") and raycast.is_colliding():
 		print(raycast.get_collider().name)
 		if raycast.get_collider() is Kuka:
+			label.visible = true
 			right_hand_anim.stop()
 			right_hand_anim.play("GRAB")
 			audio_player.stream = grab_sound
@@ -109,17 +119,32 @@ func interact_input():
 				var taken_tool_scene = raycast.get_collider().take_tool()
 				take_tool(taken_tool_scene)
 		elif raycast.get_collider() is Fioka and not holding_corpse:
+			label.visible = true
 			left_hand_anim.stop()
 			left_hand_anim.play("GRAB")
 			audio_player.stream = grab_sound
 			audio_player.play()
 			take_corpse(raycast.get_collider())
 		elif raycast.get_collider() is Grave and holding_corpse:
+			label.visible = true
 			var grave: Grave = raycast.get_collider() 
 			if grave.add_corpse(held_corpse_info):
 				ScoreManager.on_corpse_disposed(held_corpse_info, grave)
 				dispose_corpse()
 			
+
+func check_label():
+	if raycast.is_colliding():
+		if raycast.get_collider() is Kuka:
+			label.visible = true
+		elif raycast.get_collider() is Fioka and !holding_corpse:
+			label.visible = true
+		elif raycast.get_collider() is Grave and holding_corpse:
+			label.visible = true
+		else:
+			label.visible = false
+	else:
+		label.visible = false
 
 func anim_input():
 	if !right_hand_anim.is_playing() and held_tool: right_hand_anim.play("HOLD")

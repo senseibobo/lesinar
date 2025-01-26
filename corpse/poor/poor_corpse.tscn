@@ -19,3 +19,5 @@ mesh = SubResource("BoxMesh_k5fp6")
 
 [node name="poorLesh" parent="." instance=ExtResource("2_efr68")]
 transform = Transform3D(0.251601, 0, 0.163392, 0, 0.3, 0, -0.163392, 0, 0.251601, 0, 0, 0)
+
+[editable path="poorLesh"]
