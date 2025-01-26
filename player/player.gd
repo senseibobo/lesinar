@@ -125,6 +125,8 @@ func choose_anim_tool():
 		right_hand_anim.play("SHOWEL")
 	if held_tool is Pijuk:
 		right_hand_anim.play("PIKAC")
+	if held_tool is Krec:
+		right_hand_anim.play("KREC")
 
 func take_corpse(fioka: Fioka):
 	var taken_corpse = fioka.take_corpse()
