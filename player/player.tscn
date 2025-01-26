@@ -1903,7 +1903,7 @@ _data = {
 "SHOWEL": SubResource("Animation_v4l2g")
 }
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "view_camera", "hand", "left_hand", "right_hand_anim", "left_hand_anim", "raycast")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "view_camera", "hand", "left_hand", "right_hand_anim", "left_hand_anim", "left_hand_model", "right_hand_model", "raycast")]
 collision_layer = 3
 script = ExtResource("1_o48ys")
 camera = NodePath("Camera3D")
@@ -1912,6 +1912,8 @@ hand = NodePath("Camera3D/armModelRight/Arml/Skeleton3D/BoneAttachment3D/Hand")
 left_hand = NodePath("Camera3D/armModelLeft/Arml/Skeleton3D/BoneAttachment3D/LeftHand")
 right_hand_anim = NodePath("Camera3D/armModelRight/AnimationPlayer")
 left_hand_anim = NodePath("Camera3D/armModelLeft/AnimationPlayer")
+left_hand_model = NodePath("Camera3D/armModelLeft")
+right_hand_model = NodePath("Camera3D/armModelRight")
 raycast = NodePath("Camera3D/RayCast3D")
 speed = 5.0
 sensitivity = 0.5

@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://5y1bbgbpm8er"]
+[gd_scene load_steps=6 format=3 uid="uid://5y1bbgbpm8er"]
 
 [ext_resource type="Script" path="res://graves/normal/normal_grave.gd" id="1_r8pu5"]
+[ext_resource type="PackedScene" uid="uid://c1odt4bq5ti6a" path="res://graves/normal/mesh/grob_1.tscn" id="2_qsvx7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rp23q"]
+albedo_color = Color(0.268522, 0.000229928, 2.40654e-08, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_qimpw"]
+material = SubResource("StandardMaterial3D_rp23q")
 size = Vector3(1, 0.2, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i5lor"]
@@ -19,3 +24,6 @@ mesh = SubResource("BoxMesh_qimpw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.5)
 shape = SubResource("BoxShape3D_i5lor")
+
+[node name="grob1" parent="." instance=ExtResource("2_qsvx7")]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, 0.436598, -0.386574)

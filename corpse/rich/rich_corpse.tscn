@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://1eumpiaekrig"]
+[gd_scene load_steps=5 format=3 uid="uid://1eumpiaekrig"]
 
 [ext_resource type="Script" path="res://corpse/corpse.gd" id="1_vd0jq"]
+[ext_resource type="PackedScene" uid="uid://dtmv6rkheefd6" path="res://corpse/mesh/gold_lesh.tscn" id="2_owra3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rrkuf"]
 albedo_color = Color(1, 1, 0, 1)
@@ -10,8 +11,10 @@ material = SubResource("StandardMaterial3D_rrkuf")
 
 [node name="BogatiLes" type="Node3D"]
 script = ExtResource("1_vd0jq")
-price = 100
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 mesh = SubResource("BoxMesh_0ws6a")
+
+[node name="GOLDLesh" parent="." instance=ExtResource("2_owra3")]
+transform = Transform3D(0.251601, 0, 0.163392, 0, 0.3, 0, -0.163392, 0, 0.251601, 0, 0, 0)

@@ -25,6 +25,8 @@ var score: int
 @export var left_hand: Node3D
 @export var right_hand_anim: AnimationPlayer
 @export var left_hand_anim: AnimationPlayer
+@export var left_hand_model: Node3D
+@export var right_hand_model: Node3D
 @export var raycast: RayCast3D
 @export var speed: float
 @export var sensitivity: float
@@ -53,6 +55,7 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta):
 	camera_input()
+	sway()
 
 func move_input(delta: float):
 	var input: Vector2 = Input.get_vector("left","right","up","down")
@@ -139,6 +142,16 @@ func move_to_start():
 func camera_input():
 	view_camera.global_transform = camera.global_transform
 
+func sway():
+	if mouse_move > 2:
+		left_hand_model.position = left_hand_model.position.lerp(Vector3(-0.175, -1.718, -0.455), 5*get_process_delta_time())
+		right_hand_model.position = right_hand_model.position.lerp(Vector3(-0.175, -1.718, -0.455), 5*get_process_delta_time())
+	elif mouse_move < -2:
+		left_hand_model.position = left_hand_model.position.lerp(Vector3(0.1, -1.718, -0.455), 5*get_process_delta_time())
+		right_hand_model.position = right_hand_model.position.lerp(Vector3(0.1, -1.718, -0.455), 5*get_process_delta_time())
+	else:
+		left_hand_model.position = left_hand_model.position.lerp(Vector3(-0.05, -1.718, -0.455), 5*get_process_delta_time())
+		right_hand_model.position = right_hand_model.position.lerp(Vector3(-0.05, -1.718, -0.455), 5*get_process_delta_time())
 
 func _on_grave_dug():
 	choose_anim_tool()
