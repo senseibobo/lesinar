@@ -3,7 +3,7 @@ extends Grave
 
 @export var name_label: Label3D
 @export var year_label: Label3D
-@export var audio_player: AudioStreamPlayer
+@export var audio_player: AudioStreamPlayer3D
 @export var marker: Marker3D
 @export var dirt_mesh_instance: MeshInstance3D
 
