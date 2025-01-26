@@ -10,6 +10,9 @@ extends Node3D
 @export var border_start_distance: float = 15.0
 
 
+func _ready():
+	pass
+
 func _physics_process(delta):
 	ScoreManager.on_area_change(calculate_area())
 

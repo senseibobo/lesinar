@@ -2,6 +2,8 @@ extends Node
 
 
 signal score_updated(new_score: float)
+signal score_goal_updated(new_score_goal: float)
+signal score_acquired()
 signal corpses_disposed_updated(new_corpses_disposed: int)
 signal graves_dug_updated(new_graves_dug: int)
 signal area_updated(new_area: float)
@@ -9,6 +11,7 @@ signal calories_burnt_updated(new_calories_burnt: float)
 
 
 var score: float = 0.0
+var score_goal: float = 500.0
 var corpses_disposed: int = 0
 var graves_dug: int = 0
 var area_left: float = 0.0
@@ -29,6 +32,10 @@ func on_corpse_disposed(corpse_info: CorpseInfo, grave: Grave):
 	score += corpse_info.value * grave.value_multiplier
 	corpses_disposed += 1
 	corpses_disposed_updated.emit(corpses_disposed)
+	if score >= score_goal:
+		score -= score_goal
+		score_acquired.emit()
+		score_goal += 500.0
 	score_updated.emit(score)
 
 

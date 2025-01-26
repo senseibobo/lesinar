@@ -18,7 +18,7 @@ func _ready():
 
 
 func _on_score_updated(new_score: float):
-	score_label.text = str("Profit: $", str(new_score).pad_decimals(1))
+	score_label.text = str("Profit: $", str(new_score).pad_decimals(0),"/$",str(ScoreManager.score_goal))
 	
 	
 func _on_corpses_disposed_updated(new_corpses_disposed: int):

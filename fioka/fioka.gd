@@ -29,10 +29,11 @@ func fill_with_corpse():
 	current_corpse = available_corpses.pick_random()
 	lampica.visible = true
 	if current_corpse == null: return
-	current_corpse = available_corpses.pick_random()
+	current_corpse = available_corpses.pick_random().duplicate()
+	current_corpse.generate_data()
 	screen.visible = true
 	value_label.text = str("$",current_corpse.value)
-	name_label.text = current_corpse.get_random_name_formatted()
+	name_label.text = current_corpse.formatted_name
 
 
 func take_corpse() -> CorpseInfo:
