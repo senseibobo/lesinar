@@ -93,6 +93,7 @@ func dispose_corpse():
 
 func interact_input():
 	if Input.is_action_just_pressed("interact") and raycast.is_colliding():
+		print(raycast.get_collider().name)
 		if raycast.get_collider() is Kuka:
 			right_hand_anim.stop()
 			right_hand_anim.play("GRAB")

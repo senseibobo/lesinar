@@ -1,14 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://ge533veisgpo"]
+[gd_scene load_steps=10 format=3 uid="uid://ge533veisgpo"]
 
 [ext_resource type="Script" path="res://terrain/terrain.gd" id="1_h2w3j"]
 [ext_resource type="Shader" path="res://terrain/terrain.gdshader" id="2_yt2v2"]
 [ext_resource type="Texture2D" uid="uid://beqnptmyi7vt0" path="res://icon.svg" id="3_x3bsp"]
 
+[sub_resource type="Gradient" id="Gradient_3tep2"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5pgij"]
+gradient = SubResource("Gradient_3tep2")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dx2ah"]
 render_priority = 0
 shader = ExtResource("2_yt2v2")
 shader_parameter/amplitude = 8.0
-shader_parameter/heightmap = ExtResource("3_x3bsp")
+shader_parameter/heightmap = SubResource("GradientTexture1D_5pgij")
 shader_parameter/albedo_texture = ExtResource("3_x3bsp")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_enun1"]

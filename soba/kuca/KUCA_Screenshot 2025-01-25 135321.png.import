@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bandj15xvoual"
+path.s3tc="res://.godot/imported/KUCA_Screenshot 2025-01-25 135321.png-462305464473bdc687bcc77681708ad8.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "c5b88178538785cd2f4ade29cc75f229"
+}
+
+[deps]
+
+source_file="res://soba/kuca/KUCA_Screenshot 2025-01-25 135321.png"
+dest_files=["res://.godot/imported/KUCA_Screenshot 2025-01-25 135321.png-462305464473bdc687bcc77681708ad8.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

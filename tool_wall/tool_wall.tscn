@@ -11,16 +11,16 @@ size = Vector3(5, 2, 1)
 [node name="ToolWall" type="Node3D"]
 
 [node name="Kuka" parent="." instance=ExtResource("1_dwa2x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32773, 0, 0.690071)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
 tool_scene = ExtResource("2_xiwoc")
 
 [node name="Kuka2" parent="." instance=ExtResource("1_dwa2x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.672266, 0, 0.690071)
 tool_scene = ExtResource("3_av7h6")
 
 [node name="Kuka3" parent="." instance=ExtResource("1_dwa2x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92296, 0, 0.690071)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
 tool_scene = ExtResource("4_286fm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_yiyq7")
