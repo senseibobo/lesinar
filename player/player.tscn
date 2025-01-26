@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dtil8wqt0x15o" path="res://player/ruke_mesh/armModel_armCol.png" id="2_nfbs6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mb4tp"]
+radius = 0.3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t11hp"]
 resource_name = "Skin"
