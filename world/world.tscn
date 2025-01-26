@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgamuqao6oli1"]
+[gd_scene load_steps=10 format=3 uid="uid://cgamuqao6oli1"]
 
 [ext_resource type="PackedScene" uid="uid://dc6ux2dac5fr2" path="res://player/player.tscn" id="1_vp3ec"]
 [ext_resource type="PackedScene" uid="uid://clijgwdg0b26j" path="res://tool_wall/tool_wall.tscn" id="2_ybr06"]
@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://byxnbtjp3nxlw" path="res://soba/mesh/soba.tscn" id="4_0yey6"]
 [ext_resource type="PackedScene" uid="uid://d18ckmself2n" path="res://disposal/krematorijum/krematorijum.tscn" id="5_m8om7"]
 [ext_resource type="PackedScene" uid="uid://dl5hw2edprci2" path="res://granice/granice.tscn" id="6_7h36j"]
+[ext_resource type="PackedScene" uid="uid://ge533veisgpo" path="res://terrain/terrain.tscn" id="7_udxks"]
 
 [sub_resource type="Environment" id="Environment_skxy8"]
+background_energy_multiplier = 0.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3bh8n"]
 size = Vector2(25, 25)
@@ -15,12 +17,13 @@ size = Vector2(25, 25)
 [node name="World" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.683013, -0.258819, 0.683013, -0.183013, 0.965926, 0.183013, -0.707107, -1.84392e-07, -0.707107, 12, 9, 0)
+transform = Transform3D(0.199551, -0.959353, -0.199551, -0.357739, -0.260916, 0.89663, -0.912251, -0.107536, -0.395264, 12, 9, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_skxy8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("PlaneMesh_3bh8n")
 
 [node name="Player" parent="." instance=ExtResource("1_vp3ec")]
@@ -41,3 +44,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.385358, 7.0298)
 [node name="Granice" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_7h36j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 player = NodePath("../Player")
+
+[node name="Terrain" parent="." instance=ExtResource("7_udxks")]
+
+[connection signal="tool_changed" from="Player" to="Terrain" method="update_terrain_mode"]

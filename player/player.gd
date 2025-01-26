@@ -1,6 +1,10 @@
 class_name Player
 extends CharacterBody3D
 
+
+signal tool_changed(new_tool: Tool)
+
+
 enum State {MOVE}
 
 var state: State
@@ -45,7 +49,10 @@ func _physics_process(delta: float) -> void:
 			use_body()
 			interact_input()
 			anim_input()
-			camera_input()
+		
+
+func _process(delta):
+	camera_input()
 
 func move_input(delta: float):
 	var input: Vector2 = Input.get_vector("left","right","up","down")
@@ -85,6 +92,7 @@ func interact_input():
 				if held_tool != null: held_tool.queue_free()
 				held_tool = null
 				held_tool_scene = null
+				tool_changed.emit(null)
 			elif held_tool == null:
 				var taken_tool_scene = raycast.get_collider().take_tool()
 				take_tool(taken_tool_scene)
@@ -103,11 +111,13 @@ func anim_input():
 	if !left_hand_anim.is_playing(): left_hand_anim.play("IDLE")
 	if !right_hand_anim.is_playing(): right_hand_anim.play("IDLE")
 
+
 func take_tool(tool_scene: PackedScene):
 	if tool_scene == null: return
 	held_tool = tool_scene.instantiate()
 	held_tool_scene = tool_scene
 	hand.add_child(held_tool)
+	tool_changed.emit(held_tool)
 
 func choose_anim_tool():
 	right_hand_anim.stop()

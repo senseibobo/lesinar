@@ -18,7 +18,19 @@ func _ready() -> void:
 	generate_grid()
 	heightmap = Image.create(grid_size.x,grid_size.y,false,Image.FORMAT_RGB8)
 	update_heightmap()
+	update_terrain_mode(null)
 
+
+func update_terrain_mode(held_tool: Tool):
+	preview_mesh.visible = true
+	preview_active = true
+	if held_tool is Pijuk:
+		selected_grave_info = preload("res://graves/jama/jama_grave_info.tres")
+	elif held_tool is Shovel:
+		selected_grave_info = preload("res://graves/normal/normal_grave_info.tres")
+	else:
+		preview_mesh.visible = false
+		preview_active = false
 
 func check_dig_available(origin: Vector2i, size: Vector2i):
 	if origin.x <= 0 or origin.x >= grid_size.x - 1: return false
@@ -36,6 +48,7 @@ func check_dig_available(origin: Vector2i, size: Vector2i):
 
 
 func dig_grave(origin: Vector2i, size: Vector2i, depth: int):
+	print(origin)
 	for x in range(origin.x, origin.x + size.x):
 		for y in range(origin.y, origin.y + size.y):
 			grid[x][y] = depth
@@ -71,11 +84,9 @@ func _process(delta):
 
 func _process_attempt_place():
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-		print("testic 1")
 		if not preview_active: return
-		print("testic 2")
-		if not check_dig_available(old_preview_pos, selected_grave_info.size): return
-		dig_grave(old_preview_pos, selected_grave_info.size, selected_grave_info.depth)
+		if not check_dig_available(get_dig_pos(), selected_grave_info.size): return
+		dig_grave(get_dig_pos(), selected_grave_info.size, selected_grave_info.depth)
 		update_preview_color()
 
 
@@ -92,15 +103,23 @@ func _process_preview_place():
 		if grid_pos != old_preview_pos:
 			old_preview_pos = grid_pos
 			
-			var size_offset := Vector3(selected_grave_info.size.x/2.0-0.125, 0.0, selected_grave_info.size.y/2.0 - 0.25)
 			var mesh_size: Vector2 = mesh_instance.mesh.size
 			var aspect: Vector2 = mesh_size/grid_size
 			var preview_pos: Vector2 = grid_pos*aspect
-			preview_mesh.global_position = Vector3(preview_pos.x, 0.0, preview_pos.y)
-			preview_mesh.global_position += size_offset
+			var grave_size: Vector2 = selected_grave_info.size
+			
+			var local_pos: Vector2 = (Vector2(grid_pos.x, grid_pos.y))*aspect
+			
+			var size_offset = Vector3(
+				(grave_size.x-2)*aspect.x, 
+				0.0, 
+				(grave_size.y-2)*aspect.y
+			)/2.0
+			preview_mesh.global_position = Vector3(local_pos.x, 0.0, local_pos.y) + size_offset
+			#var s = Vector3(int((selected_grave_info.size.x) / 2.0), 0.4, (selected_grave_info.size.y)/2.0)
 			
 			var box_mesh: BoxMesh = preview_mesh.mesh
-			box_mesh.size = Vector3(selected_grave_info.size.x, 1.0, selected_grave_info.size.y)
+			box_mesh.size = Vector3(selected_grave_info.size.x*aspect.x, 1.0, selected_grave_info.size.y*aspect.y)
 			update_preview_color()
 	else:
 		preview_active = false
@@ -108,10 +127,14 @@ func _process_preview_place():
 
 func update_preview_color():
 	var color := Color.AQUA
-	if not check_dig_available(old_preview_pos, selected_grave_info.size):
+	if not check_dig_available(get_dig_pos(), selected_grave_info.size):
 		color = Color.RED
 	color.a = 0.3
 	preview_mesh.material_override.albedo_color = color
+
+
+func get_dig_pos():
+	return Vector2i(old_preview_pos - Vector2(selected_grave_info.size/2))
 
 
 func get_grid_pos(pos) -> Vector2i:
@@ -130,7 +153,7 @@ func _input(event):
 	if event.is_action_pressed("ui_accept"):
 		selected_grave_info = preload("res://graves/jama/jama_grave_info.tres")
 	elif event.is_action_released("ui_accept"):
-		selected_grave_info = preload("res://graves/normal/normal_grave_info.tres")
+		selected_grave_info = preload("res://graves/zivi_krec/zivi_krec_info.tres")
 	#if event is InputEventMouseButton:
 		#if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			#var plane := Plane(Vector3.UP)
