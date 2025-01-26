@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://5y1bbgbpm8er"]
+[gd_scene load_steps=7 format=3 uid="uid://5y1bbgbpm8er"]
 
 [ext_resource type="Script" path="res://graves/normal/normal_grave.gd" id="1_r8pu5"]
 [ext_resource type="PackedScene" uid="uid://c1odt4bq5ti6a" path="res://graves/normal/mesh/grob_1.tscn" id="2_qsvx7"]
+[ext_resource type="AudioStream" uid="uid://by4u73qh12nkw" path="res://audio/grobPut.mp3" id="3_d4h7a"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rp23q"]
 albedo_color = Color(0.268522, 0.000229928, 2.40654e-08, 1)
@@ -13,12 +14,15 @@ size = Vector3(1, 0.2, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_i5lor"]
 size = Vector3(1, 1, 2)
 
-[node name="NormalGrave" type="StaticBody3D"]
+[node name="NormalGrave" type="StaticBody3D" node_paths=PackedStringArray("audio_player", "marker", "dirt_mesh_instance")]
 script = ExtResource("1_r8pu5")
+audio_player = NodePath("AudioStreamPlayer")
+marker = NodePath("Marker3D")
+dirt_mesh_instance = NodePath("MeshInstance3D")
 value_multiplier = 4.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0.5)
 mesh = SubResource("BoxMesh_qimpw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -27,3 +31,9 @@ shape = SubResource("BoxShape3D_i5lor")
 
 [node name="grob1" parent="." instance=ExtResource("2_qsvx7")]
 transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, 0.436598, -0.386574)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_d4h7a")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(-0.585, 0, -0.811033, 0, 1, 0, 0.811033, 0, -0.585, -0.101294, -0.275466, 0)
