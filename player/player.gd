@@ -63,12 +63,17 @@ func use_body():
 	if Input.is_action_just_pressed("use_corpse") and held_corpse != null:
 		if raycast.get_collider() is Disposal:
 			if raycast.get_collider().put_body():
-				left_hand_anim.stop()
-				left_hand_anim.play("GRAB")
-				score += held_corpse.price
-				print(score)
-				held_corpse.queue_free()
-				held_corpse = null
+				dispose_corpse()
+
+
+func dispose_corpse():
+	left_hand_anim.stop()
+	left_hand_anim.play("GRAB")
+	score += held_corpse.price
+	print(score)
+	held_corpse.queue_free()
+	held_corpse = null
+
 
 func interact_input():
 	if Input.is_action_just_pressed("interact") and raycast.is_colliding():
@@ -83,10 +88,14 @@ func interact_input():
 			elif held_tool == null:
 				var taken_tool_scene = raycast.get_collider().take_tool()
 				take_tool(taken_tool_scene)
-		if raycast.get_collider() is Fioka and held_corpse == null:
+		elif raycast.get_collider() is Fioka and held_corpse == null:
 			left_hand_anim.stop()
 			left_hand_anim.play("GRAB")
 			take_corpse(raycast.get_collider())
+		elif raycast.get_collider() is Grave and held_corpse != null:
+			if (raycast.get_collider() as Grave).add_corpse():
+				dispose_corpse()
+			
 
 func anim_input():
 	if !right_hand_anim.is_playing() and held_tool: right_hand_anim.play("HOLD")

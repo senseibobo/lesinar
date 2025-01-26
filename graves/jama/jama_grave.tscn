@@ -4,6 +4,7 @@
 [ext_resource type="Resource" uid="uid://wjnm731tjnbj" path="res://graves/jama/jama_grave_info.tres" id="2_fkhph"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ojkn2"]
+size = Vector3(2, 1, 2)
 
 [node name="JamaGrave" type="StaticBody3D"]
 script = ExtResource("1_b3ch1")
@@ -11,5 +12,5 @@ info = ExtResource("2_fkhph")
 max_corpses = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
 shape = SubResource("BoxShape3D_ojkn2")
