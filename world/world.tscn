@@ -40,7 +40,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.385358, 7.0298)
 [node name="Granice" parent="." instance=ExtResource("6_7h36j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 15)
 
-[node name="Terrain" parent="." instance=ExtResource("7_udxks")]
+[node name="Terrain" parent="." node_paths=PackedStringArray("granice") instance=ExtResource("7_udxks")]
+granice = NodePath("../Granice")
 
 [connection signal="tool_changed" from="Player" to="Terrain" method="update_terrain_mode"]
 [connection signal="grave_dug" from="Terrain" to="Player" method="_on_grave_dug"]

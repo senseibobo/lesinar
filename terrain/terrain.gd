@@ -7,6 +7,7 @@ signal grave_dug
 
 @export var mesh_instance: MeshInstance3D
 @export var preview_mesh: MeshInstance3D
+@export var granice: Granice
 
 @export var selected_grave_info: GraveInfo = preload("res://graves/normal/normal_grave_info.tres")
 
@@ -45,6 +46,10 @@ func check_dig_available(origin: Vector2i, size: Vector2i):
 	var x_max: int = clamp(origin.x+min_distance+size.x,	0,	grid_size.x-min_distance)
 	var y_min: int = clamp(origin.y-min_distance,			0,	grid_size.y-min_distance)
 	var y_max: int = clamp(origin.y+min_distance+size.y,	0,	grid_size.y-min_distance)
+	
+	if granice and not granice.check_out_of_bounds(origin,size):
+		return false
+	
 	for x in range(x_min, x_max):
 		for y in range(y_min, y_max):
 			if grid[x][y] != 0:
