@@ -3,6 +3,7 @@ extends StaticBody3D
 
 @export var available_corpses: Array[CorpseInfo]
 @export var anim_player: AnimationPlayer
+@export var audio_stream_player: AudioStreamPlayer
 @export var lampica: MeshInstance3D
 
 @export var name_label: Label3D
@@ -39,6 +40,7 @@ func fill_with_corpse():
 func take_corpse() -> CorpseInfo:
 	if current_corpse == null: return null
 	anim_player.play("open")
+	audio_stream_player.play()
 	lampica.visible = false
 	screen.visible = false
 	next_corpse_time_left = corpse_cooldown

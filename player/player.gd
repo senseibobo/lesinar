@@ -29,9 +29,11 @@ var score: int
 @export var right_hand_model: Node3D
 @export var raycast: RayCast3D
 @export var audio_player: AudioStreamPlayer
+@export var audio_player_hod: AudioStreamPlayer
 @export var dirt_sound: AudioStream
 @export var pick_sound: AudioStream
 @export var krec_sound: AudioStream
+@export var grab_sound: AudioStream
 @export var speed: float
 @export var sensitivity: float
 
@@ -65,6 +67,11 @@ func move_input(delta: float):
 	var input: Vector2 = Input.get_vector("left","right","up","down")
 	move_vector = camera.global_basis.z * input.y + camera.global_basis.x * input.x
 	move_vector.y = 0.0
+	if move_vector != Vector3(0.0, 0.0, 0.0): 
+		if !audio_player_hod.playing:
+			audio_player_hod.play()
+	else:
+		audio_player_hod.stop()
 	velocity = move_vector*speed;
 	ScoreManager.burn_calories(move_vector.length()*delta * (2 if holding_corpse else 1))
 	move_and_slide()
@@ -89,6 +96,8 @@ func interact_input():
 		if raycast.get_collider() is Kuka:
 			right_hand_anim.stop()
 			right_hand_anim.play("GRAB")
+			audio_player.stream = grab_sound
+			audio_player.play()
 			if raycast.get_collider().is_empty():
 				raycast.get_collider().return_tool(held_tool, held_tool_scene)
 				if held_tool != null: held_tool.queue_free()
@@ -101,6 +110,8 @@ func interact_input():
 		elif raycast.get_collider() is Fioka and not holding_corpse:
 			left_hand_anim.stop()
 			left_hand_anim.play("GRAB")
+			audio_player.stream = grab_sound
+			audio_player.play()
 			take_corpse(raycast.get_collider())
 		elif raycast.get_collider() is Grave and holding_corpse:
 			var grave: Grave = raycast.get_collider() 

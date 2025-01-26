@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwk3yqn5tbkg3"]
+[gd_scene load_steps=14 format=3 uid="uid://dwk3yqn5tbkg3"]
 
 [ext_resource type="Script" path="res://fioka/fioka.gd" id="1_7tfq4"]
 [ext_resource type="Script" path="res://corpse/corpse_info.gd" id="2_w1y6x"]
 [ext_resource type="Resource" uid="uid://b1xmyj34rwnv0" path="res://corpse/poor/poor_corpse_info.tres" id="3_khejm"]
 [ext_resource type="Resource" uid="uid://e6inpm10ku80" path="res://corpse/standard/standard_corpse_info.tres" id="4_6oa05"]
 [ext_resource type="Resource" uid="uid://de2ilph8wto0y" path="res://corpse/rich/rich_corpse_info.tres" id="5_86c5i"]
+[ext_resource type="AudioStream" uid="uid://dvuccxmg34wyj" path="res://audio/door1.mp3" id="6_x0tt1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sf0mw"]
 albedo_color = Color(1, 0, 0.0392157, 1)
@@ -55,10 +56,11 @@ _data = {
 "open": SubResource("Animation_vpyu6")
 }
 
-[node name="Fioka" type="StaticBody3D" node_paths=PackedStringArray("anim_player", "lampica")]
+[node name="Fioka" type="StaticBody3D" node_paths=PackedStringArray("anim_player", "audio_stream_player", "lampica")]
 script = ExtResource("1_7tfq4")
 available_corpses = Array[ExtResource("2_w1y6x")]([ExtResource("3_khejm"), ExtResource("4_6oa05"), ExtResource("5_86c5i")])
 anim_player = NodePath("AnimationPlayer")
+audio_stream_player = NodePath("AudioStreamPlayer")
 lampica = NodePath("Lampica")
 
 [node name="FiokaParent" type="Node3D" parent="."]
@@ -77,3 +79,6 @@ mesh = SubResource("BoxMesh_vhf4l")
 libraries = {
 "": SubResource("AnimationLibrary_ts0jn")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_x0tt1")
