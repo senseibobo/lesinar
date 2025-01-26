@@ -151,11 +151,11 @@ func get_uv_pos(pos) -> Vector2: # returns 0-1
 	return pos/mesh.size
 
 
-func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		selected_grave_info = preload("res://graves/jama/jama_grave_info.tres")
-	elif event.is_action_released("ui_accept"):
-		selected_grave_info = preload("res://graves/zivi_krec/zivi_krec_info.tres")
+#func _input(event):
+	#if event.is_action_pressed("ui_accept"):
+		#selected_grave_info = preload("res://graves/jama/jama_grave_info.tres")
+	#elif event.is_action_released("ui_accept"):
+		#selected_grave_info = preload("res://graves/zivi_krec/zivi_krec_info.tres")
 	#if event is InputEventMouseButton:
 		#if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			#var plane := Plane(Vector3.UP)
