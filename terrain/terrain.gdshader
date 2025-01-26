@@ -32,9 +32,10 @@ void vertex() {
 }
 
 void fragment() {
-	ALBEDO = vec3(1.0)-texture(heightmap, UV).rgb;
-	ALBEDO.r = step(1.0,mod(UV.x*30.0,2.0));
-	ALBEDO.g = step(1.0,mod(UV.y*30.0,2.0));
+	ALBEDO.r = step(1.0,mod(UV.x*30.0,2.0))/3.0;
+	ALBEDO.b = step(1.0,mod(UV.y*30.0,2.0))/3.0;
+	ALBEDO.g = 1.0;
+	ALBEDO /= 2.0;
 }
 
 //void light() {

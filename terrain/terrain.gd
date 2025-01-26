@@ -58,6 +58,7 @@ func dig_grave(origin: Vector2i, size: Vector2i, depth: int):
 			grid[x][y] = depth
 			heightmap.set_pixelv(Vector2i(x,y), Color.BLACK.lerp(Color.WHITE, depth/16.0))
 	var grave: Grave = selected_grave_info.grave_scene.instantiate()
+	ScoreManager.on_grave_dug(grave)
 	add_child(grave)
 	var pos := Vector2(origin) * get_aspect()
 	grave.global_position = Vector3(pos.x+0.5, 0.0, pos.y+0.5)
@@ -89,7 +90,6 @@ func _process(delta):
 func _process_attempt_place():
 	if Input.is_action_just_pressed("use"):
 		if not preview_active: return
-		print(get_dig_pos())
 		if not check_dig_available(get_dig_pos(), selected_grave_info.size): return
 		dig_grave(get_dig_pos(), selected_grave_info.size, selected_grave_info.depth)
 		grave_dug.emit()
@@ -118,7 +118,6 @@ func _process_preview_place():
 			var local_pos: Vector2 = (Vector2(dig_pos.x+grave_size.x/2.0, dig_pos.y+grave_size.y/2.0))*aspect
 			preview_mesh.global_position = Vector3(local_pos.x, 0.0, local_pos.y)
 			
-			print(grid_pos, ", ", preview_mesh.global_position)
 			#var s = Vector3(int((selected_grave_info.size.x) / 2.0), 0.4, (selected_grave_info.size.y)/2.0)
 			
 			var box_mesh: BoxMesh = preview_mesh.mesh

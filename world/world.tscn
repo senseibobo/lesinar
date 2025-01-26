@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgamuqao6oli1"]
+[gd_scene load_steps=9 format=3 uid="uid://cgamuqao6oli1"]
 
 [ext_resource type="PackedScene" uid="uid://dc6ux2dac5fr2" path="res://player/player.tscn" id="1_vp3ec"]
-[ext_resource type="PackedScene" uid="uid://clijgwdg0b26j" path="res://tool_wall/tool_wall.tscn" id="2_ybr06"]
 [ext_resource type="PackedScene" uid="uid://0b788ilmda1t" path="res://mrtvacnica/mrtvacnica.tscn" id="3_fscio"]
 [ext_resource type="PackedScene" uid="uid://byxnbtjp3nxlw" path="res://soba/mesh/soba.tscn" id="4_0yey6"]
 [ext_resource type="PackedScene" uid="uid://d18ckmself2n" path="res://disposal/krematorijum/krematorijum.tscn" id="5_m8om7"]
@@ -27,23 +26,19 @@ visible = false
 mesh = SubResource("PlaneMesh_3bh8n")
 
 [node name="Player" parent="." instance=ExtResource("1_vp3ec")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="ToolWall" parent="." instance=ExtResource("2_ybr06")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -6)
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 14.6298, 0, 32.6356)
 
 [node name="Mrtvacnica" parent="." instance=ExtResource("3_fscio")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12, 2, 0)
 
 [node name="soba" parent="." instance=ExtResource("4_0yey6")]
-transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 13, 0, -6)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15, 0, 30)
 
 [node name="Krematorijum" parent="." instance=ExtResource("5_m8om7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.385358, 7.0298)
 
-[node name="Granice" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_7h36j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3598, 2, -18.5676)
-player = NodePath("../Player")
+[node name="Granice" parent="." instance=ExtResource("6_7h36j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 15)
 
 [node name="Terrain" parent="." instance=ExtResource("7_udxks")]
 

@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://dr68bafmh0ngi"]
+
+[ext_resource type="Script" path="res://score/display/score_display.gd" id="1_h5ouo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j06l4"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_megxn"]
+size = Vector3(0.5, 0.28, 0.02)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eohfn"]
+size = Vector3(0.02, 0.265, 0.02)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j1hg6"]
+size = Vector3(0.265, 0.015, 0.13)
+
+[node name="ScoreDisplay" type="Node3D" node_paths=PackedStringArray("score_label", "disposed_label", "graves_label", "area_label", "calories_label")]
+script = ExtResource("1_h5ouo")
+score_label = NodePath("ScreenMesh/ScoreLabel")
+disposed_label = NodePath("ScreenMesh/DisposedLabel")
+graves_label = NodePath("ScreenMesh/GravesLabel")
+area_label = NodePath("ScreenMesh/AreaLabel")
+calories_label = NodePath("ScreenMesh/CaloriesLabel")
+
+[node name="ScreenMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.985865, 0.167543, 0, -0.167543, 0.985865, 0, 0.336715, 0)
+material_override = SubResource("StandardMaterial3D_j06l4")
+mesh = SubResource("BoxMesh_megxn")
+
+[node name="ScoreLabel" type="Label3D" parent="ScreenMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221597, 0.0906631, 0.0107163)
+pixel_size = 0.0015
+modulate = Color(0.0115, 1, 0, 1)
+text = "Profit: $100"
+horizontal_alignment = 0
+
+[node name="DisposedLabel" type="Label3D" parent="ScreenMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221597, 0.036094, 0.0107163)
+pixel_size = 0.001
+modulate = Color(0.0115, 1, 0, 1)
+text = "Corpses disposed: 55"
+horizontal_alignment = 0
+
+[node name="GravesLabel" type="Label3D" parent="ScreenMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221597, -0.00570805, 0.0107163)
+pixel_size = 0.001
+modulate = Color(0.0115, 1, 0, 1)
+text = "Graves dug: 5"
+horizontal_alignment = 0
+
+[node name="AreaLabel" type="Label3D" parent="ScreenMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221597, -0.0475025, 0.0107163)
+pixel_size = 0.001
+modulate = Color(0.0115, 1, 0, 1)
+text = "Free space left: 30m²"
+horizontal_alignment = 0
+
+[node name="CaloriesLabel" type="Label3D" parent="ScreenMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221597, -0.0864746, 0.0107163)
+pixel_size = 0.001
+modulate = Color(0.0115, 1, 0, 1)
+text = "Calories burnt: 2049kcal"
+horizontal_alignment = 0
+
+[node name="HandMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.988441, -0.151606, 0, 0.151606, 0.988441, 0, 0.133708, -0.0385108)
+material_override = SubResource("StandardMaterial3D_j06l4")
+mesh = SubResource("BoxMesh_eohfn")
+
+[node name="BaseMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00140184, -0.0385108)
+material_override = SubResource("StandardMaterial3D_j06l4")
+mesh = SubResource("BoxMesh_j1hg6")

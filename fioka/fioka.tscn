@@ -1,20 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://dwk3yqn5tbkg3"]
+[gd_scene load_steps=13 format=3 uid="uid://dwk3yqn5tbkg3"]
 
 [ext_resource type="Script" path="res://fioka/fioka.gd" id="1_7tfq4"]
 [ext_resource type="Script" path="res://corpse/corpse_info.gd" id="2_w1y6x"]
 [ext_resource type="Resource" uid="uid://b1xmyj34rwnv0" path="res://corpse/poor/poor_corpse_info.tres" id="3_khejm"]
 [ext_resource type="Resource" uid="uid://e6inpm10ku80" path="res://corpse/standard/standard_corpse_info.tres" id="4_6oa05"]
 [ext_resource type="Resource" uid="uid://de2ilph8wto0y" path="res://corpse/rich/rich_corpse_info.tres" id="5_86c5i"]
-[ext_resource type="PackedScene" uid="uid://khfvogsb2m4d" path="res://fioka/mesh/fijoka_tall.tscn" id="5_h86vs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sf0mw"]
 albedo_color = Color(1, 0, 0.0392157, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_v5mt7"]
 material = SubResource("StandardMaterial3D_sf0mw")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_t7p3n"]
-size = Vector3(1.11609, 1.49731, 0.353516)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvx8g"]
 albedo_color = Color(0, 1, 0, 1)
@@ -28,7 +24,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("fijokaTall:rotation")
+tracks/0/path = NodePath("FiokaParent:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -43,14 +39,14 @@ resource_name = "open"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("fijokaTall:rotation")
+tracks/0/path = NodePath("FiokaParent:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -1.5708, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, -2.0944, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ts0jn"]
@@ -59,25 +55,18 @@ _data = {
 "open": SubResource("Animation_vpyu6")
 }
 
-[node name="Fioka" type="StaticBody3D" node_paths=PackedStringArray("anim_player", "lampica", "name_label", "value_label", "screen")]
+[node name="Fioka" type="StaticBody3D" node_paths=PackedStringArray("anim_player", "lampica")]
 script = ExtResource("1_7tfq4")
 available_corpses = Array[ExtResource("2_w1y6x")]([ExtResource("3_khejm"), ExtResource("4_6oa05"), ExtResource("5_86c5i")])
 anim_player = NodePath("AnimationPlayer")
 lampica = NodePath("Lampica")
-name_label = NodePath("Screen/NameLabel")
-value_label = NodePath("Screen/ValueLabel")
-screen = NodePath("Screen")
 
-[node name="fijokaTall" parent="." instance=ExtResource("5_h86vs")]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+[node name="FiokaParent" type="Node3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
 mesh = SubResource("BoxMesh_v5mt7")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.683044, -0.248657, 0.0683594)
-shape = SubResource("BoxShape3D_t7p3n")
 
 [node name="Lampica" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.891982, 0)
@@ -88,19 +77,3 @@ mesh = SubResource("BoxMesh_vhf4l")
 libraries = {
 "": SubResource("AnimationLibrary_ts0jn")
 }
-
-[node name="Screen" type="Node3D" parent="."]
-
-[node name="ValueLabel" type="Label3D" parent="Screen"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.670081, 0.199906, 0.218554)
-pixel_size = 0.004
-modulate = Color(0.095901, 1, 0, 1)
-text = "$100"
-
-[node name="NameLabel" type="Label3D" parent="Screen"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.670081, -0.0311292, 0.218554)
-pixel_size = 0.004
-modulate = Color(0.095901, 1, 0, 1)
-text = "Andrej
-Drmanović"
-font_size = 14

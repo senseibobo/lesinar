@@ -47,7 +47,6 @@ func _physics_process(delta: float) -> void:
 		State.MOVE:
 			move_input(delta)
 			#use_input()
-			use_body()
 			interact_input()
 			anim_input()
 		
@@ -60,6 +59,7 @@ func move_input(delta: float):
 	move_vector = camera.global_basis.z * input.y + camera.global_basis.x * input.x
 	move_vector.y = 0.0
 	velocity = move_vector*speed;
+	ScoreManager.burn_calories(move_vector.length()*delta * (2 if holding_corpse else 1))
 	move_and_slide()
 
 #func use_input():
@@ -67,18 +67,10 @@ func move_input(delta: float):
 		#choose_anim_tool()
 		#held_tool.use()
 
-func use_body():
-	if Input.is_action_just_pressed("use_corpse") and holding_corpse:
-		if raycast.get_collider() is Disposal:
-			if raycast.get_collider().put_body():
-				dispose_corpse()
-
-
 func dispose_corpse():
 	left_hand_anim.stop()
 	left_hand_anim.play("GRAB")
 	score += held_corpse_info.value
-	print(score)
 	held_corpse_instance.queue_free()
 	held_corpse_instance = null
 	held_corpse_info = null
@@ -104,7 +96,9 @@ func interact_input():
 			left_hand_anim.play("GRAB")
 			take_corpse(raycast.get_collider())
 		elif raycast.get_collider() is Grave and holding_corpse:
-			if (raycast.get_collider() as Grave).add_corpse(held_corpse_info):
+			var grave: Grave = raycast.get_collider() 
+			if grave.add_corpse(held_corpse_info):
+				ScoreManager.on_corpse_disposed(held_corpse_info, grave)
 				dispose_corpse()
 			
 

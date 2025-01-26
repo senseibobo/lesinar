@@ -4,6 +4,7 @@ extends StaticBody3D
 @export var available_corpses: Array[CorpseInfo]
 @export var anim_player: AnimationPlayer
 @export var lampica: MeshInstance3D
+
 @export var name_label: Label3D
 @export var value_label: Label3D
 @export var screen: Node3D

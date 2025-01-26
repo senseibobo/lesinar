@@ -1,22 +1,22 @@
 class_name Granice
 extends Node3D
 
-@export var wall_front: CharacterBody3D
-@export var wall_left: CharacterBody3D
-@export var wall_right: CharacterBody3D
-@export var player: Player
-@export var cena: int
+@export var north_border: Border
+@export var east_border: Border
+@export var west_border: Border
+@export var south_border: StaticBody3D
 
-func _on_timer_timeout() -> void:
-	wall_front.velocity = wall_front.transform.basis.z*55.0
-	wall_left.velocity = wall_left.transform.basis.z*55.0
-	wall_right.velocity = -wall_right.transform.basis.z*55.0
-	#player.move_to_start()
-	wall_front.move_and_slide()
-	wall_left.move_and_slide()
-	wall_right.move_and_slide()
-	if player.score > cena:
-		player.score -= cena
-		
-	#else:
-		#get_tree().reload_current_scene()
+@export var border_speed: float = 0.011
+@export var border_start_distance: float = 15.0
+
+
+func _physics_process(delta):
+	ScoreManager.on_area_change(calculate_area())
+
+
+func calculate_area():
+	var max_x = east_border.global_position.x
+	var min_x = west_border.global_position.x
+	var max_z = south_border.global_position.z
+	var min_z = north_border.global_position.z
+	return abs(max_x-min_x)*abs(max_z-min_z)
