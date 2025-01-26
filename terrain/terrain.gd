@@ -110,7 +110,8 @@ func _process_preview_place():
 			var preview_pos: Vector2 = grid_pos*aspect
 			var grave_size: Vector2 = selected_grave_info.size
 			
-			var local_pos: Vector2 = (Vector2(grid_pos.x+grave_size.x/2.0, grid_pos.y+grave_size.y/2.0))*aspect
+			var dig_pos = get_dig_pos()
+			var local_pos: Vector2 = (Vector2(dig_pos.x+grave_size.x/2.0, dig_pos.y+grave_size.y/2.0))*aspect
 			preview_mesh.global_position = Vector3(local_pos.x, 0.0, local_pos.y)
 			
 			print(grid_pos, ", ", preview_mesh.global_position)
@@ -132,7 +133,7 @@ func update_preview_color():
 
 
 func get_dig_pos():
-	return Vector2i(old_preview_pos)# - Vector2(selected_grave_info.size/2))
+	return Vector2i(old_preview_pos - Vector2(selected_grave_info.size/2))
 
 
 func get_grid_pos(pos) -> Vector2i:
