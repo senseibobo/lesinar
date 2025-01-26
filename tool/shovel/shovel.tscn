@@ -1,23 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfd7sal2f5cr2"]
+[gd_scene load_steps=7 format=3 uid="uid://dfd7sal2f5cr2"]
 
 [ext_resource type="Script" path="res://tool/shovel/shovel.gd" id="1_txmd7"]
+[ext_resource type="PackedScene" uid="uid://clsjyvp0oyykx" path="res://tool/shovel/mesh/lopata.tscn" id="2_rypbm"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_le64k"]
-
-[sub_resource type="Animation" id="Animation_dyynr"]
-resource_name = "use"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.532325, 0, 0), Vector3(0, 0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_66414"]
 length = 0.001
@@ -34,6 +20,21 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_dyynr"]
+resource_name = "use"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.532325, 0, 0), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vr1qr"]
 _data = {
 "RESET": SubResource("Animation_66414"),
@@ -45,9 +46,12 @@ script = ExtResource("1_txmd7")
 anim_player = NodePath("AnimationPlayer")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_le64k")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_vr1qr")
 }
+
+[node name="lopata" parent="." instance=ExtResource("2_rypbm")]

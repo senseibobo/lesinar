@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://et3p5pputx4a"]
+
+[ext_resource type="PackedScene" uid="uid://v4y5rd51iw2s" path="res://tool/pijuk/mesh/pijukukuk.tscn" id="1_1diyp"]
+[ext_resource type="Script" path="res://tool/pijuk/pijuk.gd" id="1_cxlcm"]
+
+[node name="Pijuk" type="Node3D"]
+transform = Transform3D(0.866025, -0.433013, -0.25, 0, 0.5, -0.866025, 0.5, 0.75, 0.433013, 0, 0, 0)
+script = ExtResource("1_cxlcm")
+
+[node name="pijukukuk" parent="." instance=ExtResource("1_1diyp")]
+transform = Transform3D(-0.5, 0.866025, 0, -0.866025, -0.5, 0, 0, 0, 1, 0, 0, 0)

@@ -22,6 +22,7 @@ func return_tool(new_tool: Tool, new_tool_scene: PackedScene):
 		tool_scene = new_tool_scene
 		tool = tool_scene.instantiate()
 		add_child(tool)
+		tool.scale = Vector3(0.6, 0.6, 0.6)
 
 func is_empty() -> bool:
 	if tool != null: return false

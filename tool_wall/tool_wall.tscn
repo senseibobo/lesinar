@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://clijgwdg0b26j"]
+[gd_scene load_steps=5 format=3 uid="uid://clijgwdg0b26j"]
 
 [ext_resource type="PackedScene" uid="uid://cm377fat13tc4" path="res://kuka/kuka.tscn" id="1_dwa2x"]
 [ext_resource type="PackedScene" uid="uid://dfd7sal2f5cr2" path="res://tool/shovel/shovel.tscn" id="2_xiwoc"]
+[ext_resource type="PackedScene" uid="uid://et3p5pputx4a" path="res://tool/pijuk/pijuk.tscn" id="3_av7h6"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_yiyq7"]
 size = Vector3(5, 2, 1)
@@ -14,6 +15,7 @@ tool_scene = ExtResource("2_xiwoc")
 
 [node name="Kuka2" parent="." instance=ExtResource("1_dwa2x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.672266, 0, 0.690071)
+tool_scene = ExtResource("3_av7h6")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_yiyq7")

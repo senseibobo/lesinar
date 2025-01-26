@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwh6px472rgde"]
+
+[ext_resource type="PackedScene" uid="uid://cjh7k1ie11yav" path="res://disposal/jama/mesh/rupa.tscn" id="1_whpes"]
+[ext_resource type="Script" path="res://disposal/disposal.gd" id="1_yvar5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7lnbx"]
+size = Vector3(3, 1, 2.74548)
+
+[node name="Jama" type="StaticBody3D"]
+script = ExtResource("1_yvar5")
+max_bodies = 5
+
+[node name="RUPA" parent="." instance=ExtResource("1_whpes")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.141907)
+shape = SubResource("BoxShape3D_7lnbx")

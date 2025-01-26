@@ -13,4 +13,5 @@ script = ExtResource("1_vd0jq")
 price = 100
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 mesh = SubResource("BoxMesh_0ws6a")
