@@ -1,0 +1,190 @@
+[gd_scene load_steps=14 format=3 uid="uid://cxehihj1kxgkm"]
+
+[ext_resource type="Script" path="res://menu/menu.gd" id="1_e7265"]
+[ext_resource type="Script" path="res://granice/granice.gd" id="2_dymb1"]
+[ext_resource type="PackedScene" uid="uid://5y1bbgbpm8er" path="res://graves/normal/normal_grave.tscn" id="2_wxpfp"]
+[ext_resource type="Script" path="res://granice/border.gd" id="3_2xiy2"]
+[ext_resource type="Texture2D" uid="uid://baj42gt783bew" path="res://granice/mesh/vecteezy_realistic-steel-fence_8852385.png" id="4_1same"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x0nc5"]
+sky_top_color = Color(0.95158, 0.95158, 0.95158, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_e1vj0"]
+sky_material = SubResource("ProceduralSkyMaterial_x0nc5")
+
+[sub_resource type="Environment" id="Environment_6yj1v"]
+background_mode = 2
+background_color = Color(1, 1, 1, 1)
+background_energy_multiplier = 0.75
+sky = SubResource("Sky_e1vj0")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.15
+tonemap_mode = 3
+tonemap_white = 0.45
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.214139, 0.235722, 0.269651, 1)
+fog_density = 0.177
+fog_aerial_perspective = 0.595
+fog_height_density = 0.8436
+fog_depth_curve = 0.267943
+fog_depth_begin = 4.0
+fog_depth_end = 26.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0495
+volumetric_fog_albedo = Color(0.385493, 0.385492, 0.385492, 1)
+volumetric_fog_temporal_reprojection_amount = 0.78
+adjustment_enabled = true
+adjustment_brightness = 0.8
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m0lhp"]
+size = Vector3(60, 10, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mragv"]
+transparency = 1
+albedo_texture = ExtResource("4_1same")
+uv1_scale = Vector3(5.59, 5.59, 5.59)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yvk3f"]
+material = SubResource("StandardMaterial3D_mragv")
+size = Vector3(60, 10, 0.02)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jqj5g"]
+size = Vector3(30, 70, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vflgv"]
+size = Vector3(13.935, 70, 39.9)
+
+[node name="Menu" type="Node3D"]
+script = ExtResource("1_e7265")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.199551, -0.959353, -0.199551, -0.357739, -0.260916, 0.89663, -0.912251, -0.107536, -0.395264, 12, 9, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6yj1v")
+
+[node name="Granice" type="Node3D" parent="." node_paths=PackedStringArray("north_border", "east_border", "west_border", "south_border")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 15)
+script = ExtResource("2_dymb1")
+north_border = NodePath("NorthBorder")
+east_border = NodePath("EastBorder")
+west_border = NodePath("WestBorder")
+south_border = NodePath("SouthBorder")
+
+[node name="NorthBorder" type="AnimatableBody3D" parent="Granice"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -5)
+collision_mask = 2
+collision_priority = 2.0
+sync_to_physics = false
+script = ExtResource("3_2xiy2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Granice/NorthBorder"]
+shape = SubResource("BoxShape3D_m0lhp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Granice/NorthBorder"]
+mesh = SubResource("BoxMesh_yvk3f")
+
+[node name="EastBorder" type="AnimatableBody3D" parent="Granice"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 5, -15)
+collision_mask = 2
+sync_to_physics = false
+script = ExtResource("3_2xiy2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Granice/EastBorder"]
+shape = SubResource("BoxShape3D_m0lhp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Granice/EastBorder"]
+mesh = SubResource("BoxMesh_yvk3f")
+
+[node name="WestBorder" type="AnimatableBody3D" parent="Granice"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 5, -15)
+collision_mask = 2
+sync_to_physics = false
+script = ExtResource("3_2xiy2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Granice/WestBorder"]
+shape = SubResource("BoxShape3D_m0lhp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Granice/WestBorder"]
+mesh = SubResource("BoxMesh_yvk3f")
+
+[node name="SouthBorder" type="StaticBody3D" parent="Granice"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5, 14.9701)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Granice/SouthBorder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.38, 0, 0)
+shape = SubResource("BoxShape3D_m0lhp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Granice/SouthBorder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.38, 0, 0)
+mesh = SubResource("BoxMesh_yvk3f")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Granice/SouthBorder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.13, 0, 0)
+shape = SubResource("BoxShape3D_m0lhp")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Granice/SouthBorder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.13, 0, 0)
+mesh = SubResource("BoxMesh_yvk3f")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4726, 35, 51.1658)
+mesh = SubResource("BoxMesh_jqj5g")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88.0347, 35, -22.9807)
+mesh = SubResource("BoxMesh_jqj5g")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.5355, 35, -17.5549)
+mesh = SubResource("BoxMesh_vflgv")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 31.0844, 35, -41.7986)
+mesh = SubResource("BoxMesh_vflgv")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.976672, -0.120078, -0.178024, 0, 0.829038, -0.559193, 0.214735, 0.546148, 0.809698, 14.248, 4.652, 17.576)
+fov = 64.8
+
+[node name="NormalGrave" parent="." instance=ExtResource("2_wxpfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.101, 4.5, 14.999)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -553.0
+offset_top = -334.0
+offset_right = -303.0
+offset_bottom = -214.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = -0.13439
+scale = Vector2(2, 2)
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Lesinar"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "START"
+
+[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "EXIT"
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

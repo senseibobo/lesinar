@@ -1,41 +1,138 @@
-[gd_scene load_steps=11 format=3 uid="uid://8y2hl0ikvpjg"]
+[gd_scene load_steps=19 format=3 uid="uid://8y2hl0ikvpjg"]
 
-[ext_resource type="PackedScene" uid="uid://dc6ux2dac5fr2" path="res://player/player.tscn" id="1_ljqtc"]
-[ext_resource type="PackedScene" uid="uid://0b788ilmda1t" path="res://mrtvacnica/mrtvacnica.tscn" id="2_xffsx"]
-[ext_resource type="PackedScene" uid="uid://byxnbtjp3nxlw" path="res://soba/mesh/soba.tscn" id="3_w8bwj"]
-[ext_resource type="PackedScene" uid="uid://d18ckmself2n" path="res://disposal/krematorijum/krematorijum.tscn" id="4_gvfku"]
-[ext_resource type="PackedScene" uid="uid://dl5hw2edprci2" path="res://granice/granice.tscn" id="5_1wnhx"]
-[ext_resource type="PackedScene" uid="uid://ge533veisgpo" path="res://terrain/terrain.tscn" id="6_iojl5"]
+[ext_resource type="Texture2D" uid="uid://baj42gt783bew" path="res://granice/mesh/vecteezy_realistic-steel-fence_8852385.png" id="2_4o3yl"]
+[ext_resource type="AudioStream" uid="uid://jd3tt5l4b6v8" path="res://audio/eerie-sounding-train-with-a-breaking-screech-80471.mp3" id="3_pdlru"]
+[ext_resource type="PackedScene" uid="uid://5y1bbgbpm8er" path="res://graves/normal/normal_grave.tscn" id="4_jvmnv"]
+[ext_resource type="AudioStream" uid="uid://cekfviw2fnur" path="res://audio/crash-7075.mp3" id="5_sg7in"]
+[ext_resource type="PackedScene" uid="uid://q6tn46bqwpdo" path="res://graves/zivi_krec/zivi_krec.tscn" id="6_6ui8m"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gygbu"]
-sky_top_color = Color(0, 0, 0, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wxnxe"]
+sky_top_color = Color(0.95158, 0.95158, 0.95158, 1)
 sky_horizon_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Sky" id="Sky_e1vj0"]
-sky_material = SubResource("ProceduralSkyMaterial_gygbu")
+[sub_resource type="Sky" id="Sky_88yy2"]
+sky_material = SubResource("ProceduralSkyMaterial_wxnxe")
 
-[sub_resource type="Environment" id="Environment_8betq"]
+[sub_resource type="Environment" id="Environment_fn4co"]
 background_mode = 2
+background_color = Color(1, 1, 1, 1)
 background_energy_multiplier = 0.75
-sky = SubResource("Sky_e1vj0")
+sky = SubResource("Sky_88yy2")
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.1
-tonemap_mode = 2
+ambient_light_energy = 0.15
+tonemap_mode = 3
+tonemap_white = 0.45
 fog_enabled = true
 fog_mode = 1
-fog_light_energy = 0.0
-fog_density = 0.9945
+fog_light_color = Color(0.214139, 0.235722, 0.269651, 1)
+fog_density = 0.177
+fog_aerial_perspective = 0.595
+fog_height_density = 0.8436
 fog_depth_curve = 0.267943
 fog_depth_begin = 4.0
 fog_depth_end = 26.0
-volumetric_fog_density = 0.0735
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0495
+volumetric_fog_albedo = Color(0.385493, 0.385492, 0.385492, 1)
 volumetric_fog_temporal_reprojection_amount = 0.78
 adjustment_enabled = true
 adjustment_brightness = 0.8
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_aw3sr"]
-size = Vector2(25, 25)
+[sub_resource type="BoxMesh" id="BoxMesh_hoph5"]
+size = Vector3(30, 70, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7h0op"]
+size = Vector3(13.935, 70, 39.9)
+
+[sub_resource type="Animation" id="Animation_b8j4x"]
+resource_name = "ending"
+length = 8.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.06,
+"start_offset": 0.0,
+"stream": ExtResource("5_sg7in")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_pdlru")
+}],
+"times": PackedFloat32Array(-0.1, 0.466667)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 7.63333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.815529, 15.5181), Vector3(0, 0.815529, -28.7675)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g42fx"]
+_data = {
+"ending": SubResource("Animation_b8j4x")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ordl8"]
+transparency = 1
+albedo_texture = ExtResource("2_4o3yl")
+uv1_scale = Vector3(5.59, 5.59, 5.59)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cvjhl"]
+material = SubResource("StandardMaterial3D_ordl8")
+size = Vector3(60, 10, 0.02)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_86uep"]
+transparency = 1
+albedo_texture = ExtResource("2_4o3yl")
+uv1_scale = Vector3(5.59, 5.59, 5.59)
+
+[sub_resource type="BoxMesh" id="BoxMesh_x1jkv"]
+material = SubResource("StandardMaterial3D_86uep")
+size = Vector3(60, 10, 0.02)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3q3g"]
+albedo_color = Color(2.59304e-06, 0.369132, 1.92523e-07, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gkmms"]
+material = SubResource("StandardMaterial3D_i3q3g")
+size = Vector2(50, 100)
 
 [node name="Ending" type="Node3D"]
 
@@ -43,34 +140,101 @@ size = Vector2(25, 25)
 transform = Transform3D(0.199551, -0.959353, -0.199551, -0.357739, -0.260916, 0.89663, -0.912251, -0.107536, -0.395264, 12, 9, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_8betq")
+environment = SubResource("Environment_fn4co")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4726, 35, -101.444)
+mesh = SubResource("BoxMesh_hoph5")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88.0347, 35, -34.3198)
+mesh = SubResource("BoxMesh_hoph5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.5355, 35, -32.051)
+mesh = SubResource("BoxMesh_7h0op")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.977112, 0, 0.212723, 0, 1, 0, -0.212723, 0, 0.977112, 31.0844, 35, -46.1674)
+mesh = SubResource("BoxMesh_7h0op")
+
+[node name="NormalGrave" parent="." instance=ExtResource("4_jvmnv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.91016, -0.0611986, 0)
+
+[node name="NormalGrave2" parent="." instance=ExtResource("4_jvmnv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.91016, -0.0611986, 5.95582)
+
+[node name="NormalGrave3" parent="." instance=ExtResource("4_jvmnv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.91016, -0.0611986, 10.1137)
+
+[node name="NormalGrave4" parent="." instance=ExtResource("4_jvmnv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.91016, -0.0611986, -8.92076)
+
+[node name="NormalGrave5" parent="." instance=ExtResource("4_jvmnv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.91016, -0.0611986, -14.7796)
+
+[node name="NormalGrave6" parent="." instance=ExtResource("4_jvmnv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.91016, -0.0611986, -22.4025)
+
+[node name="NormalGrave7" parent="." instance=ExtResource("4_jvmnv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.91016, -0.0611986, -31.701)
+
+[node name="NormalGrave8" parent="." instance=ExtResource("4_jvmnv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.74304, -0.0611986, 0)
+
+[node name="NormalGrave9" parent="." instance=ExtResource("4_jvmnv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.74304, -0.0611986, 5.95582)
+
+[node name="NormalGrave10" parent="." instance=ExtResource("4_jvmnv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.74304, -0.0611986, 10.1137)
+
+[node name="NormalGrave11" parent="." instance=ExtResource("4_jvmnv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.74304, -0.0611986, -8.92076)
+
+[node name="NormalGrave12" parent="." instance=ExtResource("4_jvmnv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.74304, -0.0611986, -14.7796)
+
+[node name="NormalGrave13" parent="." instance=ExtResource("4_jvmnv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.74304, -0.0611986, -22.4025)
+
+[node name="NormalGrave14" parent="." instance=ExtResource("4_jvmnv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.74304, -0.0611986, -31.701)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.815529, 15.5181)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g42fx")
+}
+autoplay = "ending"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_sg7in")
+autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ZiviKrec" parent="." instance=ExtResource("6_6ui8m")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -4.24961, -0.202238, -43.1889)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("PlaneMesh_aw3sr")
+transform = Transform3D(0.00797605, 0, -0.999968, 0, 1, 0, 0.999968, 0, 0.00797605, 5.09205, 4.28984, -10.8781)
+mesh = SubResource("BoxMesh_cvjhl")
 
-[node name="Player" parent="." instance=ExtResource("1_ljqtc")]
-transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 14.6298, 0, 32.6356)
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.050837, 0, 0.998707, 0, 1, 0, -0.998707, 0, -0.050837, -6.3907, 4.29665, 0)
+mesh = SubResource("BoxMesh_x1jkv")
 
-[node name="Mrtvacnica" parent="." instance=ExtResource("2_xffsx")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12, 2, 0)
-
-[node name="soba" parent="." instance=ExtResource("3_w8bwj")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15, 0, 30)
-
-[node name="Krematorijum" parent="." instance=ExtResource("4_gvfku")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1087, 0.385358, 36.1772)
-max_corpses = 5
-value_multiplier = 0.0
-
-[node name="Granice" parent="." instance=ExtResource("5_1wnhx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 15)
-
-[node name="Terrain" parent="." node_paths=PackedStringArray("granice") instance=ExtResource("6_iojl5")]
-granice = NodePath("")
-
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.809294, 0.587404, 0, -0.587404, 0.809294, 15.1659, 3.87434, 30.2198)
-light_energy = 3.475
-shadow_enabled = true
-spot_range = 23.832
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_gkmms")

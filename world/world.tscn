@@ -1,12 +1,14 @@
-[gd_scene load_steps=88 format=4 uid="uid://cgamuqao6oli1"]
+[gd_scene load_steps=90 format=4 uid="uid://cgamuqao6oli1"]
 
 [ext_resource type="PackedScene" uid="uid://dc6ux2dac5fr2" path="res://player/player.tscn" id="1_vp3ec"]
 [ext_resource type="PackedScene" uid="uid://0b788ilmda1t" path="res://mrtvacnica/mrtvacnica.tscn" id="3_fscio"]
 [ext_resource type="PackedScene" uid="uid://d18ckmself2n" path="res://disposal/krematorijum/krematorijum.tscn" id="5_m8om7"]
 [ext_resource type="PackedScene" uid="uid://dl5hw2edprci2" path="res://granice/granice.tscn" id="6_7h36j"]
 [ext_resource type="Texture2D" uid="uid://c6x6p47bd57cd" path="res://soba/kuca/KUCA_zid.png" id="7_muiiw"]
+[ext_resource type="AudioStream" uid="uid://dao80lmv1ha4m" path="res://audio/bg opet.mp3" id="7_sgkku"]
 [ext_resource type="PackedScene" uid="uid://ge533veisgpo" path="res://terrain/terrain.tscn" id="7_udxks"]
 [ext_resource type="Texture2D" uid="uid://cmry110r2mc68" path="res://soba/kuca/KUCA_tileFlor.png" id="8_0ll4u"]
+[ext_resource type="AudioStream" uid="uid://cvl8hf0knwq43" path="res://audio/traffic-city-121711.mp3" id="8_tks0w"]
 [ext_resource type="Texture2D" uid="uid://uov2qcodm5dw" path="res://soba/kuca/KUCA_uagdgf.png" id="9_1lf3d"]
 [ext_resource type="Texture2D" uid="uid://dnm4o4jqweljy" path="res://soba/kuca/KUCA_EKRAN.png" id="10_khdid"]
 [ext_resource type="Texture2D" uid="uid://d0oxhycgjlbtp" path="res://soba/kuca/KUCA_asfsdf.png" id="11_kgcsp"]
@@ -28,14 +30,14 @@
 sky_top_color = Color(0.95158, 0.95158, 0.95158, 1)
 sky_horizon_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Sky" id="Sky_e1vj0"]
+[sub_resource type="Sky" id="Sky_3kq7x"]
 sky_material = SubResource("ProceduralSkyMaterial_v48ht")
 
 [sub_resource type="Environment" id="Environment_skxy8"]
 background_mode = 2
 background_color = Color(1, 1, 1, 1)
 background_energy_multiplier = 0.75
-sky = SubResource("Sky_e1vj0")
+sky = SubResource("Sky_3kq7x")
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.15
@@ -1004,7 +1006,14 @@ light_indirect_energy = 1.185
 shadow_enabled = true
 spot_range = 23.832
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_sgkku")
+volume_db = 2.008
+autoplay = true
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_tks0w")
+autoplay = true
 
 [node name="Node3D" type="Node3D" parent="."]
 

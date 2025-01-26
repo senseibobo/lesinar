@@ -61,7 +61,12 @@ func _physics_process(delta: float) -> void:
 			#use_input()
 			interact_input()
 			anim_input()
+			exit_input()
 		
+
+func exit_input():
+	if Input.is_action_pressed("exit"):
+		get_tree().quit()
 
 func _process(delta):
 	camera_input()
