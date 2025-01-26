@@ -1,4 +1,2 @@
-class_name Les
+class_name Corpse
 extends Node3D
-
-@export var price: int

@@ -11,7 +11,6 @@ material = SubResource("StandardMaterial3D_wou0b")
 
 [node name="StandardniLes" type="Node3D"]
 script = ExtResource("1_funls")
-price = 50
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false

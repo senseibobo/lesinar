@@ -10,3 +10,7 @@ extends Resource
 
 func get_random_name():
 	return first_names.pick_random() + " " + last_names.pick_random()
+
+
+func get_random_name_formatted():
+	return first_names.pick_random() + "\n" + last_names.pick_random()

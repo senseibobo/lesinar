@@ -59,11 +59,14 @@ _data = {
 "open": SubResource("Animation_vpyu6")
 }
 
-[node name="Fioka" type="StaticBody3D" node_paths=PackedStringArray("anim_player", "lampica")]
+[node name="Fioka" type="StaticBody3D" node_paths=PackedStringArray("anim_player", "lampica", "name_label", "value_label", "screen")]
 script = ExtResource("1_7tfq4")
 available_corpses = Array[ExtResource("2_w1y6x")]([ExtResource("3_khejm"), ExtResource("4_6oa05"), ExtResource("5_86c5i")])
 anim_player = NodePath("AnimationPlayer")
 lampica = NodePath("Lampica")
+name_label = NodePath("Screen/NameLabel")
+value_label = NodePath("Screen/ValueLabel")
+screen = NodePath("Screen")
 
 [node name="fijokaTall" parent="." instance=ExtResource("5_h86vs")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
@@ -86,13 +89,15 @@ libraries = {
 "": SubResource("AnimationLibrary_ts0jn")
 }
 
-[node name="ValueLabel" type="Label3D" parent="."]
+[node name="Screen" type="Node3D" parent="."]
+
+[node name="ValueLabel" type="Label3D" parent="Screen"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.670081, 0.199906, 0.218554)
 pixel_size = 0.004
 modulate = Color(0.095901, 1, 0, 1)
 text = "$100"
 
-[node name="NameLabel" type="Label3D" parent="."]
+[node name="NameLabel" type="Label3D" parent="Screen"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.670081, -0.0311292, 0.218554)
 pixel_size = 0.004
 modulate = Color(0.095901, 1, 0, 1)

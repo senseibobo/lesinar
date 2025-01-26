@@ -10,7 +10,6 @@ material = SubResource("StandardMaterial3D_ffd46")
 
 [node name="KomunalniLes" type="Node3D"]
 script = ExtResource("1_x7gfh")
-price = 25
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)

@@ -12,7 +12,9 @@ var move_vector: Vector3
 var mouse_move: float
 var held_tool: Tool
 var held_tool_scene: PackedScene
-var held_corpse: Les
+var held_corpse_instance: Corpse
+var held_corpse_info: CorpseInfo
+var holding_corpse: bool = false
 var start_pos: Vector3
 
 var score: int
@@ -28,7 +30,6 @@ var score: int
 @export var sensitivity: float
 
 func _ready() -> void:
-	held_corpse = null
 	score = 0
 	state = State.MOVE
 	move_vector = Vector3()
@@ -67,7 +68,7 @@ func move_input(delta: float):
 		#held_tool.use()
 
 func use_body():
-	if Input.is_action_just_pressed("use_corpse") and held_corpse != null:
+	if Input.is_action_just_pressed("use_corpse") and holding_corpse:
 		if raycast.get_collider() is Disposal:
 			if raycast.get_collider().put_body():
 				dispose_corpse()
@@ -76,10 +77,12 @@ func use_body():
 func dispose_corpse():
 	left_hand_anim.stop()
 	left_hand_anim.play("GRAB")
-	score += held_corpse.price
+	score += held_corpse_info.value
 	print(score)
-	held_corpse.queue_free()
-	held_corpse = null
+	held_corpse_instance.queue_free()
+	held_corpse_instance = null
+	held_corpse_info = null
+	holding_corpse = false
 
 
 func interact_input():
@@ -96,18 +99,18 @@ func interact_input():
 			elif held_tool == null:
 				var taken_tool_scene = raycast.get_collider().take_tool()
 				take_tool(taken_tool_scene)
-		elif raycast.get_collider() is Fioka and held_corpse == null:
+		elif raycast.get_collider() is Fioka and not holding_corpse:
 			left_hand_anim.stop()
 			left_hand_anim.play("GRAB")
 			take_corpse(raycast.get_collider())
-		elif raycast.get_collider() is Grave and held_corpse != null:
-			if (raycast.get_collider() as Grave).add_corpse():
+		elif raycast.get_collider() is Grave and holding_corpse:
+			if (raycast.get_collider() as Grave).add_corpse(held_corpse_info):
 				dispose_corpse()
 			
 
 func anim_input():
 	if !right_hand_anim.is_playing() and held_tool: right_hand_anim.play("HOLD")
-	if !left_hand_anim.is_playing() and held_corpse != null: left_hand_anim.play("HOLDLESH")
+	if !left_hand_anim.is_playing() and holding_corpse: left_hand_anim.play("HOLDLESH")
 	if !left_hand_anim.is_playing(): left_hand_anim.play("IDLE")
 	if !right_hand_anim.is_playing(): right_hand_anim.play("IDLE")
 
@@ -129,10 +132,12 @@ func choose_anim_tool():
 		right_hand_anim.play("KREC")
 
 func take_corpse(fioka: Fioka):
-	var taken_corpse = fioka.take_corpse()
-	if taken_corpse != null:
-		held_corpse = taken_corpse.instantiate()
-		left_hand.add_child(held_corpse)
+	var corpse_info = fioka.take_corpse()
+	if corpse_info != null:
+		holding_corpse = true
+		held_corpse_instance = corpse_info.scene.instantiate()
+		held_corpse_info = corpse_info
+		left_hand.add_child(held_corpse_instance)
 
 func move_to_start():
 	global_position = start_pos

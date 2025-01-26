@@ -4,6 +4,9 @@ extends StaticBody3D
 @export var available_corpses: Array[CorpseInfo]
 @export var anim_player: AnimationPlayer
 @export var lampica: MeshInstance3D
+@export var name_label: Label3D
+@export var value_label: Label3D
+@export var screen: Node3D
  
 var current_corpse: CorpseInfo
 var corpse_cooldown: float = 10.0
@@ -26,13 +29,17 @@ func fill_with_corpse():
 	lampica.visible = true
 	if current_corpse == null: return
 	current_corpse = available_corpses.pick_random()
+	screen.visible = true
+	value_label.text = str("$",current_corpse.value)
+	name_label.text = current_corpse.get_random_name_formatted()
 
 
-func take_corpse() -> PackedScene:
+func take_corpse() -> CorpseInfo:
 	if current_corpse == null: return null
 	anim_player.play("open")
 	lampica.visible = false
+	screen.visible = false
 	next_corpse_time_left = corpse_cooldown
-	var scene: PackedScene = current_corpse.scene
+	var corpse_info: CorpseInfo = current_corpse
 	current_corpse = null
-	return scene
+	return corpse_info
