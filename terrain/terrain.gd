@@ -28,6 +28,8 @@ func update_terrain_mode(held_tool: Tool):
 		selected_grave_info = preload("res://graves/jama/jama_grave_info.tres")
 	elif held_tool is Shovel:
 		selected_grave_info = preload("res://graves/normal/normal_grave_info.tres")
+	elif held_tool is Krec:
+		selected_grave_info = preload("res://graves/zivi_krec/zivi_krec_info.tres")
 	else:
 		preview_mesh.visible = false
 		preview_active = false
