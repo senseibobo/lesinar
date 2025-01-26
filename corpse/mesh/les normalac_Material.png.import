@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cbamq7kbijl3d"
-path.s3tc="res://.godot/imported/les normalac_Material.png-a68ee76179dae75ece22494bc498bba5.s3tc.ctex"
+path.s3tc="res://.godot/imported/les normalac_Material.png-ca58169bebadeba9c1dc71c742e8679a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://les/mesh/les normalac_Material.png"
-dest_files=["res://.godot/imported/les normalac_Material.png-a68ee76179dae75ece22494bc498bba5.s3tc.ctex"]
+source_file="res://corpse/mesh/les normalac_Material.png"
+dest_files=["res://.godot/imported/les normalac_Material.png-ca58169bebadeba9c1dc71c742e8679a.s3tc.ctex"]
 
 [params]
 

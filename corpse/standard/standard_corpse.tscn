@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cysl123k4qx78"]
 
-[ext_resource type="Script" path="res://les/les.gd" id="1_funls"]
-[ext_resource type="PackedScene" uid="uid://cwi2qqnl4gx2w" path="res://les/mesh/les_normalac.tscn" id="2_wwh7p"]
+[ext_resource type="Script" path="res://corpse/corpse.gd" id="1_funls"]
+[ext_resource type="PackedScene" uid="uid://cwi2qqnl4gx2w" path="res://corpse/mesh/les_normalac.tscn" id="2_wwh7p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wou0b"]
 albedo_color = Color(0, 0, 1, 1)

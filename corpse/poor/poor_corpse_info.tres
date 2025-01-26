@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CorpseInfo" load_steps=3 format=3 uid="uid://b1xmyj34rwnv0"]
+
+[ext_resource type="Script" path="res://corpse/corpse_info.gd" id="1_kd42d"]
+[ext_resource type="PackedScene" uid="uid://bi4nb7ycgk6hx" path="res://corpse/poor/poor_corpse.tscn" id="1_sxe5r"]
+
+[resource]
+script = ExtResource("1_kd42d")
+value = 25
+scene = ExtResource("1_sxe5r")
+first_names = Array[String](["Milojka", "Spasoje", "Persa", "Milutin", "Bosiljka", "Živorad", "Radojka", "Sava", "Stanojka", "Velimir", "Draginja", "Vidoje", "Dobrivoje", "Stanka", "Radovan"])
+last_names = Array[String](["Jovanović", "Petrović", "Milić", "Stanojević", "Radojković", "Nikolić", "Mitrović", "Đorđević", "Milojković", "Pavlović", "Stanković", "Živković", "Lukić", "Miladinović", "Ristić"])

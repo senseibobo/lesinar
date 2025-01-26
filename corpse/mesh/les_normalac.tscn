@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=4 uid="uid://cwi2qqnl4gx2w"]
 
-[ext_resource type="Texture2D" uid="uid://cbamq7kbijl3d" path="res://les/mesh/les normalac_Material.png" id="1_1cpcl"]
+[ext_resource type="Texture2D" uid="uid://cbamq7kbijl3d" path="res://corpse/mesh/les normalac_Material.png" id="1_1cpcl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j6ybi"]
 resource_name = "Material.005"

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bj0dg6phtv62c"
-path="res://.godot/imported/les normalac.glb-2206b0a5e205ce93a29e1dc0e6eb399c.scn"
+path="res://.godot/imported/les normalac.glb-ef5b236d869c2b26e9bd277515562af6.scn"
 
 [deps]
 
-source_file="res://les/mesh/les normalac.glb"
-dest_files=["res://.godot/imported/les normalac.glb-2206b0a5e205ce93a29e1dc0e6eb399c.scn"]
+source_file="res://corpse/mesh/les normalac.glb"
+dest_files=["res://.godot/imported/les normalac.glb-ef5b236d869c2b26e9bd277515562af6.scn"]
 
 [params]
 
