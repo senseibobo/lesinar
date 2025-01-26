@@ -16,6 +16,7 @@ var grid: Array#[Array[int]]
 var grid_size := Vector2(30,30)
 var old_preview_pos: Vector2
 var preview_active: bool = false
+var dig_range: float = 5.0
 
 
 func _ready() -> void:
@@ -109,7 +110,8 @@ func _process_preview_place():
 	var from: Vector3 = camera.global_position
 	var dir: Vector3 = -camera.global_basis.z.normalized()
 	var intersection = Plane(Vector3.UP, Vector3(0.0,-0.5,0.0)).intersects_ray(from, dir)
-	if intersection != null:
+	if intersection != null and intersection.distance_to(camera.global_position) < dig_range:
+		preview_mesh.visible = true
 		preview_active = true
 		var pos: Vector3 = intersection
 		var grid_pos: Vector2 = get_grid_pos(pos)
@@ -133,6 +135,7 @@ func _process_preview_place():
 			#box_mesh.size += Vector3(0.15,0.0,0.15)
 			update_preview_color()
 	else:
+		preview_mesh.visible = false
 		preview_active = false
 
 

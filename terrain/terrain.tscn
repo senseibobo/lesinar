@@ -13,8 +13,8 @@ shader_parameter/albedo_texture = ExtResource("3_x3bsp")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_enun1"]
 size = Vector2(30, 30)
-subdivide_width = 200
-subdivide_depth = 200
+subdivide_width = 120
+subdivide_depth = 120
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8o40f"]
 transparency = 1
