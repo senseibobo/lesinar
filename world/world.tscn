@@ -61,6 +61,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15, 0,
 [node name="Krematorijum" parent="." instance=ExtResource("5_m8om7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1087, 0.385358, 36.1772)
 max_corpses = 5
+value_multiplier = 0.0
 
 [node name="Granice" parent="." instance=ExtResource("6_7h36j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 15)

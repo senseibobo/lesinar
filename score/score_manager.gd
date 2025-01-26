@@ -8,6 +8,7 @@ signal corpses_disposed_updated(new_corpses_disposed: int)
 signal graves_dug_updated(new_graves_dug: int)
 signal area_updated(new_area: float)
 signal calories_burnt_updated(new_calories_burnt: float)
+signal corpses_shredded_updated(new_corpses_shredded: float)
 
 
 var score: float = 0.0
@@ -16,6 +17,7 @@ var corpses_disposed: int = 0
 var graves_dug: int = 0
 var area_left: float = 0.0
 var calories_burnt: float = 0.0
+var corpses_shredded: int
 
 
 func _ready():
@@ -26,6 +28,7 @@ func _ready():
 	graves_dug_updated.emit(graves_dug)
 	area_updated.emit(area_left)
 	calories_burnt_updated.emit(calories_burnt)
+	corpses_shredded_updated.emit(corpses_shredded)
 
 
 func on_corpse_disposed(corpse_info: CorpseInfo, grave: Grave):
@@ -57,3 +60,8 @@ func on_area_change(new_area: float):
 func burn_calories(amount: float):
 	calories_burnt += amount
 	calories_burnt_updated.emit(calories_burnt)
+
+
+func shred_corpse():
+	corpses_shredded += 1
+	corpses_shredded_updated.emit(corpses_shredded)

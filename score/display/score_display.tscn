@@ -14,13 +14,14 @@ size = Vector3(0.02, 0.265, 0.02)
 [sub_resource type="BoxMesh" id="BoxMesh_j1hg6"]
 size = Vector3(0.265, 0.015, 0.13)
 
-[node name="ScoreDisplay" type="Node3D" node_paths=PackedStringArray("score_label", "disposed_label", "graves_label", "area_label", "calories_label")]
+[node name="ScoreDisplay" type="Node3D" node_paths=PackedStringArray("score_label", "disposed_label", "graves_label", "area_label", "calories_label", "corpses_shredded_label")]
 script = ExtResource("1_h5ouo")
 score_label = NodePath("ScreenMesh/ScoreLabel")
 disposed_label = NodePath("ScreenMesh/DisposedLabel")
 graves_label = NodePath("ScreenMesh/GravesLabel")
 area_label = NodePath("ScreenMesh/AreaLabel")
 calories_label = NodePath("ScreenMesh/CaloriesLabel")
+corpses_shredded_label = NodePath("ScreenMesh/ShreddedLabel")
 
 [node name="ScreenMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.985865, 0.167543, 0, -0.167543, 0.985865, 0, 0.336715, 0)
@@ -28,38 +29,45 @@ material_override = SubResource("StandardMaterial3D_j06l4")
 mesh = SubResource("BoxMesh_megxn")
 
 [node name="ScoreLabel" type="Label3D" parent="ScreenMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221597, 0.0906631, 0.0107163)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221597, 0.1057, 0.0100173)
 pixel_size = 0.0015
 modulate = Color(0.0115, 1, 0, 1)
 text = "Profit: $100"
 horizontal_alignment = 0
 
 [node name="DisposedLabel" type="Label3D" parent="ScreenMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221597, 0.036094, 0.0107163)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221597, 0.0511311, 0.0100173)
 pixel_size = 0.001
 modulate = Color(0.0115, 1, 0, 1)
 text = "Corpses disposed: 55"
 horizontal_alignment = 0
 
 [node name="GravesLabel" type="Label3D" parent="ScreenMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221597, -0.00570805, 0.0107163)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221597, 0.00932901, 0.0100173)
 pixel_size = 0.001
 modulate = Color(0.0115, 1, 0, 1)
 text = "Graves dug: 5"
 horizontal_alignment = 0
 
 [node name="AreaLabel" type="Label3D" parent="ScreenMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221597, -0.0475025, 0.0107163)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221597, -0.0324654, 0.0100173)
 pixel_size = 0.001
 modulate = Color(0.0115, 1, 0, 1)
 text = "Free space left: 30m²"
 horizontal_alignment = 0
 
 [node name="CaloriesLabel" type="Label3D" parent="ScreenMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221597, -0.0864746, 0.0107163)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221597, -0.0714375, 0.0100173)
 pixel_size = 0.001
 modulate = Color(0.0115, 1, 0, 1)
 text = "Calories burnt: 2049kcal"
+horizontal_alignment = 0
+
+[node name="ShreddedLabel" type="Label3D" parent="ScreenMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221597, -0.111131, 0.0100173)
+pixel_size = 0.001
+modulate = Color(0.0115, 1, 0, 1)
+text = "Corpses shredded: 2/5"
 horizontal_alignment = 0
 
 [node name="HandMesh" type="MeshInstance3D" parent="."]

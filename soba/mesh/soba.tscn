@@ -193,11 +193,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.33098, 1.80773, -5.23282)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.33098, 0.795432, -5.23282)
 
 [node name="ScoreDisplay" parent="." instance=ExtResource("6_yxveo")]
-transform = Transform3D(-1.5019, 0, -1.50189, 0, 2.124, 0, 1.50189, 0, -1.5019, 5.00118, 0.684103, 0.89686)
+transform = Transform3D(-1.5019, 0, -1.50189, 0, 2.124, 0, 1.50189, 0, -1.5019, 4.59963, 0.684103, 0.89686)
 
 [node name="ToolWall" parent="." instance=ExtResource("7_78w2x")]
 transform = Transform3D(-0.7, 0, 1.05697e-07, 0, 0.7, 0, -1.05697e-07, 0, -0.7, 2.28914, 0.725909, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.179319, 0.972271)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.59174, 0.179319, 0.972271)
 mesh = SubResource("BoxMesh_wp1ov")

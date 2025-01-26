@@ -7,6 +7,7 @@ extends Node3D
 @export var graves_label: Label3D
 @export var area_label: Label3D
 @export var calories_label: Label3D
+@export var corpses_shredded_label: Label3D
 
 
 func _ready():
@@ -15,6 +16,7 @@ func _ready():
 	ScoreManager.graves_dug_updated.connect(_on_graves_dug_updated)
 	ScoreManager.area_updated.connect(_on_area_updated)
 	ScoreManager.calories_burnt_updated.connect(_on_calories_burnt_updated)
+	ScoreManager.corpses_shredded_updated.connect(_on_corpses_shredded_updated)
 
 
 func _on_score_updated(new_score: float):
@@ -35,5 +37,8 @@ func _on_area_updated(new_area: float):
 	
 func _on_calories_burnt_updated(new_calories_burnt: float):
 	calories_label.text = str("Calories burnt: ", str(new_calories_burnt).pad_decimals(0),"kcal")
-	
+
+
+func _on_corpses_shredded_updated(new_corpses_shredded: int):
+	corpses_shredded_label.text = str("Corpses shredded: ", new_corpses_shredded, "/5")
 	
