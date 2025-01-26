@@ -28,6 +28,10 @@ var score: int
 @export var left_hand_model: Node3D
 @export var right_hand_model: Node3D
 @export var raycast: RayCast3D
+@export var audio_player: AudioStreamPlayer
+@export var dirt_sound: AudioStream
+@export var pick_sound: AudioStream
+@export var krec_sound: AudioStream
 @export var speed: float
 @export var sensitivity: float
 
@@ -123,10 +127,16 @@ func choose_anim_tool():
 	right_hand_anim.stop()
 	if held_tool is Shovel:
 		right_hand_anim.play("SHOWEL")
+		audio_player.stream = dirt_sound
+		audio_player.play()
 	if held_tool is Pijuk:
 		right_hand_anim.play("PIKAC")
+		audio_player.stream = pick_sound
+		audio_player.play()
 	if held_tool is Krec:
 		right_hand_anim.play("KREC")
+		audio_player.stream = krec_sound
+		audio_player.play()
 
 func take_corpse(fioka: Fioka):
 	var corpse_info = fioka.take_corpse()

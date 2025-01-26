@@ -1,14 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://d18ckmself2n"]
+[gd_scene load_steps=5 format=3 uid="uid://d18ckmself2n"]
 
 [ext_resource type="Script" path="res://disposal/disposal.gd" id="1_jvw7t"]
 [ext_resource type="PackedScene" uid="uid://beqbrdmbuvfeb" path="res://disposal/krematorijum/mesh/krematorium.tscn" id="2_3wp54"]
+[ext_resource type="AudioStream" uid="uid://bminjy7ng67pq" path="res://audio/krematorium.mp3" id="3_mucbq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_25ys4"]
 size = Vector3(7.12305, 3, 3)
 
-[node name="Krematorijum" type="StaticBody3D"]
+[node name="Krematorijum" type="StaticBody3D" node_paths=PackedStringArray("corpse_begin_marker")]
 script = ExtResource("1_jvw7t")
-max_bodies = 5
+corpse_begin_marker = NodePath("Marker3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.87549, 1.05322, 0)
@@ -16,3 +17,10 @@ shape = SubResource("BoxShape3D_25ys4")
 
 [node name="krematorium" parent="." instance=ExtResource("2_3wp54")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_mucbq")
+autoplay = true
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(0.87224, 0, -0.489078, 0, 1, 0, 0.489078, 0, 0.87224, 0.751631, 1.42365, 0)

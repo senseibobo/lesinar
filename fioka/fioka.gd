@@ -42,6 +42,10 @@ func take_corpse() -> CorpseInfo:
 	lampica.visible = false
 	screen.visible = false
 	next_corpse_time_left = corpse_cooldown
+	corpse_cooldown = random_corpse_time()
 	var corpse_info: CorpseInfo = current_corpse
 	current_corpse = null
 	return corpse_info
+
+func random_corpse_time() -> float:
+	return 40.0+randf()*30.0
