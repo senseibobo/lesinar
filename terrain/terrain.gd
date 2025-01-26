@@ -35,6 +35,8 @@ func update_terrain_mode(held_tool: Tool):
 	elif held_tool is Krec:
 		selected_grave_info = preload("res://graves/zivi_krec/zivi_krec_info.tres")
 	else:
+		selected_grave_info = null
+		print("batonga")
 		preview_mesh.visible = false
 		preview_active = false
 
@@ -88,8 +90,9 @@ func generate_grid():
 			
 
 func _process(delta):
-	_process_preview_place()
-	_process_attempt_place()
+	if selected_grave_info != null:
+		_process_preview_place()
+		_process_attempt_place()
 
 
 func _process_attempt_place():
@@ -127,6 +130,7 @@ func _process_preview_place():
 			
 			var box_mesh: BoxMesh = preview_mesh.mesh
 			box_mesh.size = Vector3(selected_grave_info.size.x*aspect.x, 1.0, selected_grave_info.size.y*aspect.y)
+			#box_mesh.size += Vector3(0.15,0.0,0.15)
 			update_preview_color()
 	else:
 		preview_active = false

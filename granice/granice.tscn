@@ -1,10 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dl5hw2edprci2"]
+[gd_scene load_steps=6 format=3 uid="uid://dl5hw2edprci2"]
 
 [ext_resource type="Script" path="res://granice/granice.gd" id="1_6lcxw"]
 [ext_resource type="Script" path="res://granice/border.gd" id="2_f16f7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m0lhp"]
 size = Vector3(60, 10, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wudt7"]
+albedo_color = Color(0, 0, 0, 1)
+metallic_specular = 0.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_yvk3f"]
 size = Vector3(60, 10, 0.02)
@@ -27,6 +31,7 @@ script = ExtResource("2_f16f7")
 shape = SubResource("BoxShape3D_m0lhp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NorthBorder"]
+material_override = SubResource("StandardMaterial3D_wudt7")
 mesh = SubResource("BoxMesh_yvk3f")
 
 [node name="EastBorder" type="AnimatableBody3D" parent="."]
@@ -39,6 +44,7 @@ script = ExtResource("2_f16f7")
 shape = SubResource("BoxShape3D_m0lhp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EastBorder"]
+material_override = SubResource("StandardMaterial3D_wudt7")
 mesh = SubResource("BoxMesh_yvk3f")
 
 [node name="WestBorder" type="AnimatableBody3D" parent="."]
@@ -51,6 +57,7 @@ script = ExtResource("2_f16f7")
 shape = SubResource("BoxShape3D_m0lhp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="WestBorder"]
+material_override = SubResource("StandardMaterial3D_wudt7")
 mesh = SubResource("BoxMesh_yvk3f")
 
 [node name="SouthBorder" type="StaticBody3D" parent="."]
@@ -62,6 +69,7 @@ shape = SubResource("BoxShape3D_m0lhp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SouthBorder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.38, 0, 0)
+material_override = SubResource("StandardMaterial3D_wudt7")
 mesh = SubResource("BoxMesh_yvk3f")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="SouthBorder"]
@@ -70,4 +78,5 @@ shape = SubResource("BoxShape3D_m0lhp")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="SouthBorder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.13, 0, 0)
+material_override = SubResource("StandardMaterial3D_wudt7")
 mesh = SubResource("BoxMesh_yvk3f")

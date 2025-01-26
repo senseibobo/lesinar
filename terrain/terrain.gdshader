@@ -1,4 +1,5 @@
 shader_type spatial;
+render_mode blend_mix, depth_draw_opaque;
 
 
 uniform sampler2D heightmap: filter_nearest;
@@ -25,17 +26,19 @@ vec3 get_normal(vec3 vertex, float adjacent_distance) {
 
 
 void vertex() {
-	NORMAL = get_normal(VERTEX, 5.0);
+	NORMAL = get_normal(VERTEX, 0.1);
 	VERTEX.y -= pow(textureLod(heightmap, UV,1.0).r,0.3)*amplitude;
 	COLOR.rgb = vec3(VERTEX.y)/1.0;
 	// Called for every vertex the material is visible on.
 }
 
 void fragment() {
+	vec3 old_albedo = ALBEDO;
 	ALBEDO.r = step(1.0,mod(UV.x*30.0,2.0))/3.0;
 	ALBEDO.b = step(1.0,mod(UV.y*30.0,2.0))/3.0;
 	ALBEDO.g = 1.0;
 	ALBEDO /= 2.0;
+	//ALBEDO = ALBEDO*old_albedo;
 }
 
 //void light() {

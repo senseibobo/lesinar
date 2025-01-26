@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgamuqao6oli1"]
+[gd_scene load_steps=11 format=3 uid="uid://cgamuqao6oli1"]
 
 [ext_resource type="PackedScene" uid="uid://dc6ux2dac5fr2" path="res://player/player.tscn" id="1_vp3ec"]
 [ext_resource type="PackedScene" uid="uid://0b788ilmda1t" path="res://mrtvacnica/mrtvacnica.tscn" id="3_fscio"]
@@ -7,8 +7,32 @@
 [ext_resource type="PackedScene" uid="uid://dl5hw2edprci2" path="res://granice/granice.tscn" id="6_7h36j"]
 [ext_resource type="PackedScene" uid="uid://ge533veisgpo" path="res://terrain/terrain.tscn" id="7_udxks"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v48ht"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_e1vj0"]
+sky_material = SubResource("ProceduralSkyMaterial_v48ht")
+
 [sub_resource type="Environment" id="Environment_skxy8"]
+background_mode = 2
 background_energy_multiplier = 0.75
+sky = SubResource("Sky_e1vj0")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.1
+tonemap_mode = 2
+fog_enabled = true
+fog_mode = 1
+fog_light_energy = 0.0
+fog_density = 0.9945
+fog_depth_curve = 0.267943
+fog_depth_begin = 4.0
+fog_depth_end = 26.0
+volumetric_fog_density = 0.0735
+volumetric_fog_temporal_reprojection_amount = 0.78
+adjustment_enabled = true
+adjustment_brightness = 0.8
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3bh8n"]
 size = Vector2(25, 25)
@@ -42,6 +66,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 15)
 
 [node name="Terrain" parent="." node_paths=PackedStringArray("granice") instance=ExtResource("7_udxks")]
 granice = NodePath("../Granice")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.809294, 0.587404, 0, -0.587404, 0.809294, 15.1659, 3.87434, 30.2198)
+light_energy = 3.475
+shadow_enabled = true
+spot_range = 23.832
 
 [connection signal="tool_changed" from="Player" to="Terrain" method="update_terrain_mode"]
 [connection signal="grave_dug" from="Terrain" to="Player" method="_on_grave_dug"]
