@@ -989,6 +989,7 @@ mesh = SubResource("PlaneMesh_3bh8n")
 
 [node name="Player" parent="." instance=ExtResource("1_vp3ec")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 14.6298, 0, 32.6356)
+katch_sound = null
 
 [node name="Mrtvacnica" parent="." instance=ExtResource("3_fscio")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12, 2, 0)
@@ -1231,7 +1232,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.9929
 shape = SubResource("BoxShape3D_ccdma")
 
 [node name="ToolWall" parent="Kuca" instance=ExtResource("21_o3nne")]
-transform = Transform3D(-0.574018, 0, -5.01822e-08, 0, 0.574018, 0, 5.01822e-08, 0, -0.574018, 15.0629, 0.809688, 37.6701)
+transform = Transform3D(-0.574018, 0, -5.01822e-08, 0, 0.574018, 0, 5.01822e-08, 0, -0.574018, 12.2262, 0.809688, 29.4181)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Kuca"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8293, -0.0245121, 39.0752)

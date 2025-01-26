@@ -107,7 +107,6 @@ func dispose_corpse():
 func interact_input():
 	check_label()
 	if Input.is_action_just_pressed("interact") and raycast.is_colliding():
-		print(raycast.get_collider().name)
 		if raycast.get_collider() is Kuka:
 			label.visible = true
 			right_hand_anim.stop()
@@ -130,12 +129,20 @@ func interact_input():
 			audio_player.stream = grab_sound
 			audio_player.play()
 			take_corpse(raycast.get_collider())
-		elif raycast.get_collider() is Grave and holding_corpse:
+		elif raycast.get_collider() is Grave:
 			label.visible = true
 			var grave: Grave = raycast.get_collider() 
-			if grave.add_corpse(held_corpse_info):
-				ScoreManager.on_corpse_disposed(held_corpse_info, grave)
-				dispose_corpse()
+			if holding_corpse:
+				if grave.add_corpse(held_corpse_info):
+					ScoreManager.on_corpse_disposed(held_corpse_info, grave)
+					dispose_corpse()
+			else:
+				if grave.remove_corpse():
+					var corpse_info: CorpseInfo = grave.get_top_corpse_info()
+					take_corpse_info(corpse_info)
+					left_hand_anim.stop()
+					left_hand_anim.play("GRAB")
+					ScoreManager.on_corpse_removed(corpse_info, grave)
 			
 
 func check_label():
@@ -144,8 +151,12 @@ func check_label():
 			label.visible = true
 		elif raycast.get_collider() is Fioka and !holding_corpse:
 			label.visible = true
-		elif raycast.get_collider() is Grave and holding_corpse:
-			label.visible = true
+		elif raycast.get_collider() is Grave:
+			var grave: Grave = raycast.get_collider() as Grave
+			if grave.corpses_inside >= grave.max_corpses and holding_corpse:
+				label.visible = false
+			if grave.corpses_inside > 0 and not holding_corpse:
+				label.visible = true
 		else:
 			label.visible = false
 	else:
@@ -183,10 +194,15 @@ func choose_anim_tool():
 func take_corpse(fioka: Fioka):
 	var corpse_info = fioka.take_corpse()
 	if corpse_info != null:
-		holding_corpse = true
-		held_corpse_instance = corpse_info.scene.instantiate()
-		held_corpse_info = corpse_info
-		left_hand.add_child(held_corpse_instance)
+		take_corpse_info(corpse_info)
+
+
+func take_corpse_info(corpse_info: CorpseInfo):
+	holding_corpse = true
+	held_corpse_instance = corpse_info.scene.instantiate()
+	held_corpse_info = corpse_info
+	left_hand.add_child(held_corpse_instance)
+
 
 func move_to_start():
 	global_position = start_pos

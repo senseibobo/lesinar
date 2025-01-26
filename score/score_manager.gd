@@ -42,6 +42,13 @@ func on_corpse_disposed(corpse_info: CorpseInfo, grave: Grave):
 	score_updated.emit(score)
 
 
+func on_corpse_removed(corpse_info: CorpseInfo, grave: Grave):
+	score -= corpse_info.value * grave.value_multiplier
+	corpses_disposed -= 1
+	corpses_disposed_updated.emit(corpses_disposed)
+	score_updated.emit(score)
+
+
 func on_grave_dug(grave: Grave):
 	graves_dug += 1
 	graves_dug_updated.emit(graves_dug)
