@@ -1,6 +1,7 @@
 shader_type spatial;
 
-uniform sampler2D heightmap;
+
+uniform sampler2D heightmap: filter_nearest;
 uniform sampler2D albedo_texture;
 uniform float amplitude = 8.0;
 
@@ -25,13 +26,15 @@ vec3 get_normal(vec3 vertex, float adjacent_distance) {
 
 void vertex() {
 	NORMAL = get_normal(VERTEX, 5.0);
-	VERTEX.y -= pow(texture(heightmap, UV).r,0.3)*amplitude;
+	VERTEX.y -= pow(textureLod(heightmap, UV,1.0).r,0.3)*amplitude;
 	COLOR.rgb = vec3(VERTEX.y)/1.0;
 	// Called for every vertex the material is visible on.
 }
 
 void fragment() {
 	ALBEDO = vec3(1.0)-texture(heightmap, UV).rgb;
+	ALBEDO.r = step(1.0,mod(UV.x*30.0,2.0));
+	ALBEDO.g = step(1.0,mod(UV.y*30.0,2.0));
 }
 
 //void light() {

@@ -9,7 +9,7 @@ extends Node3D
 
 var heightmap: Image
 var grid: Array#[Array[int]]
-var grid_size := Vector2(40,40)
+var grid_size := Vector2(30,30)
 var old_preview_pos: Vector2
 var preview_active: bool = false
 
@@ -37,7 +37,7 @@ func update_terrain_mode(held_tool: Tool):
 func check_dig_available(origin: Vector2i, size: Vector2i):
 	if origin.x <= 0 or origin.x >= grid_size.x - 1: return false
 	if origin.y <= 0 or origin.y >= grid_size.y - 1: return false
-	var min_distance: int = 2
+	var min_distance: int = 1
 	var x_min: int = clamp(origin.x-min_distance,			0,	grid_size.x-min_distance)
 	var x_max: int = clamp(origin.x+min_distance+size.x,	0,	grid_size.x-min_distance)
 	var y_min: int = clamp(origin.y-min_distance,			0,	grid_size.y-min_distance)
@@ -50,7 +50,6 @@ func check_dig_available(origin: Vector2i, size: Vector2i):
 
 
 func dig_grave(origin: Vector2i, size: Vector2i, depth: int):
-	print(origin)
 	for x in range(origin.x, origin.x + size.x):
 		for y in range(origin.y, origin.y + size.y):
 			grid[x][y] = depth
@@ -58,7 +57,7 @@ func dig_grave(origin: Vector2i, size: Vector2i, depth: int):
 	var grave: Grave = selected_grave_info.grave_scene.instantiate()
 	add_child(grave)
 	var pos := Vector2(origin) * get_aspect()
-	grave.global_position = Vector3(pos.x+0.37, 0.0, pos.y+0.25)
+	grave.global_position = Vector3(pos.x+0.5, 0.0, pos.y+0.5)
 	update_heightmap()
 
 
@@ -87,6 +86,7 @@ func _process(delta):
 func _process_attempt_place():
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		if not preview_active: return
+		print(get_dig_pos())
 		if not check_dig_available(get_dig_pos(), selected_grave_info.size): return
 		dig_grave(get_dig_pos(), selected_grave_info.size, selected_grave_info.depth)
 		update_preview_color()
@@ -110,14 +110,10 @@ func _process_preview_place():
 			var preview_pos: Vector2 = grid_pos*aspect
 			var grave_size: Vector2 = selected_grave_info.size
 			
-			var local_pos: Vector2 = (Vector2(grid_pos.x, grid_pos.y))*aspect
+			var local_pos: Vector2 = (Vector2(grid_pos.x+grave_size.x/2.0, grid_pos.y+grave_size.y/2.0))*aspect
+			preview_mesh.global_position = Vector3(local_pos.x, 0.0, local_pos.y)
 			
-			var size_offset = Vector3(
-				(grave_size.x-2)*aspect.x, 
-				0.0, 
-				(grave_size.y-2)*aspect.y
-			)/2.0
-			preview_mesh.global_position = Vector3(local_pos.x, 0.0, local_pos.y) + size_offset
+			print(grid_pos, ", ", preview_mesh.global_position)
 			#var s = Vector3(int((selected_grave_info.size.x) / 2.0), 0.4, (selected_grave_info.size.y)/2.0)
 			
 			var box_mesh: BoxMesh = preview_mesh.mesh
@@ -136,7 +132,7 @@ func update_preview_color():
 
 
 func get_dig_pos():
-	return Vector2i(old_preview_pos - Vector2(selected_grave_info.size/2))
+	return Vector2i(old_preview_pos)# - Vector2(selected_grave_info.size/2))
 
 
 func get_grid_pos(pos) -> Vector2i:
@@ -149,20 +145,3 @@ func get_uv_pos(pos) -> Vector2: # returns 0-1
 	if pos is Vector3 or pos is Vector3i:
 		pos = Vector2(pos.x, pos.z)
 	return pos/mesh.size
-
-
-#func _input(event):
-	#if event.is_action_pressed("ui_accept"):
-		#selected_grave_info = preload("res://graves/jama/jama_grave_info.tres")
-	#elif event.is_action_released("ui_accept"):
-		#selected_grave_info = preload("res://graves/zivi_krec/zivi_krec_info.tres")
-	#if event is InputEventMouseButton:
-		#if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-			#var plane := Plane(Vector3.UP)
-			#var camera: Camera3D = get_viewport().get_camera_3d()
-			#var from: Vector3 = camera.project_ray_origin(event.position)
-			#var dir: Vector3 = camera.project_ray_normal(event.position)
-			#var intersection = plane.intersects_ray(from, dir)
-			#if intersection != null:
-				#var intersection_point: Vector3 = intersection
-				#paint_hole(Vector2(intersection_point.x, intersection_point.z))
