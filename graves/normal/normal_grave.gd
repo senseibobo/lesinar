@@ -7,6 +7,8 @@ extends Grave
 @export var marker: Marker3D
 @export var dirt_mesh_instance: MeshInstance3D
 
+var tween: Tween
+
 
 func add_corpse(corpse_info: CorpseInfo = null) -> bool:
 	var added: bool = super(corpse_info)
@@ -22,6 +24,16 @@ func _add_corpse_instance(corpse_instance: Corpse):
 	audio_player.play()
 	marker.add_child(corpse_instance)
 	corpse_instance.position.y += 2.0
-	var tween = corpse_instance.create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD).set_parallel()
+	if tween and tween.is_running(): tween.kill()
+	tween = corpse_instance.create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD).set_parallel()
 	tween.tween_property(corpse_instance, "position:y", marker.position.y, 1.0)
-	tween.tween_property(dirt_mesh_instance, "position:y", dirt_mesh_instance.position.y + 1.0, 2.5)
+	tween.tween_property(dirt_mesh_instance, "position:y", 0.0, 1.5)
+
+
+func _free_corpse_instance(corpse_instance: Corpse):
+	print("free")
+	super(corpse_instance)
+	if tween and tween.is_running(): tween.kill()
+	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD).set_parallel()
+	tween.tween_property(dirt_mesh_instance, "position:y", -1.0, 1.0)
+	print(tween)

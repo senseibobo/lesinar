@@ -20,6 +20,7 @@ func add_corpse(corpse_info: CorpseInfo = null) -> bool:
 	var corpse_instance: Corpse
 	if corpse_info:
 		corpse_instance = corpse_info.scene.instantiate()
+		corpse_instance.corpse_info = corpse_info
 		_add_corpse_instance(corpse_instance)
 	corpse_instances.append(corpse_instance)
 	corpse_added.emit()
@@ -31,7 +32,17 @@ func remove_corpse() -> bool:
 	corpses_inside -= 1
 	_remove_top_corpse_instance.call_deferred()
 	corpse_removed.emit()
-	return false
+	return true
+
+
+func get_top_corpse_instance() -> Corpse:
+	if corpse_instances.size() == 0: return null
+	return corpse_instances[-1]
+
+
+func get_top_corpse_info() -> CorpseInfo:
+	if corpse_instances.size() == 0: return null
+	return corpse_instances[-1].corpse_info
 
 
 func _remove_top_corpse_instance():

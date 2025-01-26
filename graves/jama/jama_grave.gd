@@ -11,10 +11,6 @@ func _ready():
 		corpse_containers.append(container)
 
 
-func _free_corpse_instance(corpse_instance: Corpse):
-	pass
-
-
 func _add_corpse_instance(corpse_instance: Corpse):
 	var container: Node3D = corpse_containers[corpses_inside-1]
 	container.add_child(corpse_instance)
