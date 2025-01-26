@@ -9,7 +9,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dx2ah"]
 render_priority = 0
 shader = ExtResource("2_yt2v2")
-shader_parameter/amplitude = 2.0
+shader_parameter/amplitude = 8.0
 shader_parameter/heightmap = SubResource("PlaceholderTexture2D_fbe6m")
 shader_parameter/albedo_texture = ExtResource("3_x3bsp")
 
@@ -31,6 +31,7 @@ mesh_instance = NodePath("MeshInstance3D")
 preview_mesh = NodePath("PreviewMesh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 15)
 material_override = SubResource("ShaderMaterial_dx2ah")
 mesh = SubResource("PlaneMesh_enun1")
 

@@ -4,47 +4,52 @@ extends Node3D
 
 @export var mesh_instance: MeshInstance3D
 @export var preview_mesh: MeshInstance3D
+
+@export var selected_grave_info: GraveInfo = preload("res://graves/normal/normal_grave_info.tres")
+
 var heightmap: Image
 var grid: Array#[Array[int]]
 var grid_size := Vector2(40,40)
-var old_preview_pos: Vector2i
+var old_preview_pos: Vector2
 var preview_active: bool = false
-var preview_size := Vector2i(1,2)
 
 
 func _ready() -> void:
 	generate_grid()
 	heightmap = Image.create(grid_size.x,grid_size.y,false,Image.FORMAT_RGB8)
 	update_heightmap()
-	dig_grave(Vector2i(2,2), Vector2i(2,3), 3)
-	dig_grave(Vector2i(5,2), Vector2i(2,3), 7)
 
 
 func check_dig_available(origin: Vector2i, size: Vector2i):
-	print("ORIGIN ", origin)
 	if origin.x <= 0 or origin.x >= grid_size.x - 1: return false
 	if origin.y <= 0 or origin.y >= grid_size.y - 1: return false
-	var x_min: int = clamp(origin.x-1,0,grid_size.x-1)
-	var x_max: int = clamp(origin.x+size.x+1,0,grid_size.x-1)
-	var y_min: int = clamp(origin.y-1,0,grid_size.y-1)
-	var y_max: int = clamp(origin.y+size.y+1,0,grid_size.y-1)
+	var min_distance: int = 2
+	var x_min: int = clamp(origin.x-min_distance,			0,	grid_size.x-min_distance)
+	var x_max: int = clamp(origin.x+min_distance+size.x,	0,	grid_size.x-min_distance)
+	var y_min: int = clamp(origin.y-min_distance,			0,	grid_size.y-min_distance)
+	var y_max: int = clamp(origin.y+min_distance+size.y,	0,	grid_size.y-min_distance)
 	for x in range(x_min, x_max):
 		for y in range(y_min, y_max):
 			if grid[x][y] != 0:
 				return false
-	print("testic 7")
 	return true
 
 
 func dig_grave(origin: Vector2i, size: Vector2i, depth: int):
-	print("digging grave at ", origin, ", size: ", size)
-	for i in range(origin.x, origin.x + size.x):
-		for j in range(origin.y, origin.y + size.y):
-			grid[i][j] = depth
-			heightmap.set_pixelv(Vector2i(i,j), Color.BLACK.lerp(Color.WHITE, depth/16.0))
-			print(depth/16.0)
-			print(Color.BLACK.lerp(Color.WHITE, depth/16.0))
+	for x in range(origin.x, origin.x + size.x):
+		for y in range(origin.y, origin.y + size.y):
+			grid[x][y] = depth
+			heightmap.set_pixelv(Vector2i(x,y), Color.BLACK.lerp(Color.WHITE, depth/16.0))
+	var grave: Grave = selected_grave_info.grave_scene.instantiate()
+	add_child(grave)
+	var pos := Vector2(origin) * get_aspect()
+	grave.global_position = Vector3(pos.x+0.37, 0.0, pos.y+0.25)
 	update_heightmap()
+
+
+func get_aspect() -> Vector2:
+	var mesh: PlaneMesh = mesh_instance.mesh
+	return mesh.size/grid_size
 
 
 func update_heightmap():
@@ -69,68 +74,70 @@ func _process_attempt_place():
 		print("testic 1")
 		if not preview_active: return
 		print("testic 2")
-		var grid_pos: Vector2i = get_grid_pos_from_position(old_preview_pos)
-		if not check_dig_available(grid_pos, preview_size): return
-		print("testic 3")
-		dig_grave(grid_pos, preview_size, 5)
+		if not check_dig_available(old_preview_pos, selected_grave_info.size): return
+		dig_grave(old_preview_pos, selected_grave_info.size, selected_grave_info.depth)
+		update_preview_color()
 
 
 func _process_preview_place():
 	var camera: Camera3D = get_viewport().get_camera_3d()
 	var from: Vector3 = camera.global_position
 	var dir: Vector3 = -camera.global_basis.z.normalized()
-	var intersection = Plane(Vector3.UP).intersects_ray(from, dir)
+	var intersection = Plane(Vector3.UP, Vector3(0.0,-0.5,0.0)).intersects_ray(from, dir)
 	if intersection != null:
 		preview_active = true
 		var pos: Vector3 = intersection
-		var snapped_pos: Vector2i = get_snapped_pos(pos)
+		var grid_pos: Vector2 = get_grid_pos(pos)
 		var rounded := Vector3(round(pos.x), global_position.y, round(pos.z))
-		if snapped_pos != old_preview_pos:
-			old_preview_pos = snapped_pos
+		if grid_pos != old_preview_pos:
+			old_preview_pos = grid_pos
 			
-			var size_offset := Vector3(preview_size.x/2.0, 0.0, preview_size.y/2.0)
-			preview_mesh.global_position = rounded - Vector3(0.5, 0.0, 0.5) + size_offset
+			var size_offset := Vector3(selected_grave_info.size.x/2.0-0.125, 0.0, selected_grave_info.size.y/2.0 - 0.25)
+			var mesh_size: Vector2 = mesh_instance.mesh.size
+			var aspect: Vector2 = mesh_size/grid_size
+			var preview_pos: Vector2 = grid_pos*aspect
+			preview_mesh.global_position = Vector3(preview_pos.x, 0.0, preview_pos.y)
+			preview_mesh.global_position += size_offset
 			
 			var box_mesh: BoxMesh = preview_mesh.mesh
-			box_mesh.size = Vector3(preview_size.x, 1.0, preview_size.y)
+			box_mesh.size = Vector3(selected_grave_info.size.x, 1.0, selected_grave_info.size.y)
+			update_preview_color()
 	else:
 		preview_active = false
-		
-
-func get_grid_pos_from_position(pos):
-	var snapped_pos = get_snapped_pos(pos)
-	return Vector2i(Vector2(snapped_pos) + grid_size/2)
 
 
-func get_snapped_pos(pos):
+func update_preview_color():
+	var color := Color.AQUA
+	if not check_dig_available(old_preview_pos, selected_grave_info.size):
+		color = Color.RED
+	color.a = 0.3
+	preview_mesh.material_override.albedo_color = color
+
+
+func get_grid_pos(pos) -> Vector2i:
+	var uv_pos: Vector2 = get_uv_pos(pos)
+	return Vector2i(uv_pos*grid_size)
+
+
+func get_uv_pos(pos) -> Vector2: # returns 0-1
+	var mesh: PlaneMesh = mesh_instance.mesh
 	if pos is Vector3 or pos is Vector3i:
-		return Vector2i(round(pos.x), round(pos.z))
-	elif pos is Vector2 or pos is Vector2i:
-		return Vector2i(round(pos.x), round(pos.y))
+		pos = Vector2(pos.x, pos.z)
+	return pos/mesh.size
 
 
 func _input(event):
-	if event is InputEventMouseButton:
-		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-			var plane := Plane(Vector3.UP)
-			var camera: Camera3D = get_viewport().get_camera_3d()
-			var from: Vector3 = camera.project_ray_origin(event.position)
-			var dir: Vector3 = camera.project_ray_normal(event.position)
-			var intersection = plane.intersects_ray(from, dir)
-			if intersection != null:
-				var intersection_point: Vector3 = intersection
-				paint_hole(Vector2(intersection_point.x, intersection_point.z))
-
-
-func paint_hole(hole_position: Vector2):
-	var mesh: PlaneMesh = mesh_instance.mesh
-	var heightmap_position: Vector2 = hole_position / mesh.size * grid_size + grid_size/2.0
-	if Rect2(1,1,grid_size.x-2, grid_size.y-2).has_point(heightmap_position):
-		var top_y: int = round(heightmap_position.y / 2.0) * 2
-		var bottom_y: int = top_y + 1
-		heightmap_position.x = round(heightmap_position.x)
-		heightmap_position.y = top_y
-		heightmap.set_pixelv(heightmap_position, Color.WHITE)
-		heightmap_position.y = bottom_y
-		heightmap.set_pixelv(heightmap_position, Color.WHITE)
-		update_heightmap()
+	if event.is_action_pressed("ui_accept"):
+		selected_grave_info = preload("res://graves/jama/jama_grave_info.tres")
+	elif event.is_action_released("ui_accept"):
+		selected_grave_info = preload("res://graves/normal/normal_grave_info.tres")
+	#if event is InputEventMouseButton:
+		#if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+			#var plane := Plane(Vector3.UP)
+			#var camera: Camera3D = get_viewport().get_camera_3d()
+			#var from: Vector3 = camera.project_ray_origin(event.position)
+			#var dir: Vector3 = camera.project_ray_normal(event.position)
+			#var intersection = plane.intersects_ray(from, dir)
+			#if intersection != null:
+				#var intersection_point: Vector3 = intersection
+				#paint_hole(Vector2(intersection_point.x, intersection_point.z))

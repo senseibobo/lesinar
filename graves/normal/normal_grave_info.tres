@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GraveInfo" load_steps=3 format=3 uid="uid://cj4bclfra5sxe"]
+
+[ext_resource type="PackedScene" uid="uid://5y1bbgbpm8er" path="res://graves/normal/normal_grave.tscn" id="1_6q2q1"]
+[ext_resource type="Script" path="res://graves/grave_info.gd" id="1_cyf20"]
+
+[resource]
+script = ExtResource("1_cyf20")
+size = Vector2i(1, 2)
+depth = 2
+grave_scene = ExtResource("1_6q2q1")

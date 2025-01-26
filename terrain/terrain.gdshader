@@ -2,7 +2,7 @@ shader_type spatial;
 
 uniform sampler2D heightmap;
 uniform sampler2D albedo_texture;
-uniform float amplitude = 2.0;
+uniform float amplitude = 8.0;
 
 float get_height(vec3 vertex) {
 	vec2 texture_position = (vertex.xz + vec2(0.5))/float(textureSize(heightmap, 0).x);
@@ -25,12 +25,13 @@ vec3 get_normal(vec3 vertex, float adjacent_distance) {
 
 void vertex() {
 	NORMAL = get_normal(VERTEX, 5.0);
-	VERTEX.y -= pow(texture(heightmap, UV).r,0.3)*1.0;
+	VERTEX.y -= pow(texture(heightmap, UV).r,0.3)*amplitude;
 	COLOR.rgb = vec3(VERTEX.y)/1.0;
 	// Called for every vertex the material is visible on.
 }
 
 void fragment() {
+	ALBEDO = vec3(1.0)-texture(heightmap, UV).rgb;
 }
 
 //void light() {
