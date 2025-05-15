@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dfd7sal2f5cr2"]
 
-[ext_resource type="Script" path="res://tool/shovel/shovel.gd" id="1_txmd7"]
+[ext_resource type="Script" uid="uid://ba0e8ooch6iyw" path="res://tool/shovel/shovel.gd" id="1_txmd7"]
 [ext_resource type="PackedScene" uid="uid://clsjyvp0oyykx" path="res://tool/shovel/mesh/lopata.tscn" id="2_rypbm"]
 [ext_resource type="AudioStream" uid="uid://4g8alfst6evy" path="res://audio/dirt2.mp3" id="3_vlkll"]
 
@@ -38,8 +38,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vr1qr"]
 _data = {
-"RESET": SubResource("Animation_66414"),
-"use": SubResource("Animation_dyynr")
+&"RESET": SubResource("Animation_66414"),
+&"use": SubResource("Animation_dyynr")
 }
 
 [node name="Shovel" type="Node3D" node_paths=PackedStringArray("anim_player")]

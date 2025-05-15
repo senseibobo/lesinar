@@ -1,26 +1,96 @@
-[gd_scene load_steps=5 format=3 uid="uid://d18ckmself2n"]
+[gd_scene load_steps=15 format=3 uid="uid://d18ckmself2n"]
 
-[ext_resource type="Script" path="res://disposal/disposal.gd" id="1_jvw7t"]
-[ext_resource type="PackedScene" uid="uid://beqbrdmbuvfeb" path="res://disposal/krematorijum/mesh/krematorium.tscn" id="2_3wp54"]
+[ext_resource type="Script" uid="uid://dp3ww68vkkpt1" path="res://disposal/disposal.gd" id="1_jvw7t"]
+[ext_resource type="PackedScene" uid="uid://bo434kkfeou71" path="res://disposal/krematorijum/new/crematorium.glb" id="3_jh67t"]
 [ext_resource type="AudioStream" uid="uid://bminjy7ng67pq" path="res://audio/krematorium.mp3" id="3_mucbq"]
+[ext_resource type="Texture2D" uid="uid://ctwfwxwmlmqum" path="res://disposal/krematorijum/new/crematorium_conveyor_belt.png" id="4_qv3ev"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxpya"]
+resource_name = "ConveyorBelt"
+cull_mode = 2
+albedo_texture = ExtResource("4_qv3ev")
+metallic = 0.535433
+texture_filter = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_25ys4"]
-size = Vector3(7.12305, 3, 3)
+size = Vector3(3.72345, 0.685059, 1.06836)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jh67t"]
+size = Vector3(3.8902, 0.809509, 1.19629)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qv3ev"]
+size = Vector3(5.5719, 3.21936, 1.9873)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qv3ev"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 2, 0)
+turbulence_enabled = true
+turbulence_noise_strength = 9.0
+turbulence_noise_scale = 1.989
+turbulence_noise_speed_random = 3.28
+
+[sub_resource type="Gradient" id="Gradient_jxpya"]
+offsets = PackedFloat32Array(0.412281, 0.72807, 0.807018, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 0.490196, 0.45098, 1, 0.537255, 0.219608, 0.45098, 1, 0, 0.0227323, 0.45098)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dtv5r"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_umv0n"]
+color_ramp = SubResource("Gradient_jxpya")
+noise = SubResource("FastNoiseLite_dtv5r")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tvh40"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("NoiseTexture2D_umv0n")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_qv3ev"]
+material = SubResource("StandardMaterial3D_tvh40")
 
 [node name="Krematorijum" type="StaticBody3D" node_paths=PackedStringArray("corpse_begin_marker")]
 script = ExtResource("1_jvw7t")
 corpse_begin_marker = NodePath("Marker3D")
+conveyor_belt_material = SubResource("StandardMaterial3D_jxpya")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.87549, 1.05322, 0)
+[node name="InteractCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.738249, -0.104251, 0)
 shape = SubResource("BoxShape3D_25ys4")
-
-[node name="krematorium" parent="." instance=ExtResource("2_3wp54")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_mucbq")
 autoplay = true
 
 [node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(0.87224, 0, -0.489078, 0, 1, 0, 0.489078, 0, 0.87224, 0.751631, 1.42365, 0)
+transform = Transform3D(0.87224, 0, -0.489078, 0, 1, 0, 0.489078, 0, 0.87224, 2.04062, 0.300998, 0)
+
+[node name="Collision" type="StaticBody3D" parent="."]
+
+[node name="FrameCollision" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.809906, -0.285736, 0)
+shape = SubResource("BoxShape3D_jh67t")
+
+[node name="CrematoriumCollision" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.90302, 0.656067, 0)
+shape = SubResource("BoxShape3D_qv3ev")
+
+[node name="crematorium" parent="." instance=ExtResource("3_jh67t")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.12625, -0.0189835, 0)
+
+[node name="ConveyorBelt" parent="crematorium" index="0"]
+material_override = SubResource("StandardMaterial3D_jxpya")
+
+[node name="DoorLeft" parent="crematorium" index="2"]
+transform = Transform3D(0.129955, 0, -0.99152, 0, 1, 0, 0.99152, 0, 0.129955, 0.20703, 0, -0.944226)
+
+[node name="DoorRight" parent="crematorium" index="3"]
+transform = Transform3D(0.0962974, 0, 0.995353, 0, 1, 0, -0.995353, 0, 0.0962974, -0.16187, 0, -0.9961)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.72004, 0.805772, 0)
+amount = 108
+process_material = SubResource("ParticleProcessMaterial_qv3ev")
+draw_pass_1 = SubResource("QuadMesh_qv3ev")
+
+[editable path="crematorium"]

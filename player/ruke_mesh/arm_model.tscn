@@ -1350,13 +1350,13 @@ tracks/24/keys = PackedFloat32Array(0, 1, 0.368259, 1.58258, 0.0344122)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mpho1"]
 _data = {
-"Action": SubResource("Animation_wolyb"),
-"Action_004": SubResource("Animation_j22ex"),
-"GOLD": SubResource("Animation_2d5d8"),
-"GRAB": SubResource("Animation_0lq8f"),
-"HOLD": SubResource("Animation_q3a5s"),
-"HOLDLESH": SubResource("Animation_3lcxp"),
-"IDLE": SubResource("Animation_36roa")
+&"Action": SubResource("Animation_wolyb"),
+&"Action_004": SubResource("Animation_j22ex"),
+&"GOLD": SubResource("Animation_2d5d8"),
+&"GRAB": SubResource("Animation_0lq8f"),
+&"HOLD": SubResource("Animation_q3a5s"),
+&"HOLDLESH": SubResource("Animation_3lcxp"),
+&"IDLE": SubResource("Animation_36roa")
 }
 
 [node name="armModel" type="Node3D"]

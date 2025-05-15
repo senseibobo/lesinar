@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=4 uid="uid://cgamuqao6oli1"]
+[gd_scene load_steps=88 format=4 uid="uid://cgamuqao6oli1"]
 
 [ext_resource type="PackedScene" uid="uid://dc6ux2dac5fr2" path="res://player/player.tscn" id="1_vp3ec"]
 [ext_resource type="PackedScene" uid="uid://0b788ilmda1t" path="res://mrtvacnica/mrtvacnica.tscn" id="3_fscio"]
@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://uov2qcodm5dw" path="res://soba/kuca/KUCA_uagdgf.png" id="9_1lf3d"]
 [ext_resource type="Texture2D" uid="uid://dnm4o4jqweljy" path="res://soba/kuca/KUCA_EKRAN.png" id="10_khdid"]
 [ext_resource type="Texture2D" uid="uid://d0oxhycgjlbtp" path="res://soba/kuca/KUCA_asfsdf.png" id="11_kgcsp"]
-[ext_resource type="Script" path="res://score/display/score_display.gd" id="11_my4ur"]
+[ext_resource type="Script" uid="uid://cjacyobmiqgr5" path="res://score/display/score_display.gd" id="11_my4ur"]
 [ext_resource type="Texture2D" uid="uid://bu23u8syxpg28" path="res://soba/kuca/KUCA_Untitled.png" id="12_33xyt"]
 [ext_resource type="Texture2D" uid="uid://bandj15xvoual" path="res://soba/kuca/KUCA_Screenshot 2025-01-25 135321.png" id="13_beunm"]
 [ext_resource type="Texture2D" uid="uid://bi4xv4dekt1wb" path="res://soba/kuca/KUCA_keyboard.png" id="14_w4u66"]
@@ -53,8 +53,8 @@ fog_depth_curve = 0.267943
 fog_depth_begin = 4.0
 fog_depth_end = 26.0
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.0495
-volumetric_fog_albedo = Color(0.385493, 0.385492, 0.385492, 1)
+volumetric_fog_density = 0.071
+volumetric_fog_albedo = Color(0.292969, 0.292968, 0.292968, 1)
 volumetric_fog_temporal_reprojection_amount = 0.78
 adjustment_enabled = true
 adjustment_brightness = 0.8
@@ -72,6 +72,7 @@ size = Vector3(13.935, 70, 39.9)
 resource_name = "zidFioke"
 albedo_texture = ExtResource("7_muiiw")
 roughness = 0.5
+uv1_scale = Vector3(5.195, 10.79, 1.875)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kxhjl"]
 resource_name = "pod"
@@ -343,6 +344,7 @@ shadow_mesh = SubResource("ArrayMesh_0rxnh")
 resource_name = "Material.019"
 cull_mode = 2
 albedo_texture = ExtResource("15_kmmvq")
+uv1_scale = Vector3(5.57, 16, 16)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ypd7b"]
 resource_name = "Material.020"
@@ -918,12 +920,6 @@ shadow_mesh = SubResource("ArrayMesh_v1g8p")
 [sub_resource type="BoxShape3D" id="BoxShape3D_mdqjl"]
 size = Vector3(24.8579, 13.0264, 0.495117)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_x3pf4"]
-size = Vector3(20.2906, 13.0264, 0.0537109)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_1gse7"]
-size = Vector3(14.783, 13.0264, 0.0878906)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_ccdma"]
 size = Vector3(17.1376, 13.0264, 4.3208)
 
@@ -1215,14 +1211,6 @@ shape = SubResource("BoxShape3D_mdqjl")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.35455, 1.77056, -7.59789)
 shape = SubResource("BoxShape3D_mdqjl")
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="Kuca/KUCA/Collisions/StaticBody3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.4528, 1.77056, -9.88152)
-shape = SubResource("BoxShape3D_x3pf4")
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="Kuca/KUCA/Collisions/StaticBody3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.48382, 1.77056, 9.52788)
-shape = SubResource("BoxShape3D_1gse7")
-
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="Kuca/KUCA/Collisions/StaticBody3D"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.99297, 1.77056, 8.35056)
 shape = SubResource("BoxShape3D_ccdma")
@@ -1243,7 +1231,7 @@ transform = Transform3D(-4.37114e-08, 1, 3.82137e-15, -4.37114e-08, 1.91069e-15,
 mesh = SubResource("PlaneMesh_1xuxh")
 
 [node name="Krematorijum" parent="." instance=ExtResource("5_m8om7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9398, 1.19209e-07, 41.1629)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9398, 0.588194, 41.1629)
 max_corpses = 5
 value_multiplier = 0.0
 

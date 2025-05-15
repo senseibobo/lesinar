@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="GraveInfo" load_steps=3 format=3 uid="uid://7cot2qetgxw4"]
 
-[ext_resource type="Script" path="res://graves/grave_info.gd" id="1_ankew"]
+[ext_resource type="Script" uid="uid://c6r48w5w2o6rr" path="res://graves/grave_info.gd" id="1_ankew"]
 [ext_resource type="PackedScene" uid="uid://q6tn46bqwpdo" path="res://graves/zivi_krec/zivi_krec.tscn" id="1_ijbpl"]
 
 [resource]

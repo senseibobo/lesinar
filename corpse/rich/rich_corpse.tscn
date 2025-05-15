@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://1eumpiaekrig"]
 
-[ext_resource type="Script" path="res://corpse/corpse.gd" id="1_vd0jq"]
+[ext_resource type="Script" uid="uid://pnjcrx5w2t3x" path="res://corpse/corpse.gd" id="1_vd0jq"]
 [ext_resource type="PackedScene" uid="uid://dtmv6rkheefd6" path="res://corpse/mesh/gold_lesh.tscn" id="2_owra3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rrkuf"]

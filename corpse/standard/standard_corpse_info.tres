@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CorpseInfo" load_steps=3 format=3 uid="uid://e6inpm10ku80"]
 
 [ext_resource type="PackedScene" uid="uid://cysl123k4qx78" path="res://corpse/standard/standard_corpse.tscn" id="1_0hqy4"]
-[ext_resource type="Script" path="res://corpse/corpse_info.gd" id="1_etuga"]
+[ext_resource type="Script" uid="uid://b8cpi67y5yqpj" path="res://corpse/corpse_info.gd" id="1_etuga"]
 
 [resource]
 script = ExtResource("1_etuga")
@@ -9,3 +9,6 @@ value = 50
 scene = ExtResource("1_0hqy4")
 first_names = Array[String](["Marko", "Aleksandar", "Miloš", "Stefan", "Nikola", "Nemanja", "Petar", "Filip", "Milica", "Ana", "Jelena", "Ivana", "Marija", "Katarina", "Sara"])
 last_names = Array[String](["Petrović", "Jovanović", "Nikolić", "Marković", "Đorđević", "Stanković", "Milovanović", "Ilić", "Lazić", "Radovanović", "Pavlović", "Filipović", "Vasić", "Živković", "Bošković"])
+name = ""
+formatted_name = ""
+birth_year = 0

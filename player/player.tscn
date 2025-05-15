@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=4 uid="uid://dc6ux2dac5fr2"]
 
-[ext_resource type="Script" path="res://player/player.gd" id="1_o48ys"]
+[ext_resource type="Script" uid="uid://7ed32samjihm" path="res://player/player.gd" id="1_o48ys"]
 [ext_resource type="AudioStream" uid="uid://4g8alfst6evy" path="res://audio/dirt2.mp3" id="2_61ccw"]
 [ext_resource type="Texture2D" uid="uid://dtil8wqt0x15o" path="res://player/ruke_mesh/armModel_armCol.png" id="2_nfbs6"]
 [ext_resource type="AudioStream" uid="uid://bcdwslxf2g0oo" path="res://audio/pik1.mp3" id="3_rk8fm"]
@@ -1897,16 +1897,16 @@ tracks/24/keys = PackedFloat32Array(0, 1, 0.368259, 1.58258, 0.0344122)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_57ilc"]
 _data = {
-"Action": SubResource("Animation_t8v6y"),
-"Action_004": SubResource("Animation_slh5t"),
-"GOLD": SubResource("Animation_70uu5"),
-"GRAB": SubResource("Animation_2l58m"),
-"HOLD": SubResource("Animation_dw2b8"),
-"HOLDLESH": SubResource("Animation_g6atp"),
-"IDLE": SubResource("Animation_h3i1g"),
-"KREC": SubResource("Animation_uft4w"),
-"PIKAC": SubResource("Animation_mcop0"),
-"SHOWEL": SubResource("Animation_v4l2g")
+&"Action": SubResource("Animation_t8v6y"),
+&"Action_004": SubResource("Animation_slh5t"),
+&"GOLD": SubResource("Animation_70uu5"),
+&"GRAB": SubResource("Animation_2l58m"),
+&"HOLD": SubResource("Animation_dw2b8"),
+&"HOLDLESH": SubResource("Animation_g6atp"),
+&"IDLE": SubResource("Animation_h3i1g"),
+&"KREC": SubResource("Animation_uft4w"),
+&"PIKAC": SubResource("Animation_mcop0"),
+&"SHOWEL": SubResource("Animation_v4l2g")
 }
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "view_camera", "hand", "left_hand", "right_hand_anim", "left_hand_anim", "left_hand_model", "right_hand_model", "raycast", "audio_player", "audio_player_hod", "label")]
@@ -2115,7 +2115,7 @@ transform = Transform3D(0.8933, -1.63464, -0.823969, 1.83053, 0.792143, 0.413057
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D/armModelLeft"]
 libraries = {
-"": SubResource("AnimationLibrary_57ilc")
+&"": SubResource("AnimationLibrary_57ilc")
 }
 speed_scale = 1.5
 
@@ -2289,7 +2289,7 @@ transform = Transform3D(-0.495004, 0.43957, 0.7495, 0.0903701, -0.83187, 0.54756
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D/armModelRight"]
 libraries = {
-"": SubResource("AnimationLibrary_57ilc")
+&"": SubResource("AnimationLibrary_57ilc")
 }
 speed_scale = 1.5
 

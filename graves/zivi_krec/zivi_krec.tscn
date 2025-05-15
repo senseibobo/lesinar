@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://q6tn46bqwpdo"]
 
-[ext_resource type="Script" path="res://graves/zivi_krec/zivi_krec.gd" id="1_qocy2"]
+[ext_resource type="Script" uid="uid://c01f1q7c7n4l4" path="res://graves/zivi_krec/zivi_krec.gd" id="1_qocy2"]
 [ext_resource type="PackedScene" uid="uid://cxpskdrtpkfph" path="res://graves/zivi_krec/mesh/krec_vupa.tscn" id="2_gpv7f"]
 [ext_resource type="AudioStream" uid="uid://dsxeembjevuxd" path="res://audio/krec.mp3" id="3_yfuhm"]
 

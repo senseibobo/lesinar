@@ -3,10 +3,15 @@ extends Grave
 
 
 @export var corpse_begin_marker: Marker3D
+@export var conveyor_belt_material: StandardMaterial3D
 
 
 func _ready():
 	ScoreManager.score_acquired.connect(func(): corpses_inside = 0)
+
+
+func _process(delta):
+	conveyor_belt_material.uv1_offset.y += delta
 
 
 func _add_corpse_instance(corpse_instance: Corpse):

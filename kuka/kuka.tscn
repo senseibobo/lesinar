@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cm377fat13tc4"]
 
-[ext_resource type="Script" path="res://kuka/kuka.gd" id="1_x2vx0"]
+[ext_resource type="Script" uid="uid://co1dgjq75gwsg" path="res://kuka/kuka.gd" id="1_x2vx0"]
 [ext_resource type="PackedScene" uid="uid://d1k1pt5u1u7le" path="res://kuka/mesh/kacilica.tscn" id="2_hdq2x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6h7cf"]

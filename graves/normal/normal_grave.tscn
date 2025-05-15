@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://5y1bbgbpm8er"]
 
-[ext_resource type="Script" path="res://graves/normal/normal_grave.gd" id="1_r8pu5"]
+[ext_resource type="Script" uid="uid://cw4i3432dikv6" path="res://graves/normal/normal_grave.gd" id="1_r8pu5"]
 [ext_resource type="PackedScene" uid="uid://c1odt4bq5ti6a" path="res://graves/normal/mesh/grob_1.tscn" id="2_qsvx7"]
 [ext_resource type="AudioStream" uid="uid://by4u73qh12nkw" path="res://audio/grobPut.mp3" id="3_d4h7a"]
 [ext_resource type="FontFile" uid="uid://bksfaire3bi5t" path="res://graves/normal/BLKCHCRY.TTF" id="3_jwe70"]

@@ -1,9 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://cxehihj1kxgkm"]
+[gd_scene load_steps=12 format=3 uid="uid://cxehihj1kxgkm"]
 
-[ext_resource type="Script" path="res://menu/menu.gd" id="1_e7265"]
-[ext_resource type="Script" path="res://granice/granice.gd" id="2_dymb1"]
+[ext_resource type="Script" uid="uid://cbs5bviyhoj1g" path="res://menu/menu.gd" id="1_e7265"]
 [ext_resource type="PackedScene" uid="uid://5y1bbgbpm8er" path="res://graves/normal/normal_grave.tscn" id="2_wxpfp"]
-[ext_resource type="Script" path="res://granice/border.gd" id="3_2xiy2"]
 [ext_resource type="Texture2D" uid="uid://baj42gt783bew" path="res://granice/mesh/vecteezy_realistic-steel-fence_8852385.png" id="4_1same"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x0nc5"]
@@ -66,20 +64,14 @@ transform = Transform3D(0.199551, -0.959353, -0.199551, -0.357739, -0.260916, 0.
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6yj1v")
 
-[node name="Granice" type="Node3D" parent="." node_paths=PackedStringArray("north_border", "east_border", "west_border", "south_border")]
+[node name="Granice" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 15)
-script = ExtResource("2_dymb1")
-north_border = NodePath("NorthBorder")
-east_border = NodePath("EastBorder")
-west_border = NodePath("WestBorder")
-south_border = NodePath("SouthBorder")
 
 [node name="NorthBorder" type="AnimatableBody3D" parent="Granice"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -5)
 collision_mask = 2
 collision_priority = 2.0
 sync_to_physics = false
-script = ExtResource("3_2xiy2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Granice/NorthBorder"]
 shape = SubResource("BoxShape3D_m0lhp")
@@ -91,7 +83,6 @@ mesh = SubResource("BoxMesh_yvk3f")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 5, -15)
 collision_mask = 2
 sync_to_physics = false
-script = ExtResource("3_2xiy2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Granice/EastBorder"]
 shape = SubResource("BoxShape3D_m0lhp")
@@ -103,7 +94,6 @@ mesh = SubResource("BoxMesh_yvk3f")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 5, -15)
 collision_mask = 2
 sync_to_physics = false
-script = ExtResource("3_2xiy2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Granice/WestBorder"]
 shape = SubResource("BoxShape3D_m0lhp")

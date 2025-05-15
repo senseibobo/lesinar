@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://dwk3yqn5tbkg3"]
 
-[ext_resource type="Script" path="res://fioka/fioka.gd" id="1_7tfq4"]
-[ext_resource type="Script" path="res://corpse/corpse_info.gd" id="2_w1y6x"]
+[ext_resource type="Script" uid="uid://yfostdv06sq0" path="res://fioka/fioka.gd" id="1_7tfq4"]
+[ext_resource type="Script" uid="uid://b8cpi67y5yqpj" path="res://corpse/corpse_info.gd" id="2_w1y6x"]
 [ext_resource type="Resource" uid="uid://b1xmyj34rwnv0" path="res://corpse/poor/poor_corpse_info.tres" id="3_khejm"]
 [ext_resource type="Resource" uid="uid://e6inpm10ku80" path="res://corpse/standard/standard_corpse_info.tres" id="4_6oa05"]
 [ext_resource type="Resource" uid="uid://de2ilph8wto0y" path="res://corpse/rich/rich_corpse_info.tres" id="5_86c5i"]
@@ -52,8 +52,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ts0jn"]
 _data = {
-"RESET": SubResource("Animation_s4j3h"),
-"open": SubResource("Animation_vpyu6")
+&"RESET": SubResource("Animation_s4j3h"),
+&"open": SubResource("Animation_vpyu6")
 }
 
 [node name="Fioka" type="StaticBody3D" node_paths=PackedStringArray("anim_player", "audio_stream_player", "lampica")]
@@ -77,7 +77,7 @@ mesh = SubResource("BoxMesh_vhf4l")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_ts0jn")
+&"": SubResource("AnimationLibrary_ts0jn")
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

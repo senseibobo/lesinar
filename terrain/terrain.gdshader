@@ -34,10 +34,11 @@ void vertex() {
 
 void fragment() {
 	vec3 old_albedo = ALBEDO;
-	ALBEDO.r = step(1.0,mod(UV.x*30.0,2.0))/3.0;
-	ALBEDO.b = step(1.0,mod(UV.y*30.0,2.0))/3.0;
-	ALBEDO.g = 1.0;
+	ALBEDO.r = step(1.0,mod(UV.x*30.0,2.0))/4.0;
+	ALBEDO.b = step(1.0,mod(UV.y*30.0,2.0))/8.0;
+	ALBEDO.g = 0.7;
 	ALBEDO /= 2.0;
+	ALBEDO *= texture(albedo_texture, UV*15.0).rgb;
 	//ALBEDO = ALBEDO*old_albedo;
 }
 

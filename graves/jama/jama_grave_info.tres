@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="GraveInfo" load_steps=3 format=3 uid="uid://wjnm731tjnbj"]
 
 [ext_resource type="PackedScene" uid="uid://bnkwfc4gwykq3" path="res://graves/jama/jama_grave.tscn" id="1_5o3ap"]
-[ext_resource type="Script" path="res://graves/grave_info.gd" id="1_qhme5"]
+[ext_resource type="Script" uid="uid://c6r48w5w2o6rr" path="res://graves/grave_info.gd" id="1_qhme5"]
 
 [resource]
 script = ExtResource("1_qhme5")

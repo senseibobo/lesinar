@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cci1v3vsafmdj"]
 
 [ext_resource type="PackedScene" uid="uid://ge533veisgpo" path="res://terrain/terrain.tscn" id="1_0lynb"]
-[ext_resource type="Script" path="res://terrain/terrain_test.gd" id="1_27myt"]
+[ext_resource type="Script" uid="uid://c4vhawbaqgj41" path="res://terrain/terrain_test.gd" id="1_27myt"]
 [ext_resource type="PackedScene" uid="uid://dc6ux2dac5fr2" path="res://player/player.tscn" id="2_hanmq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_klvgt"]

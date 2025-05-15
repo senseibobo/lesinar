@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bburkic20roka"
+uid="uid://dmofoi0lixn4u"
 path.s3tc="res://.godot/imported/soba_zid.png-2dc2973f261956e8c5e082f986356170.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "185f3cc5626d6bccee8eaab5ecb4a12a"
 }
 
 [deps]

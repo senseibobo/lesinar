@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dtdtv15kwf8tg"]
 
-[ext_resource type="Script" path="res://tool/krec/krec.gd" id="1_4n8l7"]
+[ext_resource type="Script" uid="uid://ljar8cv0v5vp" path="res://tool/krec/krec.gd" id="1_4n8l7"]
 [ext_resource type="PackedScene" uid="uid://canion4a5tay0" path="res://tool/krec/mesh/krec.tscn" id="2_3co3l"]
 
 [node name="Krec" type="Node3D"]

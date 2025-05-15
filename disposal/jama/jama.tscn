@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bwh6px472rgde"]
 
 [ext_resource type="PackedScene" uid="uid://cjh7k1ie11yav" path="res://disposal/jama/mesh/rupa.tscn" id="1_whpes"]
-[ext_resource type="Script" path="res://disposal/disposal.gd" id="1_yvar5"]
+[ext_resource type="Script" uid="uid://dp3ww68vkkpt1" path="res://disposal/disposal.gd" id="1_yvar5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7lnbx"]
 size = Vector3(3, 1, 2.74548)
