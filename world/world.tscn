@@ -984,7 +984,7 @@ visible = false
 mesh = SubResource("PlaneMesh_3bh8n")
 
 [node name="Player" parent="." instance=ExtResource("1_vp3ec")]
-transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 14.6298, 0, 32.6356)
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 14.6298, 0.0431315, 33.923)
 katch_sound = null
 
 [node name="Mrtvacnica" parent="." instance=ExtResource("3_fscio")]

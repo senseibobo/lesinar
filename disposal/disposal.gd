@@ -4,14 +4,15 @@ extends Grave
 
 @export var corpse_begin_marker: Marker3D
 @export var conveyor_belt_material: StandardMaterial3D
-
+@export var omni_light: OmniLight3D
 
 func _ready():
 	ScoreManager.score_acquired.connect(func(): corpses_inside = 0)
 
-
 func _process(delta):
+	var time = Time.get_ticks_msec()/1000.0
 	conveyor_belt_material.uv1_offset.y += delta
+	omni_light.position = Vector3(-8, 5, sin(time))/6.0
 
 
 func _add_corpse_instance(corpse_instance: Corpse):
