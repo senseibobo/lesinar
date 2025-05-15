@@ -41,3 +41,8 @@ material = SubResource("StandardMaterial3D_k3oat")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0836282, 8.85498, -13.3342)
 size = Vector3(78.6873, 6.82007, 82.7031)
 material = SubResource("StandardMaterial3D_k3oat")
+
+[node name="NoMaterial6" type="CSGBox3D" parent="BordersCSGCombiner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0836282, -3.92509, -13.3342)
+size = Vector3(78.6873, 6.82007, 82.7031)
+material = SubResource("StandardMaterial3D_k3oat")

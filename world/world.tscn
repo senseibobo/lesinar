@@ -1,7 +1,6 @@
-[gd_scene load_steps=88 format=4 uid="uid://cgamuqao6oli1"]
+[gd_scene load_steps=87 format=4 uid="uid://cgamuqao6oli1"]
 
 [ext_resource type="PackedScene" uid="uid://dc6ux2dac5fr2" path="res://player/player.tscn" id="1_vp3ec"]
-[ext_resource type="PackedScene" uid="uid://0b788ilmda1t" path="res://mrtvacnica/mrtvacnica.tscn" id="3_fscio"]
 [ext_resource type="PackedScene" uid="uid://d18ckmself2n" path="res://disposal/krematorijum/krematorijum.tscn" id="5_m8om7"]
 [ext_resource type="PackedScene" uid="uid://dl5hw2edprci2" path="res://granice/granice.tscn" id="6_7h36j"]
 [ext_resource type="Texture2D" uid="uid://c6x6p47bd57cd" path="res://soba/kuca/KUCA_zid.png" id="7_muiiw"]
@@ -986,9 +985,6 @@ mesh = SubResource("PlaneMesh_3bh8n")
 [node name="Player" parent="." instance=ExtResource("1_vp3ec")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 14.6298, 0, 32.6356)
 katch_sound = null
-
-[node name="Mrtvacnica" parent="." instance=ExtResource("3_fscio")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12, 2, 0)
 
 [node name="Granice" parent="." instance=ExtResource("6_7h36j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 15)
