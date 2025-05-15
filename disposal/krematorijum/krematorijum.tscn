@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d18ckmself2n"]
+[gd_scene load_steps=16 format=3 uid="uid://d18ckmself2n"]
 
 [ext_resource type="Script" uid="uid://dp3ww68vkkpt1" path="res://disposal/disposal.gd" id="1_jvw7t"]
 [ext_resource type="PackedScene" uid="uid://bo434kkfeou71" path="res://disposal/krematorijum/new/crematorium.glb" id="3_jh67t"]
@@ -21,38 +21,57 @@ size = Vector3(3.8902, 0.809509, 1.19629)
 [sub_resource type="BoxShape3D" id="BoxShape3D_qv3ev"]
 size = Vector3(5.5719, 3.21936, 1.9873)
 
+[sub_resource type="Gradient" id="Gradient_qv3ev"]
+offsets = PackedFloat32Array(0, 0.609091, 1)
+colors = PackedColorArray(1, 0.156863, 0, 1, 0.709804, 0.592157, 0.117647, 1, 0.485703, 0.485704, 0.485703, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jxpya"]
+gradient = SubResource("Gradient_qv3ev")
+
+[sub_resource type="Curve" id="Curve_qv3ev"]
+_data = [Vector2(0, 0.966292), 0.0, 0.0, 0, 0, Vector2(0.970588, 0.370787), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_umv0n"]
+curve = SubResource("Curve_qv3ev")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qv3ev"]
+emission_shape_scale = Vector3(0.31, 0.105, 0.33)
 emission_shape = 1
 emission_sphere_radius = 1.0
-gravity = Vector3(0, 2, 0)
-turbulence_enabled = true
+direction = Vector3(5.245, 0, -2.62)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 3, 0)
+damping_min = 0.2
+damping_max = 0.2
+scale_min = 1.5
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_umv0n")
+color_ramp = SubResource("GradientTexture1D_jxpya")
 turbulence_noise_strength = 9.0
 turbulence_noise_scale = 1.989
 turbulence_noise_speed_random = 3.28
 
-[sub_resource type="Gradient" id="Gradient_jxpya"]
-offsets = PackedFloat32Array(0.412281, 0.72807, 0.807018, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 0.490196, 0.45098, 1, 0.537255, 0.219608, 0.45098, 1, 0, 0.0227323, 0.45098)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_dtv5r"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_umv0n"]
-color_ramp = SubResource("Gradient_jxpya")
-noise = SubResource("FastNoiseLite_dtv5r")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tvh40"]
-transparency = 1
+shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = SubResource("NoiseTexture2D_umv0n")
-billboard_mode = 1
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
-[sub_resource type="QuadMesh" id="QuadMesh_qv3ev"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_nnkax"]
 material = SubResource("StandardMaterial3D_tvh40")
+size = Vector2(0.1, 0.1)
+orientation = 2
 
-[node name="Krematorijum" type="StaticBody3D" node_paths=PackedStringArray("corpse_begin_marker")]
+[node name="Krematorijum" type="StaticBody3D" node_paths=PackedStringArray("corpse_begin_marker", "omni_light")]
 script = ExtResource("1_jvw7t")
 corpse_begin_marker = NodePath("Marker3D")
 conveyor_belt_material = SubResource("StandardMaterial3D_jxpya")
+omni_light = NodePath("OmniLight3D")
 
 [node name="InteractCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.738249, -0.104251, 0)
@@ -88,9 +107,18 @@ transform = Transform3D(0.129955, 0, -0.99152, 0, 1, 0, 0.99152, 0, 0.129955, 0.
 transform = Transform3D(0.0962974, 0, 0.995353, 0, 1, 0, -0.995353, 0, 0.0962974, -0.16187, 0, -0.9961)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.72004, 0.805772, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.955192, 0.701431, 0)
+layers = 4
 amount = 108
+explosiveness = 0.21
 process_material = SubResource("ParticleProcessMaterial_qv3ev")
-draw_pass_1 = SubResource("QuadMesh_qv3ev")
+draw_pass_1 = SubResource("PlaneMesh_nnkax")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17552, 0.529174, 0)
+light_color = Color(0.890196, 0.65098, 0.164706, 1)
+light_energy = 8.919
+shadow_enabled = true
+shadow_caster_mask = 4294967291
 
 [editable path="crematorium"]
