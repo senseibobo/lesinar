@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxwxxggxo0voi"]
+
+[ext_resource type="Script" uid="uid://xguxfewjmb1q" path="res://ui/day_rect/day_rect.gd" id="1_ywqcj"]
+
+[node name="DayRect" type="ColorRect" node_paths=PackedStringArray("day_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_ywqcj")
+day_label = NodePath("DayLabel")
+
+[node name="DayLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Day 2"

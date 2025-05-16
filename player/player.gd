@@ -5,7 +5,10 @@ extends CharacterBody3D
 signal tool_changed(new_tool: Tool)
 
 
-enum State {MOVE}
+enum State {
+	MOVE, 
+	FROZEN
+}
 
 var state: State
 var move_vector: Vector3
@@ -37,6 +40,7 @@ var score: int
 @export var speed: float
 @export var sensitivity: float
 @export var label: Label
+@export var day_rect: DayRect
 
 func _ready() -> void:
 	score = 0
@@ -44,14 +48,18 @@ func _ready() -> void:
 	label.visible = false
 	move_vector = Vector3()
 	ScoreManager.score_acquired.connect(play_catching)
+	ScoreManager.score_acquired.connect(_on_quota_filled)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+
 func _input(event: InputEvent) -> void:
+	if state == State.FROZEN: return
 	if event is InputEventMouseMotion:
 		mouse_move = event.relative.x*sensitivity*-1
 		camera.rotate_x(deg_to_rad(clamp(event.relative.y*-1*sensitivity, -75.0, 75.0)))
 		camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -75.0, 75.0)
 		rotate_y(deg_to_rad(event.relative.x*-1*sensitivity))
+
 
 func _physics_process(delta: float) -> void:
 	match state:
@@ -61,11 +69,14 @@ func _physics_process(delta: float) -> void:
 			interact_input()
 			anim_input()
 			exit_input()
+		State.FROZEN:
+			pass
 		
 
 func exit_input():
 	if Input.is_action_pressed("exit"):
 		get_tree().quit()
+
 
 func _process(delta):
 	camera_input()
@@ -75,12 +86,13 @@ func move_input(delta: float):
 	var input: Vector2 = Input.get_vector("left","right","up","down")
 	move_vector = camera.global_basis.z * input.y + camera.global_basis.x * input.x
 	move_vector.y = 0.0
+	move_vector = move_vector.normalized()
 	if move_vector != Vector3(0.0, 0.0, 0.0): 
 		if !audio_player_hod.playing:
 			audio_player_hod.play()
 	else:
 		audio_player_hod.stop()
-	velocity = move_vector*speed;
+	velocity = move_vector*speed
 	ScoreManager.burn_calories(move_vector.length()*delta * (2 if holding_corpse else 1))
 	move_and_slide()
 
@@ -230,3 +242,9 @@ func sway():
 
 func _on_grave_dug():
 	choose_anim_tool()
+
+
+func _on_quota_filled():
+	state = State.FROZEN
+	await day_rect.next_day()
+	state = State.MOVE

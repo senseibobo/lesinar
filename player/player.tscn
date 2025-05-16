@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://dc6ux2dac5fr2"]
+[gd_scene load_steps=25 format=4 uid="uid://dc6ux2dac5fr2"]
 
 [ext_resource type="Script" uid="uid://7ed32samjihm" path="res://player/player.gd" id="1_o48ys"]
 [ext_resource type="AudioStream" uid="uid://4g8alfst6evy" path="res://audio/dirt2.mp3" id="2_61ccw"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://b0ec41u4mrp3q" path="res://audio/uzimanje stvari.mp3" id="5_6c3xl"]
 [ext_resource type="AudioStream" uid="uid://c3wv13iyyekxq" path="res://audio/hod4.mp3" id="6_5ur4k"]
 [ext_resource type="AudioStream" uid="uid://bksw5f3q4metl" path="res://audio/kaching.mp3" id="6_i5pkh"]
+[ext_resource type="PackedScene" uid="uid://cxwxxggxo0voi" path="res://ui/day_rect/day_rect.tscn" id="9_hg6s5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mb4tp"]
 radius = 0.3
@@ -1909,7 +1910,7 @@ _data = {
 &"SHOWEL": SubResource("Animation_v4l2g")
 }
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "view_camera", "hand", "left_hand", "right_hand_anim", "left_hand_anim", "left_hand_model", "right_hand_model", "raycast", "audio_player", "audio_player_hod", "label")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "view_camera", "hand", "left_hand", "right_hand_anim", "left_hand_anim", "left_hand_model", "right_hand_model", "raycast", "audio_player", "audio_player_hod", "label", "day_rect")]
 collision_layer = 3
 script = ExtResource("1_o48ys")
 camera = NodePath("Camera3D")
@@ -1930,7 +1931,8 @@ grab_sound = ExtResource("5_6c3xl")
 katch_sound = ExtResource("6_i5pkh")
 speed = 5.0
 sensitivity = 0.5
-label = NodePath("CanvasLayer/Label")
+label = NodePath("CanvasLayer/PressELabel")
+day_rect = NodePath("CanvasLayer/DayRect")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -2320,7 +2322,7 @@ stream = ExtResource("6_5ur4k")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="PressELabel" type="Label" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -2334,3 +2336,5 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 text = "Press E"
+
+[node name="DayRect" parent="CanvasLayer" instance=ExtResource("9_hg6s5")]
