@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dwk3yqn5tbkg3"]
+[gd_scene load_steps=15 format=3 uid="uid://dwk3yqn5tbkg3"]
 
 [ext_resource type="Script" uid="uid://yfostdv06sq0" path="res://fioka/fioka.gd" id="1_7tfq4"]
 [ext_resource type="Script" uid="uid://b8cpi67y5yqpj" path="res://corpse/corpse_info.gd" id="2_w1y6x"]
 [ext_resource type="Resource" uid="uid://b1xmyj34rwnv0" path="res://corpse/poor/poor_corpse_info.tres" id="3_khejm"]
 [ext_resource type="Resource" uid="uid://e6inpm10ku80" path="res://corpse/standard/standard_corpse_info.tres" id="4_6oa05"]
 [ext_resource type="Resource" uid="uid://de2ilph8wto0y" path="res://corpse/rich/rich_corpse_info.tres" id="5_86c5i"]
+[ext_resource type="PackedScene" uid="uid://bhqlm5hp35xxy" path="res://corpse/instance/corpse_instance.tscn" id="6_8j43f"]
 [ext_resource type="AudioStream" uid="uid://dvuccxmg34wyj" path="res://audio/door1.mp3" id="6_x0tt1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sf0mw"]
@@ -62,6 +63,7 @@ available_corpses = Array[ExtResource("2_w1y6x")]([ExtResource("3_khejm"), ExtRe
 anim_player = NodePath("AnimationPlayer")
 audio_stream_player = NodePath("AudioStreamPlayer")
 lampica = NodePath("Lampica")
+corpse_instance_scene = ExtResource("6_8j43f")
 
 [node name="FiokaParent" type="Node3D" parent="."]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)

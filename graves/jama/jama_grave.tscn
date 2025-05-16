@@ -7,10 +7,14 @@ size = Vector3(2, 1, 2)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_33hom"]
 
-[node name="JamaGrave" type="StaticBody3D" node_paths=PackedStringArray("corpse_containers_node")]
+[node name="JamaGrave" type="StaticBody3D" node_paths=PackedStringArray("corpse_containers_node", "money_marker")]
 script = ExtResource("1_b3ch1")
 corpse_containers_node = NodePath("CorpseContainers")
 max_corpses = 5
+money_marker = NodePath("MoneyMarker")
+
+[node name="MoneyMarker" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.827913, 0.5)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)

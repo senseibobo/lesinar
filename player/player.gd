@@ -12,8 +12,7 @@ var move_vector: Vector3
 var mouse_move: float
 var held_tool: Tool
 var held_tool_scene: PackedScene
-var held_corpse_instance: Corpse
-var held_corpse_info: CorpseInfo
+var held_corpse_instance: CorpseInstance
 var holding_corpse: bool = false
 var start_pos: Vector3
 
@@ -97,10 +96,10 @@ func play_catching():
 func dispose_corpse():
 	left_hand_anim.stop()
 	left_hand_anim.play("GRAB")
-	score += held_corpse_info.value
-	held_corpse_instance.queue_free()
+	held_corpse_instance.set_camera_layer(false)
+	score += held_corpse_instance.corpse_info.value
+	#held_corpse_instance.queue_free()
 	held_corpse_instance = null
-	held_corpse_info = null
 	holding_corpse = false
 
 
@@ -133,16 +132,16 @@ func interact_input():
 			label.visible = true
 			var grave: Grave = raycast.get_collider() 
 			if holding_corpse:
-				if grave.add_corpse(held_corpse_info):
-					ScoreManager.on_corpse_disposed(held_corpse_info, grave)
+				if grave.add_corpse(held_corpse_instance):
+					ScoreManager.on_corpse_disposed(held_corpse_instance, grave)
 					dispose_corpse()
 			else:
 				if grave.remove_corpse():
-					var corpse_info: CorpseInfo = grave.get_top_corpse_info()
-					take_corpse_info(corpse_info)
+					var corpse_instance: CorpseInstance = grave.get_top_corpse_instance()
+					take_corpse_instance(corpse_instance)
 					left_hand_anim.stop()
 					left_hand_anim.play("GRAB")
-					ScoreManager.on_corpse_removed(corpse_info, grave)
+					ScoreManager.on_corpse_removed(corpse_instance, grave)
 			
 
 func check_label():
@@ -192,16 +191,21 @@ func choose_anim_tool():
 		audio_player.play()
 
 func take_corpse(fioka: Fioka):
-	var corpse_info = fioka.take_corpse()
-	if corpse_info != null:
-		take_corpse_info(corpse_info)
+	var corpse_instance: CorpseInstance = fioka.take_corpse()
+	if corpse_instance != null:
+		take_corpse_instance(corpse_instance)
 
 
-func take_corpse_info(corpse_info: CorpseInfo):
+func take_corpse_instance(corpse_instance: CorpseInstance):
+	corpse_instance.set_camera_layer(true)
 	holding_corpse = true
-	held_corpse_instance = corpse_info.scene.instantiate()
-	held_corpse_info = corpse_info
-	left_hand.add_child(held_corpse_instance)
+	held_corpse_instance = corpse_instance
+	if corpse_instance.is_inside_tree():
+		corpse_instance.reparent(left_hand)
+	else:
+		left_hand.add_child(corpse_instance)
+	corpse_instance.position = Vector3()
+	corpse_instance.rotation = Vector3()
 
 
 func move_to_start():

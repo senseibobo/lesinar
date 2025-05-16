@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://d18ckmself2n"]
+[gd_scene load_steps=17 format=3 uid="uid://d18ckmself2n"]
 
 [ext_resource type="Script" uid="uid://dp3ww68vkkpt1" path="res://disposal/disposal.gd" id="1_jvw7t"]
 [ext_resource type="PackedScene" uid="uid://bo434kkfeou71" path="res://disposal/krematorijum/new/crematorium.glb" id="3_jh67t"]
 [ext_resource type="AudioStream" uid="uid://bminjy7ng67pq" path="res://audio/krematorium.mp3" id="3_mucbq"]
 [ext_resource type="Texture2D" uid="uid://ctwfwxwmlmqum" path="res://disposal/krematorijum/new/crematorium_conveyor_belt.png" id="4_qv3ev"]
+[ext_resource type="AudioStream" uid="uid://b5i6spho872vi" path="res://audio/gachi.mp3" id="5_jxpya"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxpya"]
 resource_name = "ConveyorBelt"
@@ -36,7 +37,7 @@ point_count = 2
 curve = SubResource("Curve_qv3ev")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qv3ev"]
-emission_shape_scale = Vector3(0.31, 0.105, 0.33)
+emission_shape_scale = Vector3(0.31, 0.765, 0.69)
 emission_shape = 1
 emission_sphere_radius = 1.0
 direction = Vector3(5.245, 0, -2.62)
@@ -67,11 +68,12 @@ material = SubResource("StandardMaterial3D_tvh40")
 size = Vector2(0.1, 0.1)
 orientation = 2
 
-[node name="Krematorijum" type="StaticBody3D" node_paths=PackedStringArray("corpse_begin_marker", "omni_light")]
+[node name="Krematorijum" type="StaticBody3D" node_paths=PackedStringArray("corpse_begin_marker", "omni_light", "scream_sound_player")]
 script = ExtResource("1_jvw7t")
 corpse_begin_marker = NodePath("Marker3D")
 conveyor_belt_material = SubResource("StandardMaterial3D_jxpya")
 omni_light = NodePath("OmniLight3D")
+scream_sound_player = NodePath("ScreamSoundPlayer")
 
 [node name="InteractCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.738249, -0.104251, 0)
@@ -107,18 +109,22 @@ transform = Transform3D(0.129955, 0, -0.99152, 0, 1, 0, 0.99152, 0, 0.129955, 0.
 transform = Transform3D(0.0962974, 0, 0.995353, 0, 1, 0, -0.995353, 0, 0.0962974, -0.16187, 0, -0.9961)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.955192, 0.701431, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.22848, 0.701431, 0)
 layers = 4
-amount = 108
+amount = 120
 explosiveness = 0.21
 process_material = SubResource("ParticleProcessMaterial_qv3ev")
 draw_pass_1 = SubResource("PlaneMesh_nnkax")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17552, 0.529174, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.88938, 0.832141, 0)
 light_color = Color(0.890196, 0.65098, 0.164706, 1)
 light_energy = 8.919
 shadow_enabled = true
 shadow_caster_mask = 4294967291
+
+[node name="ScreamSoundPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_jxpya")
+max_polyphony = 3
 
 [editable path="crematorium"]

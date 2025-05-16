@@ -9,6 +9,8 @@ extends StaticBody3D
 @export var name_label: Label3D
 @export var value_label: Label3D
 @export var screen: Node3D
+
+@export var corpse_instance_scene: PackedScene
  
 var current_corpse: CorpseInfo
 var corpse_cooldown: float = 10.0
@@ -37,7 +39,7 @@ func fill_with_corpse():
 	name_label.text = current_corpse.formatted_name
 
 
-func take_corpse() -> CorpseInfo:
+func take_corpse() -> CorpseInstance:
 	if current_corpse == null: return null
 	anim_player.play("open")
 	audio_stream_player.play()
@@ -46,8 +48,10 @@ func take_corpse() -> CorpseInfo:
 	next_corpse_time_left = corpse_cooldown
 	corpse_cooldown = random_corpse_time()
 	var corpse_info: CorpseInfo = current_corpse
+	var corpse_instance: CorpseInstance = corpse_instance_scene.instantiate()
+	corpse_instance.apply_corpse_info(corpse_info)
 	current_corpse = null
-	return corpse_info
+	return corpse_instance
 
 func random_corpse_time() -> float:
 	return 40.0+randf()*30.0

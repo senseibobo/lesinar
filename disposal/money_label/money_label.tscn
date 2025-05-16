@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://euy7aovhjsh0"]
+
+[ext_resource type="Script" uid="uid://b16lg4isnvrep" path="res://disposal/money_label/money_label.gd" id="1_2xliw"]
+[ext_resource type="AudioStream" uid="uid://bksw5f3q4metl" path="res://audio/kaching.mp3" id="2_7tpr5"]
+[ext_resource type="AudioStream" uid="uid://epg37bxun6q2" path="res://audio/kaching.ogg" id="3_kd0i1"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5cxmr"]
+random_pitch = 1.2
+random_volume_offset_db = 1.0
+streams_count = 2
+stream_0/stream = ExtResource("2_7tpr5")
+stream_1/stream = ExtResource("3_kd0i1")
+
+[node name="MoneyLabel" type="Label3D" node_paths=PackedStringArray("math_label")]
+pixel_size = 0.01
+billboard = 1
+texture_filter = 0
+modulate = Color(0.313726, 0.760784, 0.172549, 1)
+text = "+$200"
+script = ExtResource("1_2xliw")
+math_label = NodePath("MathLabel")
+
+[node name="MathLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.225958, 0)
+pixel_size = 0.008
+billboard = 1
+modulate = Color(0.570313, 0.570313, 0.570313, 1)
+text = "4 x $50"
+font_size = 18
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_5cxmr")
+autoplay = true

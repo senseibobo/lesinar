@@ -6,6 +6,7 @@ extends Resource
 @export var scene: PackedScene
 @export var first_names: Array[String]
 @export var last_names: Array[String]
+@export var alive: bool = false
 
 @export var name: String
 @export var formatted_name: String
@@ -24,3 +25,4 @@ func generate_data() -> void:
 	name = get_random_name()
 	formatted_name = name.replace(" ", "\n")
 	birth_year = 1920+randi()%70
+	alive = randf() > 0.0

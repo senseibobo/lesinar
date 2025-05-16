@@ -2106,7 +2106,7 @@ mesh = SubResource("ArrayMesh_33qgl")
 skin = SubResource("Skin_io68r")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Camera3D/armModelLeft/Arml/Skeleton3D"]
-transform = Transform3D(-0.750428, 0.626566, 0.21041, -0.226131, -0.54252, 0.809035, 0.621065, 0.559542, 0.548808, -1.18409, 1.23551, -0.507266)
+transform = Transform3D(-0.750428, 0.626566, 0.210411, -0.226131, -0.54252, 0.809035, 0.621065, 0.559542, 0.548808, -1.18409, 1.23551, -0.507266)
 bone_name = "Palm.L.001"
 bone_idx = 3
 

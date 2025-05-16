@@ -20,6 +20,9 @@ var calories_burnt: float = 0.0
 var corpses_shredded: int
 
 
+const money_label_scene: PackedScene = preload("res://disposal/money_label/money_label.tscn")
+
+
 func _ready():
 	await get_tree().process_frame
 	await get_tree().process_frame
@@ -31,7 +34,13 @@ func _ready():
 	corpses_shredded_updated.emit(corpses_shredded)
 
 
-func on_corpse_disposed(corpse_info: CorpseInfo, grave: Grave):
+func on_corpse_disposed(corpse_instance: CorpseInstance, grave: Grave):
+	var corpse_info: CorpseInfo = corpse_instance.corpse_info
+	if grave.money_marker:
+		var money_label: MoneyLabel = money_label_scene.instantiate()
+		get_tree().current_scene.add_child(money_label)
+		money_label.global_position = grave.money_marker.global_position
+		money_label.setup(corpse_info.value, grave.value_multiplier)
 	score += corpse_info.value * grave.value_multiplier
 	corpses_disposed += 1
 	corpses_disposed_updated.emit(corpses_disposed)
@@ -42,7 +51,8 @@ func on_corpse_disposed(corpse_info: CorpseInfo, grave: Grave):
 	score_updated.emit(score)
 
 
-func on_corpse_removed(corpse_info: CorpseInfo, grave: Grave):
+func on_corpse_removed(corpse_instance: CorpseInstance, grave: Grave):
+	var corpse_info: CorpseInfo = corpse_instance.corpse_info
 	score -= corpse_info.value * grave.value_multiplier
 	corpses_disposed -= 1
 	corpses_disposed_updated.emit(corpses_disposed)
