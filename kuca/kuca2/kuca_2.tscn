@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://l2nq24w7wi5u"]
+
+[ext_resource type="PackedScene" uid="uid://mdor1nos30px" path="res://kuca/kuca2/kuca.glb" id="1_q7tj5"]
+[ext_resource type="Texture2D" uid="uid://cyajd5rh2da6x" path="res://kuca/kuca2/kuca_malter.png" id="2_5nunc"]
+[ext_resource type="Texture2D" uid="uid://bvf8h684apnjp" path="res://kuca/kuca2/kuca_malter_normal.png" id="3_pji1g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rakne"]
+resource_name = "malter"
+cull_mode = 2
+albedo_texture = ExtResource("2_5nunc")
+roughness = 0.5
+normal_enabled = true
+normal_scale = 0.7
+normal_texture = ExtResource("3_pji1g")
+texture_filter = 2
+
+[node name="kuca2" instance=ExtResource("1_q7tj5")]
+
+[node name="kuca" parent="." index="0"]
+transform = Transform3D(0.4, 0, 0, 0, 0, -0.4, 0, 0.4, 0, -7.3001, -5.19567, 8.48237)
+surface_material_override/0 = SubResource("StandardMaterial3D_rakne")
+
+[node name="@StaticBody3D@22914" parent="." index="1"]
+transform = Transform3D(0.4, 0, 0, 0, 0, -0.4, 0, 0.4, 0, -7.3001, -5.19567, 8.48237)

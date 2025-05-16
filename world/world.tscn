@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=4 uid="uid://cgamuqao6oli1"]
+[gd_scene load_steps=89 format=4 uid="uid://cgamuqao6oli1"]
 
 [ext_resource type="PackedScene" uid="uid://dc6ux2dac5fr2" path="res://player/player.tscn" id="1_vp3ec"]
 [ext_resource type="PackedScene" uid="uid://d18ckmself2n" path="res://disposal/krematorijum/krematorijum.tscn" id="5_m8om7"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://xh4yum047xsv" path="res://fioka/wide/wide_fioka.tscn" id="21_bpca4"]
 [ext_resource type="PackedScene" uid="uid://clijgwdg0b26j" path="res://tool_wall/tool_wall.tscn" id="21_o3nne"]
 [ext_resource type="Texture2D" uid="uid://brvujly23lesd" path="res://soba/kuca/zidFioke_zid.png" id="23_sstqh"]
+[ext_resource type="PackedScene" uid="uid://l2nq24w7wi5u" path="res://kuca/kuca2/kuca_2.tscn" id="24_llyeo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v48ht"]
 sky_top_color = Color(0.95158, 0.95158, 0.95158, 1)
@@ -975,6 +976,7 @@ shadow_mesh = SubResource("ArrayMesh_rh1t4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.199551, -0.959353, -0.199551, -0.357739, -0.260916, 0.89663, -0.912251, -0.107536, -0.395264, 12, 9, 0)
+shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_skxy8")
@@ -1039,7 +1041,7 @@ mesh = SubResource("ArrayMesh_5pe2a")
 skeleton = NodePath("")
 
 [node name="ScoreDisplay" type="MeshInstance3D" parent="Kuca/KUCA" node_paths=PackedStringArray("score_label", "disposed_label", "graves_label", "area_label", "calories_label", "corpses_shredded_label")]
-transform = Transform3D(0, 0, 0.472339, 0, 0.472339, 0, -0.384379, 0, 0, -29.6759, 2.25638, 30.6414)
+transform = Transform3D(0, 0, 0.472339, 0, 0.472339, 0, -0.384379, 0, 3.55271e-15, -29.6759, 1.94836, 30.16)
 mesh = SubResource("ArrayMesh_np8h8")
 skeleton = NodePath("")
 script = ExtResource("11_my4ur")
@@ -1100,12 +1102,12 @@ horizontal_alignment = 0
 transform = Transform3D(1.24838, 0, 3.09463, 0, 3.25711, 0, -3.80279, 0, 1.01591, 1.6535, -0.670506, -2.69543)
 
 [node name="Cube_010" type="MeshInstance3D" parent="Kuca/KUCA"]
-transform = Transform3D(0, 0, 1.21676, 0, 0.104326, 0, -0.701622, 0, 0, -30.1629, 1.65433, 30.3148)
+transform = Transform3D(3.55271e-15, 0, 1.21676, 0, 0.104326, 0, -0.701622, 0, 0, -30.1629, 1.38205, 29.6415)
 mesh = SubResource("ArrayMesh_a7q6u")
 skeleton = NodePath("")
 
 [node name="Cube_011" type="MeshInstance3D" parent="Kuca/KUCA"]
-transform = Transform3D(0, 0, 0.391329, 0, 0.0407022, 0, 0.214613, 0, 0, -29.7634, 1.79435, 29.9177)
+transform = Transform3D(0, 0, 0.391329, 0, 0.0407022, 0, 0.214613, 0, 0, -29.7634, 1.52147, 29.4062)
 mesh = SubResource("ArrayMesh_7j1x5")
 skeleton = NodePath("")
 
@@ -1130,7 +1132,7 @@ mesh = SubResource("ArrayMesh_jqmgp")
 skeleton = NodePath("")
 
 [node name="Cube_016" type="MeshInstance3D" parent="Kuca/KUCA"]
-transform = Transform3D(-0.468184, 0, -8.82792e-07, 0, 1.09997, 0, 1.52554e-07, 0, -2.70927, -23.6252, 7.07956, 19.2222)
+transform = Transform3D(-0.468184, 0, -8.82792e-07, 0, 1.09997, 0, 1.52554e-07, 0, -2.70927, -23.6252, 7.23853, 19.2222)
 mesh = SubResource("ArrayMesh_v1bv2")
 skeleton = NodePath("")
 
@@ -1161,6 +1163,7 @@ skeleton = NodePath("")
 
 [node name="Cube_035" type="MeshInstance3D" parent="Kuca/KUCA"]
 transform = Transform3D(6.39988e-06, 0, -0.102574, 0, 2.88785, 0, 11.9302, 0, 5.50251e-08, -43.3803, 2.4939, 24.714)
+visible = false
 mesh = SubResource("ArrayMesh_6uxfn")
 skeleton = NodePath("")
 
@@ -1228,7 +1231,11 @@ mesh = SubResource("PlaneMesh_l6362")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Kuca"]
 transform = Transform3D(-4.37114e-08, 1, 3.82137e-15, -4.37114e-08, 1.91069e-15, -1, -1, -4.37114e-08, 4.37114e-08, 12.0177, -0.0245121, 39.9907)
+visible = false
 mesh = SubResource("PlaneMesh_1xuxh")
+
+[node name="kuca2" parent="Kuca" instance=ExtResource("24_llyeo")]
+transform = Transform3D(-0.564906, 0, -5.37823e-08, 0, 0.317255, 0, 4.93857e-08, 0, -0.615198, 15.8334, 1.13731, 37.8197)
 
 [node name="Krematorijum" parent="." instance=ExtResource("5_m8om7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9398, 0.588194, 41.1629)
