@@ -31,7 +31,6 @@ var score: int
 @export var right_hand_model: Node3D
 @export var raycast: RayCast3D
 @export var audio_player: AudioStreamPlayer
-@export var audio_player_hod: AudioStreamPlayer
 @export var dirt_sound: AudioStream
 @export var pick_sound: AudioStream
 @export var krec_sound: AudioStream
@@ -41,6 +40,11 @@ var score: int
 @export var sensitivity: float
 @export var label: Label
 @export var day_rect: DayRect
+@export var footsteps_sound_player: AudioStreamPlayer
+@export var ground_raycast: RayCast3D
+
+var next_footstep_sound: float = 0.0
+
 
 func _ready() -> void:
 	score = 0
@@ -82,16 +86,18 @@ func _process(delta):
 	camera_input()
 	sway()
 
+
 func move_input(delta: float):
 	var input: Vector2 = Input.get_vector("left","right","up","down")
 	move_vector = camera.global_basis.z * input.y + camera.global_basis.x * input.x
 	move_vector.y = 0.0
 	move_vector = move_vector.normalized()
 	if move_vector != Vector3(0.0, 0.0, 0.0): 
-		if !audio_player_hod.playing:
-			audio_player_hod.play()
-	else:
-		audio_player_hod.stop()
+		check_footstep_sound()
+		next_footstep_sound += delta
+		if next_footstep_sound > 0.6:
+			footsteps_sound_player.play()
+			next_footstep_sound -= 0.6
 	velocity = move_vector*speed
 	ScoreManager.burn_calories(move_vector.length()*delta * (2 if holding_corpse else 1))
 	move_and_slide()
@@ -100,6 +106,16 @@ func move_input(delta: float):
 	#if Input.is_action_just_pressed("use") and held_tool != null:
 		#choose_anim_tool()
 		#held_tool.use()
+
+func check_footstep_sound():
+	if ground_raycast.is_colliding():
+		var next_stream: AudioStreamRandomizer
+		var collider: Node = ground_raycast.get_collider()
+		if collider.is_in_group(&"dirt"): next_stream = preload("res://audio/footsteps/dirt/dirt_footsteps_sounds.tres")
+		elif collider.is_in_group(&"tile"): next_stream = preload("res://audio/footsteps/tile/tile_footsteps_sounds.tres")
+		if footsteps_sound_player.stream != next_stream:
+			footsteps_sound_player.stream = next_stream
+
 
 func play_catching():
 	audio_player.stream = katch_sound
@@ -239,6 +255,7 @@ func sway():
 	else:
 		left_hand_model.position = left_hand_model.position.lerp(Vector3(-0.05, -1.718, -0.455), 5*get_process_delta_time())
 		right_hand_model.position = right_hand_model.position.lerp(Vector3(-0.05, -1.718, -0.455), 5*get_process_delta_time())
+
 
 func _on_grave_dug():
 	choose_anim_tool()

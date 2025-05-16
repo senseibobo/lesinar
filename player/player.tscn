@@ -6,8 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://bcdwslxf2g0oo" path="res://audio/pik1.mp3" id="3_rk8fm"]
 [ext_resource type="AudioStream" uid="uid://j0iysju4tux1" path="res://audio/salt.mp3" id="4_ww4p7"]
 [ext_resource type="AudioStream" uid="uid://b0ec41u4mrp3q" path="res://audio/uzimanje stvari.mp3" id="5_6c3xl"]
-[ext_resource type="AudioStream" uid="uid://c3wv13iyyekxq" path="res://audio/hod4.mp3" id="6_5ur4k"]
 [ext_resource type="AudioStream" uid="uid://bksw5f3q4metl" path="res://audio/kaching.mp3" id="6_i5pkh"]
+[ext_resource type="AudioStream" uid="uid://dmxcoxtufe1rj" path="res://audio/footsteps/dirt/dirt_footsteps_sounds.tres" id="8_hg6s5"]
 [ext_resource type="PackedScene" uid="uid://cxwxxggxo0voi" path="res://ui/day_rect/day_rect.tscn" id="9_hg6s5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mb4tp"]
@@ -1910,7 +1910,7 @@ _data = {
 &"SHOWEL": SubResource("Animation_v4l2g")
 }
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "view_camera", "hand", "left_hand", "right_hand_anim", "left_hand_anim", "left_hand_model", "right_hand_model", "raycast", "audio_player", "audio_player_hod", "label", "day_rect")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "view_camera", "hand", "left_hand", "right_hand_anim", "left_hand_anim", "left_hand_model", "right_hand_model", "raycast", "audio_player", "label", "day_rect", "footsteps_sound_player", "ground_raycast")]
 collision_layer = 3
 script = ExtResource("1_o48ys")
 camera = NodePath("Camera3D")
@@ -1923,7 +1923,6 @@ left_hand_model = NodePath("Camera3D/armModelLeft")
 right_hand_model = NodePath("Camera3D/armModelRight")
 raycast = NodePath("Camera3D/RayCast3D")
 audio_player = NodePath("AudioStreamPlayer")
-audio_player_hod = NodePath("AudioStreamPlayer2")
 dirt_sound = ExtResource("2_61ccw")
 pick_sound = ExtResource("3_rk8fm")
 krec_sound = ExtResource("4_ww4p7")
@@ -1933,6 +1932,8 @@ speed = 5.0
 sensitivity = 0.5
 label = NodePath("CanvasLayer/PressELabel")
 day_rect = NodePath("CanvasLayer/DayRect")
+footsteps_sound_player = NodePath("FootstepsSoundPlayer")
+ground_raycast = NodePath("GroundRaycast")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -2317,8 +2318,9 @@ cull_mask = 1047554
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_5ur4k")
+[node name="FootstepsSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_hg6s5")
+max_polyphony = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -2338,3 +2340,6 @@ size_flags_horizontal = 4
 text = "Press E"
 
 [node name="DayRect" parent="CanvasLayer" instance=ExtResource("9_hg6s5")]
+
+[node name="GroundRaycast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.309454, 0)

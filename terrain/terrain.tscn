@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ge533veisgpo"]
+[gd_scene load_steps=11 format=3 uid="uid://ge533veisgpo"]
 
 [ext_resource type="Script" uid="uid://dp0a5fgtt8bak" path="res://terrain/terrain.gd" id="1_h2w3j"]
 [ext_resource type="Shader" uid="uid://blcuqyn13dkqk" path="res://terrain/terrain.gdshader" id="2_yt2v2"]
@@ -30,6 +30,9 @@ albedo_color = Color(0, 1, 1, 0.490196)
 
 [sub_resource type="BoxMesh" id="BoxMesh_hay2d"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ilfp"]
+size = Vector3(30, 0.02, 30)
+
 [node name="Terrain" type="Node3D" node_paths=PackedStringArray("mesh_instance", "preview_mesh")]
 script = ExtResource("1_h2w3j")
 mesh_instance = NodePath("MeshInstance3D")
@@ -47,3 +50,9 @@ fov = 44.5
 [node name="PreviewMesh" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_8o40f")
 mesh = SubResource("BoxMesh_hay2d")
+
+[node name="Collision" type="StaticBody3D" parent="." groups=["dirt"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 15)
+shape = SubResource("BoxShape3D_2ilfp")
