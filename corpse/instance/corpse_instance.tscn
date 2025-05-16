@@ -257,4 +257,4 @@ skeleton = NodePath("")
 
 [node name="BreathingSoundPlayer" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_4js0g")
-volume_db = -6.0
+volume_db = -3.0

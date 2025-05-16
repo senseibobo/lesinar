@@ -25,4 +25,4 @@ func generate_data() -> void:
 	name = get_random_name()
 	formatted_name = name.replace(" ", "\n")
 	birth_year = 1920+randi()%70
-	alive = randf() > 0.0
+	alive = randf() > 0.95

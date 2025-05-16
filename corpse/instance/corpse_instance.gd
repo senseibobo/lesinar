@@ -13,6 +13,11 @@ extends Node3D
 
 func apply_corpse_info(corpse_info: CorpseInfo):
 	self.corpse_info = corpse_info
+	if corpse_info.alive:
+		if breathing_sound_player.is_inside_tree():
+			breathing_sound_player.play()
+		else:
+			breathing_sound_player.autoplay = true
 	match corpse_info.value:
 		25: corpse_mesh_instance.mesh = poor_corpse_mesh
 		50: corpse_mesh_instance.mesh = normal_corpse_mesh
