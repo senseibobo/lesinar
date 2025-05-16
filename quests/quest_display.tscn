@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dx4pba24khqm1"]
+
+[ext_resource type="Script" uid="uid://b1nikb2japepo" path="res://quests/quest_display.gd" id="1_q8st0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j06l4"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gi7ib"]
+size = Vector3(0.5, 0.28, 0.02)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0pnie"]
+size = Vector3(0.02, 0.14, 0.02)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j1hg6"]
+size = Vector3(0.265, 0.015, 0.13)
+
+[node name="QuestDisplay" type="Node3D" node_paths=PackedStringArray("quest_label")]
+transform = Transform3D(1.24838, 0, 3.09463, 0, 3.25711, 0, -3.80279, 0, 1.01591, 0, 0, 0)
+script = ExtResource("1_q8st0")
+quest_label = NodePath("QuestLabel")
+
+[node name="QuestLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 3.72529e-09, -2.98023e-08, 8.6658e-09, 0.985865, 0.167543, 8.9407e-08, -0.167543, 0.985865, 0.0217648, 0.236809, -0.020874)
+pixel_size = 0.001
+modulate = Color(0, 0.733333, 0, 1)
+text = "Pick up a corpse."
+autowrap_mode = 3
+width = 350.0
+
+[node name="ScreenMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 3.72529e-09, -2.98023e-08, 0, 0.985865, 0.167543, 2.98023e-08, -0.167543, 0.985865, 0.0182495, 0.236809, -0.0340271)
+material_override = SubResource("StandardMaterial3D_j06l4")
+mesh = SubResource("BoxMesh_gi7ib")
+
+[node name="HandMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 1.49012e-08, 0, 0.988441, -0.151606, 0, 0.151606, 0.988441, 0, 0.0662124, -0.0385094)
+material_override = SubResource("StandardMaterial3D_j06l4")
+mesh = SubResource("BoxMesh_0pnie")
+
+[node name="BaseMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00140184, -0.0385108)
+material_override = SubResource("StandardMaterial3D_j06l4")
+mesh = SubResource("BoxMesh_j1hg6")

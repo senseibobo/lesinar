@@ -45,6 +45,7 @@ func on_corpse_disposed(corpse_instance: CorpseInstance, grave: Grave):
 	corpses_disposed += 1
 	corpses_disposed_updated.emit(corpses_disposed)
 	if score >= score_goal:
+		QuestManager.complete_quest(QuestManager.Quest.FILL_QUOTA)
 		score -= score_goal
 		score_acquired.emit()
 		score_goal += 500.0

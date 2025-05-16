@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=4 uid="uid://cgamuqao6oli1"]
+[gd_scene load_steps=88 format=4 uid="uid://cgamuqao6oli1"]
 
 [ext_resource type="PackedScene" uid="uid://dc6ux2dac5fr2" path="res://player/player.tscn" id="1_vp3ec"]
 [ext_resource type="PackedScene" uid="uid://d18ckmself2n" path="res://disposal/krematorijum/krematorijum.tscn" id="5_m8om7"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://cvl8hf0knwq43" path="res://audio/traffic-city-121711.mp3" id="8_tks0w"]
 [ext_resource type="Texture2D" uid="uid://uov2qcodm5dw" path="res://soba/kuca/KUCA_uagdgf.png" id="9_1lf3d"]
 [ext_resource type="Texture2D" uid="uid://dnm4o4jqweljy" path="res://soba/kuca/KUCA_EKRAN.png" id="10_khdid"]
+[ext_resource type="PackedScene" uid="uid://dx4pba24khqm1" path="res://quests/quest_display.tscn" id="11_0pnie"]
 [ext_resource type="Texture2D" uid="uid://d0oxhycgjlbtp" path="res://soba/kuca/KUCA_asfsdf.png" id="11_kgcsp"]
 [ext_resource type="Script" uid="uid://cjacyobmiqgr5" path="res://score/display/score_display.gd" id="11_my4ur"]
 [ext_resource type="Texture2D" uid="uid://bu23u8syxpg28" path="res://soba/kuca/KUCA_Untitled.png" id="12_33xyt"]
@@ -1094,6 +1095,9 @@ pixel_size = 0.001
 modulate = Color(0.0115, 1, 0, 1)
 text = "Corpses shredded: 2/5"
 horizontal_alignment = 0
+
+[node name="QuestDisplay" parent="Kuca/KUCA/ScoreDisplay" instance=ExtResource("11_0pnie")]
+transform = Transform3D(1.24838, 0, 3.09463, 0, 3.25711, 0, -3.80279, 0, 1.01591, 1.6535, -0.670506, -2.69543)
 
 [node name="Cube_010" type="MeshInstance3D" parent="Kuca/KUCA"]
 transform = Transform3D(0, 0, 1.21676, 0, 0.104326, 0, -0.701622, 0, 0, -30.1629, 1.65433, 30.3148)

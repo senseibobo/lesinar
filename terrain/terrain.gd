@@ -66,6 +66,7 @@ func dig_grave(origin: Vector2i, size: Vector2i, depth: int):
 			grid[x][y] = depth
 			heightmap.set_pixelv(Vector2i(x,y), Color.BLACK.lerp(Color.WHITE, depth/16.0))
 	var grave: Grave = selected_grave_info.grave_scene.instantiate()
+	QuestManager.complete_quest(QuestManager.Quest.DIG_GRAVE)
 	ScoreManager.on_grave_dug(grave)
 	add_child(grave)
 	var pos := Vector2(origin) * get_aspect()

@@ -98,6 +98,7 @@ func dispose_corpse():
 	left_hand_anim.play("GRAB")
 	held_corpse_instance.set_camera_layer(false)
 	score += held_corpse_instance.corpse_info.value
+	QuestManager.complete_quest(QuestManager.Quest.BURY_BODY)
 	#held_corpse_instance.queue_free()
 	held_corpse_instance = null
 	holding_corpse = false
@@ -170,6 +171,7 @@ func anim_input():
 
 func take_tool(tool_scene: PackedScene):
 	if tool_scene == null: return
+	QuestManager.complete_quest(QuestManager.Quest.PICK_UP_TOOL)
 	held_tool = tool_scene.instantiate()
 	held_tool_scene = tool_scene
 	hand.add_child(held_tool)
@@ -197,6 +199,7 @@ func take_corpse(fioka: Fioka):
 
 
 func take_corpse_instance(corpse_instance: CorpseInstance):
+	QuestManager.complete_quest(QuestManager.Quest.PICK_UP_CORPSE)
 	corpse_instance.set_camera_layer(true)
 	holding_corpse = true
 	held_corpse_instance = corpse_instance
