@@ -24,16 +24,16 @@
 [ext_resource type="Texture2D" uid="uid://brvujly23lesd" path="res://soba/kuca/zidFioke_zid.png" id="23_sstqh"]
 [ext_resource type="PackedScene" uid="uid://l2nq24w7wi5u" path="res://kuca/kuca2/kuca_2.tscn" id="24_llyeo"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v48ht"]
-sky_top_color = Color(0.95158, 0.95158, 0.95158, 1)
-sky_horizon_color = Color(0, 0, 0, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3ljsx"]
+sky_top_color = Color(0.0203243, 0.0682372, 0.0495017, 1)
+sky_horizon_color = Color(0.000681584, 0.00221087, 0.00245327, 1)
+sun_angle_max = 33.0
 
 [sub_resource type="Sky" id="Sky_3kq7x"]
-sky_material = SubResource("ProceduralSkyMaterial_v48ht")
+sky_material = SubResource("ProceduralSkyMaterial_3ljsx")
 
 [sub_resource type="Environment" id="Environment_skxy8"]
 background_mode = 2
-background_color = Color(1, 1, 1, 1)
 background_energy_multiplier = 0.75
 sky = SubResource("Sky_3kq7x")
 ambient_light_source = 2
@@ -43,19 +43,28 @@ tonemap_mode = 3
 tonemap_white = 0.45
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.214139, 0.235722, 0.269651, 1)
-fog_density = 0.177
-fog_aerial_perspective = 0.595
-fog_height_density = 0.8436
-fog_depth_curve = 0.267943
+fog_light_color = Color(0.392555, 0.614237, 0.495922, 1)
+fog_light_energy = 0.1
+fog_sun_scatter = 0.02
+fog_density = 0.8557
+fog_aerial_perspective = 0.319
+fog_sky_affect = 0.85
+fog_height = 8.8
+fog_height_density = 0.031
+fog_depth_curve = 0.392291
 fog_depth_begin = 4.0
-fog_depth_end = 26.0
+fog_depth_end = 30.0
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.071
-volumetric_fog_albedo = Color(0.292969, 0.292968, 0.292968, 1)
+volumetric_fog_density = 0.1071
+volumetric_fog_albedo = Color(0.108007, 0.503966, 0.271894, 1)
+volumetric_fog_length = 17.99
+volumetric_fog_detail_spread = 1.68179
+volumetric_fog_sky_affect = 0.935
 volumetric_fog_temporal_reprojection_amount = 0.78
 adjustment_enabled = true
 adjustment_brightness = 0.8
+adjustment_contrast = 1.05
+adjustment_saturation = 1.11
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3bh8n"]
 size = Vector2(25, 25)
@@ -834,6 +843,7 @@ size = Vector2(5.22, 13.82)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.199551, -0.959353, -0.199551, -0.357739, -0.260916, 0.89663, -0.912251, -0.107536, -0.395264, 12, 9, 0)
+visible = false
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -843,12 +853,14 @@ environment = SubResource("Environment_skxy8")
 visible = false
 mesh = SubResource("PlaneMesh_3bh8n")
 
-[node name="Player" parent="." instance=ExtResource("1_vp3ec")]
+[node name="Player" parent="." node_paths=PackedStringArray("ambient_particles") instance=ExtResource("1_vp3ec")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 14.6298, 0.0431315, 33.923)
 katch_sound = null
+ambient_particles = NodePath("AmbientParticles")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Player"]
+[node name="AmbientParticles" type="GPUParticles3D" parent="Player"]
 transform = Transform3D(-0.500001, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.500001, -0.0566158, 1.18862, -1.30607)
+emitting = false
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_3ljsx")
 draw_pass_1 = SubResource("QuadMesh_0pnie")
@@ -860,11 +872,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 15)
 granice = NodePath("../Granice")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.809294, 0.587404, 0, -0.587404, 0.809294, 15.1659, 3.87434, 30.2198)
-light_energy = 21.33
-light_indirect_energy = 1.185
+transform = Transform3D(1, 0, 0, 0, 0.809294, 0.587404, 0, -0.587404, 0.809294, 15.1659, 2.84562, 28.4845)
+light_energy = 12.96
 shadow_enabled = true
-spot_range = 23.832
+spot_range = 16.235
+spot_attenuation = 0.05
+spot_angle = 45.7
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_sgkku")

@@ -42,6 +42,7 @@ var score: int
 @export var day_rect: DayRect
 @export var footsteps_sound_player: AudioStreamPlayer
 @export var ground_raycast: RayCast3D
+@export var ambient_particles: GPUParticles3D
 
 var next_footstep_sound: float = 0.0
 
@@ -93,6 +94,7 @@ func move_input(delta: float):
 	move_vector.y = 0.0
 	move_vector = move_vector.normalized()
 	if move_vector != Vector3(0.0, 0.0, 0.0): 
+		check_for_ambient_particles()
 		check_footstep_sound()
 		next_footstep_sound += delta
 		if next_footstep_sound > 0.6:
@@ -115,6 +117,14 @@ func check_footstep_sound():
 		elif collider.is_in_group(&"tile"): next_stream = preload("res://audio/footsteps/tile/tile_footsteps_sounds.tres")
 		if footsteps_sound_player.stream != next_stream:
 			footsteps_sound_player.stream = next_stream
+
+
+func check_for_ambient_particles():
+	if not is_instance_valid(ambient_particles): return
+	if ground_raycast.is_colliding():
+		var collider: Node = ground_raycast.get_collider()
+		if collider.is_in_group(&"dirt"): ambient_particles.emitting = true
+		elif collider.is_in_group(&"tile"): ambient_particles.emitting = false
 
 
 func play_catching():

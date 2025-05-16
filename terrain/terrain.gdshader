@@ -11,17 +11,14 @@ float get_height(vec3 vertex) {
 	return (texture(heightmap, texture_position).r-0.5) * amplitude;
 }
 
-vec3 get_normal(vec3 vertex, float adjacent_distance) {
-	vec3 west_vert = vertex + vec3(adjacent_distance,0,0);
-	west_vert.y = get_height(west_vert);
-	vec3 north_vert = vertex + vec3(0,0,adjacent_distance);
-	north_vert.y = get_height(north_vert);
-	return normalize(
-		cross(
-			north_vert-vertex,
-			west_vert-vertex
-		)
-	);
+vec3 get_normal(vec3 vertex, float d) {
+    float hL = get_height(vertex + vec3(-d, 0, 0)); // left (west)
+    float hR = get_height(vertex + vec3( d, 0, 0)); // right (east)
+    float hD = get_height(vertex + vec3(0, 0, -d)); // down (south)
+    float hU = get_height(vertex + vec3(0, 0,  d)); // up (north)
+
+    vec3 normal = vec3(hL - hR, 2.0 * d, hD - hU);
+    return normalize(normal);
 }
 
 
@@ -42,7 +39,6 @@ void fragment() {
 	//ALBEDO = ALBEDO*old_albedo;
 }
 
-//void light() {
-	// Called for every pixel for every light affecting the material.
-	// Uncomment to replace the default light processing function with this one.
-//}
+void light() {
+    DIFFUSE_LIGHT += abs(dot(NORMAL, LIGHT) * ATTENUATION * ALBEDO);
+}
