@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=4 uid="uid://cgamuqao6oli1"]
+[gd_scene load_steps=84 format=4 uid="uid://cgamuqao6oli1"]
 
 [ext_resource type="PackedScene" uid="uid://dc6ux2dac5fr2" path="res://player/player.tscn" id="1_vp3ec"]
 [ext_resource type="PackedScene" uid="uid://d18ckmself2n" path="res://disposal/krematorijum/krematorijum.tscn" id="5_m8om7"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://dg4poewl8qmhv" path="res://kuca/kuca2/kuca_isecena.tscn" id="23_0pnie"]
 [ext_resource type="PackedScene" uid="uid://dsq0iyc0h62xl" path="res://kuca/kuca2/kuca_2popravljena.tscn" id="23_gi7ib"]
 [ext_resource type="Texture2D" uid="uid://brvujly23lesd" path="res://soba/kuca/zidFioke_zid.png" id="23_sstqh"]
+[ext_resource type="PackedScene" uid="uid://ddx1rus5np1u" path="res://lampa/lampaleshinar.tscn" id="25_0pnie"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3ljsx"]
 sky_top_color = Color(0.0203243, 0.0682372, 0.0495017, 1)
@@ -1098,8 +1099,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9398, 0.588194, 41.1629)
 max_corpses = 5
 value_multiplier = 0.0
 
+[node name="Lamps" type="Node3D" parent="."]
+
+[node name="lampaleshinar" parent="Lamps" instance=ExtResource("25_0pnie")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 24.5775, 0.914567, 24.2577)
+
+[node name="OmniLight3D" parent="Lamps/lampaleshinar" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.455298, 0.147687)
+light_color = Color(1, 1, 0.2, 1)
+light_energy = 4.0
+omni_range = 6.717
+
 [connection signal="tool_changed" from="Player" to="Terrain" method="update_terrain_mode"]
 [connection signal="grave_dug" from="Terrain" to="Player" method="_on_grave_dug"]
 
 [editable path="Kuca/kuca3"]
 [editable path="Kuca/kuca3/kuca2"]
+[editable path="Lamps/lampaleshinar"]
