@@ -1,0 +1,85 @@
+[gd_scene load_steps=9 format=4 uid="uid://dg4poewl8qmhv"]
+
+[ext_resource type="Texture2D" uid="uid://cyajd5rh2da6x" path="res://kuca/kuca2/kuca_malter.png" id="1_3uq47"]
+[ext_resource type="Texture2D" uid="uid://bvf8h684apnjp" path="res://kuca/kuca2/kuca_malter_normal.png" id="2_tty20"]
+[ext_resource type="Texture2D" uid="uid://cq8bg7ata13ve" path="res://kuca/kuca2/kuca_tilestekstura.png" id="3_5xtj2"]
+[ext_resource type="Texture2D" uid="uid://dwr0k8ufpro6r" path="res://kuca/kuca2/kuca_tilestekstura_normal.png" id="4_f5hgw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2e2q6"]
+resource_name = "malter"
+cull_mode = 2
+albedo_texture = ExtResource("1_3uq47")
+roughness = 0.5
+normal_enabled = true
+normal_texture = ExtResource("2_tty20")
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_swlkl"]
+resource_name = "plocice"
+cull_mode = 2
+albedo_texture = ExtResource("3_5xtj2")
+roughness = 0.504545
+normal_enabled = true
+normal_texture = ExtResource("4_f5hgw")
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4a2o2"]
+_surfaces = [{
+"aabb": AABB(-4, -44, -28, 44, 48, 28),
+"format": 34896613377,
+"index_count": 96,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAMABAADAAYABwAFAAQABgAHAAQABwAIAAUACQAFAAgACQAIAAoABgALAAcABgAMAAsABgANAAwADgAMAA0ADgANAA8ADwANAAYADwAGABAAEQAJABIAEQASABMAFAARABUAFAAVABYAFwAYABAAAAAXABAAGAAXABkAAAAaABcAGgAAABQAGAAZABsAHAAaABQAHAAbABkAHAAUAB0AFgAcAB0AHAAeABsAFgAeABwA"),
+"name": "malter",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 31,
+"vertex_data": PackedByteArray("//8AAAAAAAAAAP//AAAAAP////8AAAAAAAAAAAAAAABFF6nqAAAAAAAAqeoAAAAARRcAAAAAAABFF6nq//8AAAAAqer//wAAuWip6gAAAAC5aKnq//8AAEUXAAD//wAARRdVFf//AABFF1UVAAAAALnoVRX//wAAuehVFQAAAAC56AAAAAAAAEWXqeoAAAAAuWip6iRJAABFl6nqJEkAAP//qeoAAAAARZep6v//AAD//6nq//8AALnoQ5AAAAAAuegAAP//AAC56GqOnLMAALnoqeoAAAAAueihjf//AAC56KnqgrEAAP//qer1owAAueip6v//AAA=")
+}, {
+"aabb": AABB(-3.90978, -43.0076, -4, 43.0076, 46.9174, 1e-05),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "plocice",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("/////wAAAAAAAAAAAAAAAP//AAAAAAAAAAD//wAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_s6nnd"]
+resource_name = "kuca_entity0_brush7_001"
+_surfaces = [{
+"aabb": AABB(-4, -44, -28, 44, 48, 28),
+"attribute_data": PackedByteArray("Xbb//ylnjyL//19ihx0vwGmZ71bvL8eYdW7isuNa1Ty586R8P4p8vsXIl9gztYliM8DXgmosZsasjQLvbnt8Zy9e2lu6jVxC6W/pNcXIl9gMyJm2NtiIt+C6ytK586R81OXXdvfrtGldtv//3PmBb//aB454qDH6rI0C740yRLlqLGbGz5Pf4eC6ytLIaKJC1OXXdtQ9lJ6brg/tbCv8xXioMfqOMdq41D2UnuNa1TzIaKJC7y/HmOtufzWHHS/AbCv8xQZhsi+sjQLv6W/pNSvRhF5qLGbGM7WJYiONNXHtqM98aZnvVg=="),
+"format": 34896613399,
+"index_count": 96,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADQAMAA8ADQAPABAAEQAQAA8AEQASABAAEwAUABUAEwAWABQAFAAXABUAFAAYABcAGQAaABsAGgAZABwAGgAcAB0AHgAfACAAHgAhAB8AIgAjACQAIgAlACMAJgAnACgAJgApACcAKgArACwAKgAtACsALgAvADAALgAxAC8AMgAzADQAMgA1ADMANgA3ADgANgA5ADcA"),
+"material": SubResource("StandardMaterial3D_2e2q6"),
+"name": "malter",
+"primitive": 3,
+"uv_scale": Vector4(8.66949, 9.17032, 0, 0),
+"vertex_count": 58,
+"vertex_data": PackedByteArray("//8AAAAA8ZAAAP//AADxkP////8AAPGQAAAAAAAA8ZC5aKnqAABDPgAAqer//0M+uWip6v//Qz4AAKnqAABDPv//qeoAAEM+RZep6v//Qz7//6nq//9DPkWXqeoAAEM+uehDkAAABQq56AAA//8GCrnoAAAAAP8JuehqjpyzTAy56KGN//9dDbnoqeqCscgQueip6v//0RD//6nq//+7wbnoqeqCsbvB//+p6vWju8G56Knq//+7wf//qeoAALvBueip6gAAu8G56KnqAAAAAP//AAAAAAAA//+p6gAAAAC56EOQAAAAALnoAAAAAAAARRcAAAAA7wtFF1UV///vC0UXAAD//+8LRRdVFQAA7wu56FUV//+7wUUXVRUAALvBuehVFQAAu8FFF1UV//+7wbnoVRUAAAAARRcAAAAAAAC56AAAAAAAAEUXVRUAAAAARRep6v//u8EAAKnqAAC7wUUXqeoAALvBAACp6v//u8FFF6nqAAAAAAAAAAAAAAAARRcAAAAAAAAAAKnqAAAAAEUXAAAAALvBRRep6v//u8FFF6nqAAC7wUUXAAD//7vBRZep6gAAQz65aKnqJElDPkWXqeokSUM+uWip6gAAQz7/////////////////////+yUBbfslAW37JQFt+yUBbfslAW37JQFt+yUBbfslAW2i9S3FofUtxaj1KsVv80fGa/LJxjLvZcgq72nIAe0DWgHtA1oB7QNaAe0DWgHtA1oB7QNadOeKmCvr0pSy6UyWOMbFud3sIZPI8xrGyPMaxsjzGsbI8xrGAe0DWgHtA1oB7QNaAe0DWrLpTJay6UyWsulMlrLpTJYB7QNaAe0DWgHtA1oB7QNasulMlrLpTJay6UyWsulMlgNa/RIDWv0SA1r9EgNa/RL7JQFt+yUBbfslAW37JQFt")
+}, {
+"aabb": AABB(-3.90978, -43.0076, -4, 43.0076, 46.9174, 1e-05),
+"attribute_data": PackedByteArray("///HLuEx////////4THHLg=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"material": SubResource("StandardMaterial3D_swlkl"),
+"name": "plocice",
+"primitive": 3,
+"uv_scale": Vector4(5.13216, 5.47259, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("/////wAAAAAAAAAAAAAAAP//AAAAAAAAAAD//wAAAAD///9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_4a2o2")
+
+[node name="kuca2" type="Node3D"]
+
+[node name="kuca" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0, -0.4, 0, 0.4, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_s6nnd")
+skeleton = NodePath("")

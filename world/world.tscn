@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=4 uid="uid://cgamuqao6oli1"]
+[gd_scene load_steps=83 format=4 uid="uid://cgamuqao6oli1"]
 
 [ext_resource type="PackedScene" uid="uid://dc6ux2dac5fr2" path="res://player/player.tscn" id="1_vp3ec"]
 [ext_resource type="PackedScene" uid="uid://d18ckmself2n" path="res://disposal/krematorijum/krematorijum.tscn" id="5_m8om7"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://x08nvays30rw" path="res://fioka/tall/tall_fioka.tscn" id="20_70vhm"]
 [ext_resource type="PackedScene" uid="uid://xh4yum047xsv" path="res://fioka/wide/wide_fioka.tscn" id="21_bpca4"]
 [ext_resource type="PackedScene" uid="uid://clijgwdg0b26j" path="res://tool_wall/tool_wall.tscn" id="21_o3nne"]
+[ext_resource type="PackedScene" uid="uid://dg4poewl8qmhv" path="res://kuca/kuca2/kuca_isecena.tscn" id="23_0pnie"]
 [ext_resource type="PackedScene" uid="uid://dsq0iyc0h62xl" path="res://kuca/kuca2/kuca_2popravljena.tscn" id="23_gi7ib"]
 [ext_resource type="Texture2D" uid="uid://brvujly23lesd" path="res://soba/kuca/zidFioke_zid.png" id="23_sstqh"]
 
@@ -979,7 +980,12 @@ mesh = SubResource("ArrayMesh_yketh")
 skeleton = NodePath("")
 
 [node name="LeftWallMesh" type="MeshInstance3D" parent="Kuca/KUCA/HouseMeshes"]
-transform = Transform3D(-11.9302, 0, -3.34229e-08, 0, 2.88785, 0, 3.88737e-06, 0, -0.102574, -31.0723, 2.4939, 15.7878)
+transform = Transform3D(0.449647, 0, 0.102501, 0, 2.88785, 0, -11.9217, 0, 0.00386599, -27.4776, 2.29649, 9.31684)
+mesh = SubResource("ArrayMesh_yjlwh")
+skeleton = NodePath("")
+
+[node name="LeftWallMesh2" type="MeshInstance3D" parent="Kuca/KUCA/HouseMeshes"]
+transform = Transform3D(-0.613362, 0, 0.102438, 0, 2.88785, 0, -11.9144, 0, -0.00527359, -27.4776, 2.29649, 44.291)
 mesh = SubResource("ArrayMesh_yjlwh")
 skeleton = NodePath("")
 
@@ -1079,8 +1085,13 @@ mesh = SubResource("PlaneMesh_1xuxh")
 [node name="kuca3" parent="Kuca" instance=ExtResource("23_gi7ib")]
 transform = Transform3D(-0.567377, 0, -5.37978e-08, 0, 0.325467, 0, 4.96017e-08, 0, -0.615376, 19.9631, -0.526029, 32.4193)
 
+[node name="kuca" parent="Kuca/kuca3" index="0"]
+visible = false
+
 [node name="Collision" parent="Kuca/kuca3" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.86604, 5.18138, -9.1808)
+
+[node name="kuca2" parent="Kuca/kuca3" instance=ExtResource("23_0pnie")]
 
 [node name="Krematorijum" parent="." instance=ExtResource("5_m8om7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9398, 0.588194, 41.1629)
@@ -1091,3 +1102,4 @@ value_multiplier = 0.0
 [connection signal="grave_dug" from="Terrain" to="Player" method="_on_grave_dug"]
 
 [editable path="Kuca/kuca3"]
+[editable path="Kuca/kuca3/kuca2"]
