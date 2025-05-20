@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ge533veisgpo" path="res://terrain/terrain.tscn" id="7_udxks"]
 [ext_resource type="Texture2D" uid="uid://cmry110r2mc68" path="res://soba/kuca/KUCA_tileFlor.png" id="8_0ll4u"]
 [ext_resource type="AudioStream" uid="uid://cvl8hf0knwq43" path="res://audio/traffic-city-121711.mp3" id="8_tks0w"]
-[ext_resource type="PackedScene" path="res://quests/score_display.tscn" id="10_0pnie"]
+[ext_resource type="PackedScene" uid="uid://bsj0un4erv6or" path="res://quests/score_display.tscn" id="10_0pnie"]
 [ext_resource type="PackedScene" uid="uid://dx4pba24khqm1" path="res://quests/quest_display.tscn" id="11_0pnie"]
 [ext_resource type="Texture2D" uid="uid://d0oxhycgjlbtp" path="res://soba/kuca/KUCA_asfsdf.png" id="11_kgcsp"]
 [ext_resource type="Texture2D" uid="uid://bu23u8syxpg28" path="res://soba/kuca/KUCA_Untitled.png" id="12_33xyt"]
@@ -40,7 +40,7 @@ background_energy_multiplier = 0.75
 sky = SubResource("Sky_3kq7x")
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.15
+ambient_light_energy = 0.05
 tonemap_mode = 3
 tonemap_white = 0.45
 fog_enabled = true
@@ -57,11 +57,12 @@ fog_depth_curve = 0.392291
 fog_depth_begin = 4.0
 fog_depth_end = 30.0
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.1071
-volumetric_fog_albedo = Color(0.108007, 0.503966, 0.271894, 1)
+volumetric_fog_density = 0.0641
+volumetric_fog_albedo = Color(0.425, 0.5, 0.45625, 1)
+volumetric_fog_emission = Color(0.145098, 0.215686, 0.145098, 1)
+volumetric_fog_anisotropy = 0.16
 volumetric_fog_length = 17.99
 volumetric_fog_detail_spread = 1.68179
-volumetric_fog_sky_affect = 0.935
 volumetric_fog_temporal_reprojection_amount = 0.78
 adjustment_enabled = true
 adjustment_brightness = 0.8
@@ -873,14 +874,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 15)
 [node name="Terrain" parent="." node_paths=PackedStringArray("granice") instance=ExtResource("7_udxks")]
 granice = NodePath("../Granice")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.809294, 0.587404, 0, -0.587404, 0.809294, 15.1659, 2.84562, 28.4845)
-light_energy = 12.96
-shadow_enabled = true
-spot_range = 16.235
-spot_attenuation = 0.05
-spot_angle = 45.7
-
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_sgkku")
 volume_db = 2.008
@@ -1102,17 +1095,34 @@ value_multiplier = 0.0
 [node name="Lamps" type="Node3D" parent="."]
 
 [node name="lampaleshinar" parent="Lamps" instance=ExtResource("25_0pnie")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 24.5775, 0.914567, 24.2577)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 25)
 
-[node name="OmniLight3D" parent="Lamps/lampaleshinar" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.455298, 0.147687)
-light_color = Color(1, 1, 0.2, 1)
-light_energy = 4.0
-omni_range = 6.717
+[node name="lampaleshinar2" parent="Lamps" instance=ExtResource("25_0pnie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 25)
+
+[node name="lampaleshinar3" parent="Lamps" instance=ExtResource("25_0pnie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 25)
+
+[node name="lampaleshinar4" parent="Lamps" instance=ExtResource("25_0pnie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 15)
+
+[node name="lampaleshinar5" parent="Lamps" instance=ExtResource("25_0pnie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5)
+
+[node name="lampaleshinar6" parent="Lamps" instance=ExtResource("25_0pnie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 5)
+
+[node name="lampaleshinar7" parent="Lamps" instance=ExtResource("25_0pnie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 15)
+
+[node name="lampaleshinar8" parent="Lamps" instance=ExtResource("25_0pnie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 15)
+
+[node name="lampaleshinar9" parent="Lamps" instance=ExtResource("25_0pnie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 5)
 
 [connection signal="tool_changed" from="Player" to="Terrain" method="update_terrain_mode"]
 [connection signal="grave_dug" from="Terrain" to="Player" method="_on_grave_dug"]
 
 [editable path="Kuca/kuca3"]
 [editable path="Kuca/kuca3/kuca2"]
-[editable path="Lamps/lampaleshinar"]

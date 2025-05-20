@@ -9,6 +9,7 @@ value = 50
 scene = ExtResource("1_0hqy4")
 first_names = Array[String](["Marko", "Aleksandar", "Miloš", "Stefan", "Nikola", "Nemanja", "Petar", "Filip", "Milica", "Ana", "Jelena", "Ivana", "Marija", "Katarina", "Sara"])
 last_names = Array[String](["Petrović", "Jovanović", "Nikolić", "Marković", "Đorđević", "Stanković", "Milovanović", "Ilić", "Lazić", "Radovanović", "Pavlović", "Filipović", "Vasić", "Živković", "Bošković"])
+alive = false
 name = ""
 formatted_name = ""
 birth_year = 0

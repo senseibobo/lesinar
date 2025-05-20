@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=4 uid="uid://ddx1rus5np1u"]
+[gd_scene load_steps=12 format=4 uid="uid://ddx1rus5np1u"]
 
 [ext_resource type="Texture2D" uid="uid://dhs8puikalnvb" path="res://lampa/lampaleshinar_lanpa.jpg" id="1_io162"]
+[ext_resource type="Texture2D" uid="uid://bhrysadydotro" path="res://terrain/grass.png" id="2_y7y6t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6a7dg"]
 resource_name = "lampa"
@@ -79,18 +80,54 @@ albedo_color = Color(1, 0.886275, 0, 1)
 material = SubResource("StandardMaterial3D_io162")
 size = Vector3(0.1, 1, 0.1)
 
-[node name="lampaleshinar" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f0mvv"]
+albedo_texture = ExtResource("2_y7y6t")
+metallic = 0.75
+metallic_specular = 0.8
+roughness = 0.35
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
+texture_filter = 2
 
-[node name="Cylinder" type="MeshInstance3D" parent="."]
+[sub_resource type="CylinderMesh" id="CylinderMesh_io162"]
+material = SubResource("StandardMaterial3D_f0mvv")
+top_radius = 0.05
+bottom_radius = 0.05
+height = 3.0
+radial_segments = 6
+rings = 2
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y7y6t"]
+size = Vector3(0.1, 3, 0.1)
+
+[node name="Lamp" type="StaticBody3D"]
+
+[node name="Head" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.175083, 0, 0, 0, 0.175083, 0, 0, 0, 0.175083, 0, 3.31157, 0)
+layers = 4
 mesh = SubResource("ArrayMesh_tohi6")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="LightBulb" type="MeshInstance3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0446365, 0.19023, -0.0527634)
+layers = 4
 mesh = SubResource("BoxMesh_y7y6t")
+skeleton = NodePath("../..")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.290349, 0.147687)
-light_color = Color(0.870588, 1, 0.2, 1)
-light_energy = 15.545
-omni_range = 11.951
+[node name="OmniLight3D" type="OmniLight3D" parent="Head/LightBulb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0446365, 0.100119, 0.20045)
+light_energy = 10.0
+shadow_enabled = true
+shadow_caster_mask = 4294967291
+omni_range = 20.0
+omni_attenuation = 1.5
+
+[node name="Pole" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, 1.4966, 0)
+mesh = SubResource("CylinderMesh_io162")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_y7y6t")
