@@ -72,7 +72,7 @@ orientation = 2
 script = ExtResource("1_jvw7t")
 corpse_begin_marker = NodePath("Marker3D")
 conveyor_belt_material = SubResource("StandardMaterial3D_jxpya")
-omni_light = NodePath("OmniLight3D")
+omni_light = NodePath("MainLight")
 scream_sound_player = NodePath("ScreamSoundPlayer")
 
 [node name="InteractCollision" type="CollisionShape3D" parent="."]
@@ -100,29 +100,50 @@ shape = SubResource("BoxShape3D_qv3ev")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.12625, -0.0189835, 0)
 
 [node name="ConveyorBelt" parent="crematorium" index="0"]
+layers = 8
 material_override = SubResource("StandardMaterial3D_jxpya")
+
+[node name="Crematorium" parent="crematorium" index="1"]
+layers = 8
 
 [node name="DoorLeft" parent="crematorium" index="2"]
 transform = Transform3D(0.129955, 0, -0.99152, 0, 1, 0, 0.99152, 0, 0.129955, 0.20703, 0, -0.944226)
+layers = 8
 
 [node name="DoorRight" parent="crematorium" index="3"]
 transform = Transform3D(0.0962974, 0, 0.995353, 0, 1, 0, -0.995353, 0, 0.0962974, -0.16187, 0, -0.9961)
+layers = 8
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="Frame" parent="crematorium" index="4"]
+layers = 8
+
+[node name="FireParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.22848, 0.701431, 0)
 layers = 4
+cast_shadow = 0
 amount = 120
 explosiveness = 0.21
 process_material = SubResource("ParticleProcessMaterial_qv3ev")
 draw_pass_1 = SubResource("PlaneMesh_nnkax")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="MainLight" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.88938, 0.832141, 0)
 layers = 3
 light_color = Color(0.890196, 0.65098, 0.164706, 1)
 light_energy = 8.919
 shadow_enabled = true
 shadow_caster_mask = 4294967291
+
+[node name="FillLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0762, 0.832141, 0)
+layers = 3
+light_color = Color(0.890196, 0.808055, 0.486466, 1)
+light_energy = 2.634
+light_indirect_energy = 2.649
+light_size = 0.361
+shadow_enabled = true
+shadow_caster_mask = 4294967287
+omni_range = 12.567
 
 [node name="ScreamSoundPlayer" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_jxpya")
