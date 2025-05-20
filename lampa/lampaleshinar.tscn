@@ -118,6 +118,7 @@ skeleton = NodePath("../..")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Head/LightBulb"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0446365, 0.100119, 0.20045)
+layers = 3
 light_energy = 10.0
 shadow_enabled = true
 shadow_caster_mask = 4294967291
