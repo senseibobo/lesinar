@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://dc6ux2dac5fr2"]
+[gd_scene format=4 uid="uid://dc6ux2dac5fr2"]
 
 [ext_resource type="Script" uid="uid://7ed32samjihm" path="res://player/player.gd" id="1_o48ys"]
 [ext_resource type="AudioStream" uid="uid://4g8alfst6evy" path="res://audio/dirt2.mp3" id="2_61ccw"]
@@ -1992,7 +1992,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "view_camera", "hand", "left_hand", "right_hand_anim", "left_hand_anim", "left_hand_model", "right_hand_model", "raycast", "audio_player", "label", "day_rect", "footsteps_sound_player", "ground_raycast")]
+[node name="Player" type="CharacterBody3D" unique_id=1547425805 node_paths=PackedStringArray("camera", "view_camera", "hand", "left_hand", "right_hand_anim", "left_hand_anim", "left_hand_model", "right_hand_model", "raycast", "audio_player", "label", "day_rect", "footsteps_sound_player", "ground_raycast")]
 collision_layer = 3
 script = ExtResource("1_o48ys")
 camera = NodePath("Camera3D")
@@ -2017,27 +2017,27 @@ day_rect = NodePath("CanvasLayer/DayRect")
 footsteps_sound_player = NodePath("FootstepsSoundPlayer")
 ground_raycast = NodePath("GroundRaycast")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1992092794]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_mb4tp")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=493002293]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 cull_mask = 1048573
 current = true
 
-[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D" unique_id=1808224816]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.018606, 0)
 target_position = Vector3(0, 0, -3)
 debug_shape_custom_color = Color(1, 0, 0, 1)
 
-[node name="armModelLeft" type="Node3D" parent="Camera3D"]
+[node name="armModelLeft" type="Node3D" parent="Camera3D" unique_id=1534503392]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.05, -1.718, -0.455)
 
-[node name="Arml" type="Node3D" parent="Camera3D/armModelLeft"]
+[node name="Arml" type="Node3D" parent="Camera3D/armModelLeft" unique_id=1897383292]
 transform = Transform3D(0.818237, 0, 0, 0, 0.818237, 0, 0, 0, 0.818237, 0.368259, 1.58258, 0.0344122)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Camera3D/armModelLeft/Arml"]
+[node name="Skeleton3D" type="Skeleton3D" parent="Camera3D/armModelLeft/Arml" unique_id=1634669646]
 bones/0/name = "Bone.007"
 bones/0/parent = -1
 bones/0/rest = Transform3D(-0.0509387, 0, 0.998702, 0, 1, 0, -0.998702, 0, -0.0509387, -0.466786, 0.560178, 0.0223655)
@@ -2186,32 +2186,30 @@ bones/20/position = Vector3(-1.17067, 1.23551, -0.51546)
 bones/20/rotation = Quaternion(0.236248, 0.413252, 0.847487, -0.234894)
 bones/20/scale = Vector3(1, 1, 1)
 
-[node name="Cube_003" type="MeshInstance3D" parent="Camera3D/armModelLeft/Arml/Skeleton3D"]
+[node name="Cube_003" type="MeshInstance3D" parent="Camera3D/armModelLeft/Arml/Skeleton3D" unique_id=426311170]
 layers = 2
 mesh = SubResource("ArrayMesh_33qgl")
 skin = SubResource("Skin_io68r")
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Camera3D/armModelLeft/Arml/Skeleton3D"]
-transform = Transform3D(-0.750428, 0.626566, 0.210411, -0.226131, -0.54252, 0.809035, 0.621065, 0.559542, 0.548808, -1.18409, 1.23551, -0.507266)
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Camera3D/armModelLeft/Arml/Skeleton3D" unique_id=818661869]
+transform = Transform3D(-0.7504283, 0.6265657, 0.21041064, -0.22613072, -0.5425198, 0.8090346, 0.62106514, 0.5595422, 0.548808, -1.1840941, 1.2355111, -0.50726616)
 bone_name = "Palm.L.001"
 bone_idx = 3
 
-[node name="LeftHand" type="Node3D" parent="Camera3D/armModelLeft/Arml/Skeleton3D/BoneAttachment3D"]
+[node name="LeftHand" type="Node3D" parent="Camera3D/armModelLeft/Arml/Skeleton3D/BoneAttachment3D" unique_id=1477974295]
 transform = Transform3D(0.8933, -1.63464, -0.823969, 1.83053, 0.792143, 0.413057, -0.011046, -0.92164, 1.81643, 0.544, -0.016, -0.579)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D/armModelLeft"]
-libraries = {
-&"": SubResource("AnimationLibrary_57ilc")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D/armModelLeft" unique_id=1526762878]
+libraries/ = SubResource("AnimationLibrary_57ilc")
 speed_scale = 1.5
 
-[node name="armModelRight" type="Node3D" parent="Camera3D"]
+[node name="armModelRight" type="Node3D" parent="Camera3D" unique_id=615173495]
 transform = Transform3D(-0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.05, -1.718, -0.455)
 
-[node name="Arml" type="Node3D" parent="Camera3D/armModelRight"]
+[node name="Arml" type="Node3D" parent="Camera3D/armModelRight" unique_id=1868924275]
 transform = Transform3D(0.818237, 0, 0, 0, 0.818237, 0, 0, 0, 0.818237, 4.23995e-09, 0, 0.0484994)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Camera3D/armModelRight/Arml"]
+[node name="Skeleton3D" type="Skeleton3D" parent="Camera3D/armModelRight/Arml" unique_id=2095821444]
 bones/0/name = "Bone.007"
 bones/0/parent = -1
 bones/0/rest = Transform3D(-0.0509387, 0, 0.998702, 0, 1, 0, -0.998702, 0, -0.0509387, -0.466786, 0.560178, 0.0223655)
@@ -2360,26 +2358,24 @@ bones/20/position = Vector3(-1.55344, 0.301656, -1.88263)
 bones/20/rotation = Quaternion(-0.775239, -0.122665, -0.27861, 0.553475)
 bones/20/scale = Vector3(1, 1, 1)
 
-[node name="Cube_003" type="MeshInstance3D" parent="Camera3D/armModelRight/Arml/Skeleton3D"]
+[node name="Cube_003" type="MeshInstance3D" parent="Camera3D/armModelRight/Arml/Skeleton3D" unique_id=1421576741]
 layers = 2
 mesh = SubResource("ArrayMesh_2ieo8")
 skin = SubResource("Skin_io68r")
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Camera3D/armModelRight/Arml/Skeleton3D"]
-transform = Transform3D(0.805883, 0.517926, 0.286889, -0.111009, -0.343781, 0.932465, 0.581575, -0.783305, -0.219553, -1.56687, 0.301656, -1.87444)
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Camera3D/armModelRight/Arml/Skeleton3D" unique_id=1066201422]
+transform = Transform3D(0.8058829, 0.5179263, 0.28688893, -0.11100948, -0.34378135, 0.9324652, 0.5815753, -0.78330517, -0.21955277, -1.5668652, 0.30165598, -1.8744402)
 bone_name = "Palm.L.001"
 bone_idx = 3
 
-[node name="Hand" type="Node3D" parent="Camera3D/armModelRight/Arml/Skeleton3D/BoneAttachment3D"]
+[node name="Hand" type="Node3D" parent="Camera3D/armModelRight/Arml/Skeleton3D/BoneAttachment3D" unique_id=1713611979]
 transform = Transform3D(-0.495004, 0.43957, 0.7495, 0.0903701, -0.83187, 0.547563, 0.864179, 0.338778, 0.372055, 0.26, 0.389, -0.082)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D/armModelRight"]
-libraries = {
-&"": SubResource("AnimationLibrary_57ilc")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D/armModelRight" unique_id=495158470]
+libraries/ = SubResource("AnimationLibrary_57ilc")
 speed_scale = 1.5
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Camera3D"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Camera3D" unique_id=2144110357]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -2389,25 +2385,25 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="Camera3D/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="Camera3D/SubViewportContainer" unique_id=1734704535]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="Camera3D/SubViewportContainer/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="Camera3D/SubViewportContainer/SubViewport" unique_id=746565838]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 cull_mask = 1047554
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1003628261]
 
-[node name="FootstepsSoundPlayer" type="AudioStreamPlayer" parent="."]
+[node name="FootstepsSoundPlayer" type="AudioStreamPlayer" parent="." unique_id=464129983]
 stream = ExtResource("8_hg6s5")
 max_polyphony = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=369542313]
 
-[node name="PressELabel" type="Label" parent="CanvasLayer"]
+[node name="PressELabel" type="Label" parent="CanvasLayer" unique_id=1947588146]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -2422,7 +2418,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 text = "Press E"
 
-[node name="DayRect" parent="CanvasLayer" instance=ExtResource("9_hg6s5")]
+[node name="DayRect" parent="CanvasLayer" unique_id=1976007333 instance=ExtResource("9_hg6s5")]
 
-[node name="GroundRaycast" type="RayCast3D" parent="."]
+[node name="GroundRaycast" type="RayCast3D" parent="." unique_id=423616250]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.309454, 0)

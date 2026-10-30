@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ge533veisgpo"]
+[gd_scene format=3 uid="uid://ge533veisgpo"]
 
 [ext_resource type="Script" uid="uid://dp0a5fgtt8bak" path="res://terrain/terrain.gd" id="1_h2w3j"]
 [ext_resource type="Shader" uid="uid://blcuqyn13dkqk" path="res://terrain/terrain.gdshader" id="2_yt2v2"]
@@ -33,26 +33,26 @@ albedo_color = Color(0, 1, 1, 0.490196)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2ilfp"]
 size = Vector3(30, 0.02, 30)
 
-[node name="Terrain" type="Node3D" node_paths=PackedStringArray("mesh_instance", "preview_mesh")]
+[node name="Terrain" type="Node3D" unique_id=1282261170 node_paths=PackedStringArray("mesh_instance", "preview_mesh")]
 script = ExtResource("1_h2w3j")
 mesh_instance = NodePath("MeshInstance3D")
 preview_mesh = NodePath("PreviewMesh")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1650423346]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 15)
 material_override = SubResource("ShaderMaterial_dx2ah")
 mesh = SubResource("PlaneMesh_enun1")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=708418902]
 transform = Transform3D(1, 0, 0, 0, 0.929776, 0.368125, 0, -0.368125, 0.929776, 0, 1.16015, 2.35037)
 fov = 44.5
 
-[node name="PreviewMesh" type="MeshInstance3D" parent="."]
+[node name="PreviewMesh" type="MeshInstance3D" parent="." unique_id=1146268881]
 material_override = SubResource("StandardMaterial3D_8o40f")
 mesh = SubResource("BoxMesh_hay2d")
 
-[node name="Collision" type="StaticBody3D" parent="." groups=["dirt"]]
+[node name="Collision" type="StaticBody3D" parent="." unique_id=1745734651 groups=["dirt"]]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision" unique_id=1818903389]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 15)
 shape = SubResource("BoxShape3D_2ilfp")
