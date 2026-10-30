@@ -116,14 +116,15 @@ layers = 4
 mesh = SubResource("BoxMesh_y7y6t")
 skeleton = NodePath("../..")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Head/LightBulb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0446365, 0.100119, 0.20045)
+[node name="OmniLight3D" type="SpotLight3D" parent="Head/LightBulb"]
+transform = Transform3D(5.71158, 0, 0, 0, -2.49661e-07, 5.71158, 0, -5.71158, -2.49661e-07, -0.0446365, 1.18445, 0.20045)
 layers = 3
-light_energy = 10.0
+light_energy = 13.464
 shadow_enabled = true
 shadow_caster_mask = 4294967291
-omni_range = 20.0
-omni_attenuation = 1.5
+spot_range = 13.252
+spot_angle = 69.58
+spot_angle_attenuation = 0.554784
 
 [node name="Pole" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, 1.4966, 0)

@@ -8,6 +8,7 @@ var tool: Tool
 func _ready() -> void:
 	if tool_scene != null: 
 		tool = tool_scene.instantiate()
+		tool.mesh.layers = 1
 		add_child(tool)
 
 func take_tool() -> PackedScene:
@@ -21,6 +22,7 @@ func return_tool(new_tool: Tool, new_tool_scene: PackedScene):
 		new_tool.queue_free()
 		tool_scene = new_tool_scene
 		tool = tool_scene.instantiate()
+		tool.mesh.layers = 1
 		add_child(tool)
 		#tool.scale = Vector3(0.6, 0.6, 0.6)
 

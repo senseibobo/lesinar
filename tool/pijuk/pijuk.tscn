@@ -3,9 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://v4y5rd51iw2s" path="res://tool/pijuk/mesh/pijukukuk.tscn" id="1_1diyp"]
 [ext_resource type="Script" uid="uid://cnbfev3f4ilu5" path="res://tool/pijuk/pijuk.gd" id="1_cxlcm"]
 
-[node name="Pijuk" type="Node3D"]
+[node name="Pijuk" type="Node3D" node_paths=PackedStringArray("mesh")]
 transform = Transform3D(0.866025, -0.433013, -0.25, 0, 0.5, -0.866025, 0.5, 0.75, 0.433013, 0, 0, 0)
 script = ExtResource("1_cxlcm")
+mesh = NodePath("pijukukuk/Cube_032")
 
 [node name="pijukukuk" parent="." instance=ExtResource("1_1diyp")]
 transform = Transform3D(-0.5, 0.866025, 0, -0.866025, -0.5, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Cube_032" parent="pijukukuk" index="0"]
+layers = 2
+
+[editable path="pijukukuk"]

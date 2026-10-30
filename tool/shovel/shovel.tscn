@@ -42,9 +42,10 @@ _data = {
 &"use": SubResource("Animation_dyynr")
 }
 
-[node name="Shovel" type="Node3D" node_paths=PackedStringArray("anim_player")]
+[node name="Shovel" type="Node3D" node_paths=PackedStringArray("anim_player", "mesh")]
 script = ExtResource("1_txmd7")
 anim_player = NodePath("AnimationPlayer")
+mesh = NodePath("lopata/Cube_012")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
@@ -52,10 +53,15 @@ mesh = SubResource("BoxMesh_le64k")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_vr1qr")
+&"": SubResource("AnimationLibrary_vr1qr")
 }
 
 [node name="lopata" parent="." instance=ExtResource("2_rypbm")]
 
+[node name="Cube_012" parent="lopata" index="0"]
+layers = 2
+
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_vlkll")
+
+[editable path="lopata"]
